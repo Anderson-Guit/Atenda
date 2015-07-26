@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Atenda.Data.Usuario>
+
+@{
+    ViewBag.Title = "Lista de Usuarios";
+}
+
+<h2 class="new-page">Lista de Usuarios</h2>
+
+<p class="btn-default">
+    @Html.ActionLink("Novo", "CreateUsuario")
+</p>
+<table class="table new-list">
+    
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Adm)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+            @Html.HiddenFor(modelItem => item.IdUsuario)
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Adm)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "EditUsuario", new { pId = item.IdUsuario }) |
+            @Html.ActionLink("Deletar", "DeleteUsuario", new { pId = item.IdUsuario })
+        </td>
+    </tr>
+}
+
+</table>

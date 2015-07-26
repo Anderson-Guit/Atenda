@@ -1,27 +1,30 @@
 ﻿<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <h1 class="page-header">Cadastrar</h1>
 
-    <div class="row placeholders">
+    <div class="row placeholders" style="align-self:center">
         <div class="col-xs-6 col-sm-3 placeholder">
-            <a href="../Cliente/CreateCliente"><img src="../images/Personal.png" class="img-responsive" alt="Generic placeholder thumbnail"></a>
+            <a href="../Cliente/CreateCliente"><img src="../images/Cliente.png" class="img-responsive" alt="Generic placeholder thumbnail"></a>
             <h4>Cliente</h4>
-            <span class="text-muted">Something else</span>
-    </div>
-        <div class="col-xs-6 col-sm-3 placeholder">
-            <a href="../OrdemServico/CreateOS"><img src="../images/Documents Library.png" class="img-responsive" alt="Generic placeholder thumbnail"></a>
-            <h4>Ordem de Serviço</h4>
-            <span class="text-muted">Something else</span>
-    </div>
-        <div class="col-xs-6 col-sm-3 placeholder">
-            <a href="../Tecnico/CreateTecnico"><img src="../images/Configure alt 1.png" class="img-responsive" alt="Generic placeholder thumbnail"></a>
-            <h4>Tecnico</h4>
             <span class="text-muted">Something else</span>
         </div>
         <div class="col-xs-6 col-sm-3 placeholder">
-            <a href="../Agenda/CreateAgenda"><img src="../images/Calendar.png" class="img-responsive" alt="Generic placeholder thumbnail"></a>
+            <a href="../OrdemServico/CreateOS"><img src="../images/OrdemServico.png" class="img-responsive" alt="Generic placeholder thumbnail"></a>
+            <h4>Ordem de Serviço</h4>
+            <span class="text-muted">Something else</span>
+        </div>
+        <div class="col-xs-6 col-sm-3 placeholder">
+            <a href="../Agenda/CreateAgenda"><img src="../images/Agenda.png" class="img-responsive" alt="Generic placeholder thumbnail"></a>
             <h4>Atendimento</h4>
             <span class="text-muted">Something else</span>
-    </div>
+        </div>
+        @if (Session["Adm"] != null)
+        {
+            <div class="col-xs-6 col-sm-3 placeholder">
+                <a href="../Tecnico/CreateTecnico"><img src="../images/Tecnico.png" class="img-responsive" alt="Generic placeholder thumbnail"></a>
+                <h4>Tecnico</h4>
+                <span class="text-muted">Something else</span>
+            </div>
+        }
     </div>
 
     <h2 class="sub-header">Para Hoje!</h2>
@@ -29,36 +32,21 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Header</th>
-                    <th>Header</th>
-                    <th>Header</th>
-                    <th>Header</th>
+                    <th>Ordem</th>
+                    <th>Cliente</th>
+                    <th>Serviço</th>
+                    <th>Local</th>
+                    <th>Tecnico</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>1,001</td>
-                    <td>Lorem</td>
-                    <td>ipsum</td>
-                    <td>dolor</td>
-                    <td>sit</td>
-                </tr>
-                <tr>
-                    <td>1,002</td>
-                    <td>amet</td>
-                    <td>consectetur</td>
-                    <td>adipiscing</td>
-                    <td>elit</td>
-                </tr>
-                <tr>
-                    <td>1,003</td>
-                    <td>Integer</td>
-                    <td>nec</td>
-                    <td>odio</td>
-                    <td>Praesent</td>
-                </tr>
-                
+                    <td>1</td>
+                    <td>Fulando</td>
+                    <td>Trocar Senha Wifi</td>
+                    <td>Casa do cliente</td>
+                    <td>Ciclano</td>
+                </tr>                
             </tbody>
         </table>
     </div>

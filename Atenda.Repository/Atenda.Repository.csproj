@@ -40,6 +40,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UsuarioRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Atenda.Conn\Atenda.Conn.csproj">
+      <Project>{bd070567-1614-4cb8-afb8-92b76cd89a7c}</Project>
+      <Name>Atenda.Conn</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Atenda.Data\Atenda.Data.csproj">
+      <Project>{03b4e063-8483-4aae-8693-ffd493c8add8}</Project>
+      <Name>Atenda.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,0 +1,52 @@
+﻿@model Atenda.Data.Usuario
+
+@{
+    ViewBag.Title = "Deletar usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Deletar usuario</h2>
+
+<h3>Você tem certeza que deseja deletar este usuario?</h3>
+<div class="new-page">
+    <h4>Usuario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+            @Html.HiddenFor(model => model.IdUsuario)
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Senha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Senha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adm)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adm)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a class="btn btn-default">@Html.ActionLink("Voltar a lista", "ListUsuarios")</a>
+        </div>
+    }
+</div>

@@ -1,0 +1,59 @@
+﻿@model Atenda.Data.Login
+@{
+    Layout = null;
+}
+
+<html>
+<head>
+
+    <title>Login</title>
+
+    <link href="@Url.Content("~/css/login.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/css/bootstrap.css")" rel="stylesheet" />
+
+</head>
+<body class="body">
+
+@using (Html.BeginForm("Login"))
+{
+        <div id="geral">
+            <fieldset>
+                <h2>Login</h2>
+                <div>
+                    @Html.ValidationSummary(true)
+                    <div>
+                        @Html.LabelFor(model => model.Nome, htmlAttributes: new { @id = "label" })
+                        <div id="editorfor">
+                            @Html.EditorFor(model => model.Nome)
+                            @Html.ValidationMessageFor(model => model.Nome)
+                        </div>
+                    </div>
+
+                    <div>
+                        @Html.LabelFor(model => model.Senha, htmlAttributes: new { @id = "label" })
+                        <div id="editorfor">
+                            @Html.PasswordFor(model => model.Senha, htmlAttributes: new { @id = "editorfor" })
+                            @Html.ValidationMessageFor(model => model.Senha)
+                        </div>
+                    </div>
+
+                    <div>
+                        @Html.LabelFor(model => model.LembreMe, htmlAttributes: new { @id = "label" })
+                        <div id="check-box">
+                            @Html.EditorFor(model => model.LembreMe)
+                            @Html.ValidationMessageFor(model => model.LembreMe)
+                        </div>
+
+                    </div>
+
+                    <div>
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Entrar" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+}
+</body>
+</html>

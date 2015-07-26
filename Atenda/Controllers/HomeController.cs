@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Atenda.Repository;
+using Atenda.Data;
 
 namespace Atenda.Controllers
 {
@@ -13,5 +15,6 @@ namespace Atenda.Controllers
             ViewBag.Title="Atenda";
             return View();
         }
+        
     }
 }

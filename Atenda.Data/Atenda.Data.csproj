@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{03B4E063-8483-4AAE-8693-FFD493C8ADD8}</ProjectGuid>
+    <ProjectGuid>{1CCE3DAF-95F5-4230-9B77-E7FF98F04E64}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Atenda.Data</RootNamespace>

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BD070567-1614-4CB8-AFB8-92B76CD89A7C}</ProjectGuid>
+    <ProjectGuid>{9FF1EC1D-EEF9-48E8-BCA6-17E4C1CA9AB9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Atenda.Conn</RootNamespace>

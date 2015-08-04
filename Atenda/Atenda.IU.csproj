@@ -231,16 +231,6 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Atenda.Data\Atenda.Data.csproj">
-      <Project>{03b4e063-8483-4aae-8693-ffd493c8add8}</Project>
-      <Name>Atenda.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Atenda.Repository\Atenda.Repository.csproj">
-      <Project>{ba9274cf-af96-4463-a88e-103592cc8ee7}</Project>
-      <Name>Atenda.Repository</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Usuario\CreateUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -257,6 +247,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Usuario\DeleteUsuario.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Atenda.Data\Atenda.Data.csproj">
+      <Project>{1cce3daf-95f5-4230-9b77-e7ff98f04e64}</Project>
+      <Name>Atenda.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Atenda.Repository\Atenda.Repository.csproj">
+      <Project>{e691919d-1266-426c-a093-da89b9ef7f08}</Project>
+      <Name>Atenda.Repository</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

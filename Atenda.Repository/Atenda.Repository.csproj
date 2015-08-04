@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BA9274CF-AF96-4463-A88E-103592CC8EE7}</ProjectGuid>
+    <ProjectGuid>{E691919D-1266-426C-A093-DA89B9EF7F08}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Atenda.Repository</RootNamespace>
@@ -44,11 +44,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Atenda.Conn\Atenda.Conn.csproj">
-      <Project>{bd070567-1614-4cb8-afb8-92b76cd89a7c}</Project>
+      <Project>{9ff1ec1d-eef9-48e8-bca6-17e4c1ca9ab9}</Project>
       <Name>Atenda.Conn</Name>
     </ProjectReference>
     <ProjectReference Include="..\Atenda.Data\Atenda.Data.csproj">
-      <Project>{03b4e063-8483-4aae-8693-ffd493c8add8}</Project>
+      <Project>{1cce3daf-95f5-4230-9b77-e7ff98f04e64}</Project>
       <Name>Atenda.Data</Name>
     </ProjectReference>
   </ItemGroup>

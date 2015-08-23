@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Atenda.Data.Cliente>
+
+@{
+    ViewBag.Title = "ListClientes";
+}
+
+<h2>ListClientes</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Endereco)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bairro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cidade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pais)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CPF)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+
+        @Html.HiddenFor(modelItem => item.IdCliente)
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Endereco)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bairro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cidade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pais)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CPF)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { pId = item.IdCliente }) |
+            @Html.ActionLink("Details", "Details", new { pId = item.IdCliente }) |
+            @Html.ActionLink("Delete", "Delete", new { pId = item.IdCliente })
+        </td>
+    </tr>
+}
+
+</table>

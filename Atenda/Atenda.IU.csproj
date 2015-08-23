@@ -170,6 +170,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Context\ApplicationDataContext.cs" />
+    <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
@@ -213,7 +214,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Agenda\" />
-    <Folder Include="Views\Cliente\" />
     <Folder Include="Views\OrdemServico\" />
     <Folder Include="Views\Tecnico\" />
   </ItemGroup>
@@ -257,6 +257,24 @@
       <Project>{e691919d-1266-426c-a093-da89b9ef7f08}</Project>
       <Name>Atenda.Repository</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Cliente\DetailsCliente.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Cliente\CreateCliente.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Cliente\EditCliente.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Cliente\DeleteCliente.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Cliente\ListClientes.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Cliente\SearchCliente.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

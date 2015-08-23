@@ -1,0 +1,90 @@
+﻿@model Atenda.Data.Cliente
+
+@{
+    ViewBag.Title = "DetailsCliente";
+}
+
+<h2>DetailsCliente</h2>
+
+<div>
+    <h4>Cliente</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.HiddenFor(model => model.IdCliente)
+        </dt>
+
+        <dd>
+            @Html.HiddenFor(model => model.IdCliente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Endereco)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Endereco)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bairro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bairro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cidade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cidade)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pais)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pais)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CPF)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CPF)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { pId = Model.IdCliente }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

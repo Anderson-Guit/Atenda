@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Atenda.Data.Agenda>
+
+@{
+    ViewBag.Title = "ListAgendas";
+}
+
+<h2>ListAgendas</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TecnicoNome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClienteNome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hora)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Data)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Local)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Servico)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Observacao)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @Html.HiddenFor(modelItem => item.IdAgenda)
+
+        @Html.HiddenFor(modelItem => item.IdTecnico)
+
+        @Html.HiddenFor(modelItem => item.IdCliente)
+
+        <td>
+            @Html.DisplayFor(modelItem => item.TecnicoNome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ClienteNome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hora)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Data)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Local)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Servico)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Observacao)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { pId = item.IdAgenda }) |
+            @Html.ActionLink("Details", "Details", new { pId = item.IdAgenda }) |
+            @Html.ActionLink("Delete", "Delete", new { pId = item.IdAgenda })
+        </td>
+    </tr>
+}
+
+</table>

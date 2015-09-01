@@ -154,5 +154,6 @@ namespace Atenda.Controllers
                 var usuarios = UsuarioRepository.GetAll();
                 return View(usuarios);
         }
+
     }
 }

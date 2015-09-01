@@ -170,6 +170,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Context\ApplicationDataContext.cs" />
+    <Compile Include="Controllers\AgendaController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
@@ -213,7 +214,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Agenda\" />
     <Folder Include="Views\OrdemServico\" />
     <Folder Include="Views\Tecnico\" />
   </ItemGroup>
@@ -275,6 +275,27 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Cliente\SearchCliente.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Agenda\DetailsAgenda.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Agenda\CreateAgenda.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Agenda\EditAgenda.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Agenda\DeleteAgenda.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Agenda\ListAgendas.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Agenda\SearchTecnicoNome.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Agenda\SearchClienteNome.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

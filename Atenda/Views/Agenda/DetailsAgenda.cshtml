@@ -1,0 +1,81 @@
+﻿@model Atenda.Data.Agenda
+
+@{
+    ViewBag.Title = "DetailsAgenda";
+}
+
+<h2>DetailsAgenda</h2>
+
+<div>
+    <h4>Agenda</h4>
+	<hr />
+    <dl class="dl-horizontal">
+
+            @Html.HiddenFor(model => model.IdAgenda)
+
+            @Html.HiddenFor(model => model.IdTecnico)
+
+            @Html.HiddenFor(model => model.IdCliente)
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TecnicoNome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TecnicoNome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClienteNome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClienteNome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hora)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hora)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Data)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Local)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Local)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Servico)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Servico)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Observacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Observacao)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { pId = Model.IdAgenda }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

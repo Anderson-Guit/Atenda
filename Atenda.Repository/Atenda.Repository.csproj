@@ -42,6 +42,7 @@
     <Compile Include="AgendaRepository.cs" />
     <Compile Include="ClienteRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TecnicoRepository.cs" />
     <Compile Include="UsuarioRepository.cs" />
   </ItemGroup>
   <ItemGroup>

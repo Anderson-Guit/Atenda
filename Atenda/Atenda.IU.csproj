@@ -173,6 +173,7 @@
     <Compile Include="Controllers\AgendaController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TecnicoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -215,7 +216,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\OrdemServico\" />
-    <Folder Include="Views\Tecnico\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -296,6 +296,24 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Agenda\SearchClienteNome.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Tecnico\DetailsTecnico.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Tecnico\CreateTecnico.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Tecnico\EditTecnico.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Tecnico\DeleteTecnico.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Tecnico\ListTecnicos.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Tecnico\SearchTecnico.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

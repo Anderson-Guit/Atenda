@@ -66,14 +66,14 @@ namespace Atenda.Controllers
         //
         // POST: /Cliente/Edit/5
         [HttpPost]
-        public ActionResult EditCliente(Cliente cliente)
+        public ActionResult EditCliente(Cliente pCliente)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
                     ClienteRepository edit = new ClienteRepository();
-                    edit.Update(cliente);
+                    edit.Update(pCliente);
                     return RedirectToAction("ListClientes");
                 }
 
@@ -89,7 +89,8 @@ namespace Atenda.Controllers
         // GET: /Cliente/Delete/5
         public ActionResult DeleteCliente(int pId)
         {
-            return View();
+            var cliente = ClienteRepository.GetOne(pId);
+            return View(cliente);
         }
 
         //

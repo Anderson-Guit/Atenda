@@ -1,0 +1,53 @@
+﻿@model Atenda.Data.Produto
+
+@{
+    ViewBag.Title = "SearchProduto";
+}
+
+<h2>SearchProduto</h2>
+
+<div>
+    <h4>Produto</h4>
+	<hr />
+    <dl class="dl-horizontal">
+
+            @Html.HiddenFor(model => model.IdProduto)
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Valor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Valor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QntdEstoque)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QntdEstoque)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { pId = Model.IdProduto }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

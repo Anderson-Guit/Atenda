@@ -173,6 +173,7 @@
     <Compile Include="Controllers\AgendaController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProdutoController.cs" />
     <Compile Include="Controllers\TecnicoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
@@ -314,6 +315,24 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Tecnico\SearchTecnico.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Produto\DetailsProduto.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Produto\CreateProduto.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Produto\EditProduto.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Produto\DeleteProduto.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Produto\ListProdutos.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Produto\SearchProduto.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

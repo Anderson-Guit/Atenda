@@ -173,6 +173,7 @@
     <Compile Include="Controllers\AgendaController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrdemServicoController.cs" />
     <Compile Include="Controllers\ProdutoController.cs" />
     <Compile Include="Controllers\TecnicoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
@@ -216,7 +217,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\OrdemServico\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -333,6 +333,27 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Produto\SearchProduto.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\OrdemServico\DetailsOS.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\OrdemServico\CreateOS.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\OrdemServico\EditOS.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\OrdemServico\DeleteOS.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\OrdemServico\ListOS.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\OrdemServico\SearchTecnicoNome.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\OrdemServico\SearchClienteNome.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

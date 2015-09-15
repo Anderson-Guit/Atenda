@@ -1,0 +1,96 @@
+﻿@model IEnumerable<Atenda.Data.OrdemServico>
+
+@{
+    ViewBag.Title = "ListOS";
+}
+
+<h2>ListOS</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ClienteNome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TecnicoNome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Equipamento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Marca)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Modelo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumeroSerie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Defeito)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Servico)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Local)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Observacoes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+
+            @Html.HiddenFor(modelItem => item.IdOS)
+
+        <td>
+            @Html.DisplayFor(modelItem => item.ClienteNome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TecnicoNome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Equipamento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Marca)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Modelo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumeroSerie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Defeito)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Servico)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Local)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Observacoes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { pId = item.IdOS }) |
+            @Html.ActionLink("Details", "Details", new { pId = item.IdOS }) |
+            @Html.ActionLink("Delete", "Delete", new { pId = item.IdOS })
+        </td>
+    </tr>
+}
+
+</table>

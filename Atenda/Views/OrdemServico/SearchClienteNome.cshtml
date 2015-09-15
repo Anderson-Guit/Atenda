@@ -1,0 +1,109 @@
+﻿@model Atenda.Data.OrdemServico
+
+@{
+    ViewBag.Title = "SearchClienteNome";
+}
+
+<h2>SearchClienteNome</h2>
+
+<div>
+    <h4>OrdemServico</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        @Html.HiddenFor(model => model.IdOS)
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClienteNome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClienteNome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TecnicoNome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TecnicoNome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Equipamento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Equipamento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Marca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Marca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modelo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modelo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumeroSerie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroSerie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Defeito)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Defeito)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Servico)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Servico)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Local)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Local)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Observacoes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Observacoes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

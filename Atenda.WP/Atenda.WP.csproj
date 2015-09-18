@@ -93,13 +93,18 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Data\Usuario.cs" />
+    <Compile Include="DataContext.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Agenda.cs" />
+    <Compile Include="Model\Cliente.cs" />
+    <Compile Include="Model\OrdemServico.cs" />
+    <Compile Include="Model\Produto.cs" />
+    <Compile Include="Model\Tecnico.cs" />
+    <Compile Include="Model\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\UsuarioRepository.cs" />
     <Compile Include="Resources\AppResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

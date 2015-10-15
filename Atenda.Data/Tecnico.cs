@@ -17,15 +17,17 @@ namespace Atenda.Data
         public String Nome { get; set; }
 
         [Display(Name = "Telefone", Description = "Informe o telefone do Tecnico.")]
-        [Required(ErrorMessage = "Telefone é obrigatório")]
+        [DataType(DataType.PhoneNumber)]
+        [DisplayFormat(DataFormatString = "{0:(##) ####-####")]
         public String Telefone { get; set; }
 
         [Display(Name = "Endereço", Description = "Informe o Endereço do Tecnico.")]
-        [Required(ErrorMessage = "Endereço é obrigatório")]
         public String Endereco { get; set; }
 
-        [Display(Name = "Adimição", Description = "Data de adimição do Tecnico.")]
-        public DateTime Adimicao { get; set; }
+        [Display(Name = "Admissão", Description = "Data de admissão do Tecnico.")]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        public DateTime Admissao { get; set; }
 
         public Tecnico()
         {

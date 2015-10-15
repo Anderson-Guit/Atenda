@@ -1,0 +1,57 @@
+﻿@model Atenda.Data.Tecnico
+
+@{
+    ViewBag.Title = "Deletar Tecnico";
+}
+
+<h2>Deletar tecnico</h2>
+
+<h3>Você tem certeza que deseja deletar este tecnico?</h3>
+<div>
+    <dl class="dl-horizontal">
+
+            @Html.HiddenFor(model => model.IdTecnico)
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Endereco)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Endereco)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Admissao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Admissao)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Deletar" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar ao inicio", "Index", "Home")
+        </div>
+    }
+</div>

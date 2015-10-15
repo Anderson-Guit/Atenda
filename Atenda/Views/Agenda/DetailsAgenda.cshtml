@@ -1,13 +1,12 @@
 ﻿@model Atenda.Data.Agenda
 
 @{
-    ViewBag.Title = "DetailsAgenda";
+    ViewBag.Title = "Agendamento";
 }
 
-<h2>DetailsAgenda</h2>
+<h2>Agendamento</h2>
 
 <div>
-    <h4>Agenda</h4>
 	<hr />
     <dl class="dl-horizontal">
 
@@ -66,16 +65,17 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Observacao)
+            @Html.DisplayNameFor(model => model.Observacoes)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Observacao)
+            @Html.DisplayFor(model => model.Observacoes)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { pId = Model.IdAgenda }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "EditAgenda", new { pId = Model.IdAgenda }) |
+    @Html.ActionLink("Deletar", "DeleteAgenda", new { pId = Model.IdAgenda })
+    @Html.ActionLink("Voltar a lista", "ListAgendas")
 </p>

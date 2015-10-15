@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Atenda.Data.Produto>
 
 @{
-    ViewBag.Title = "ListProdutos";
+    ViewBag.Title = "Lista de Produtos";
 }
 
-<h2>ListProdutos</h2>
+<h2>Lista de Produtos</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Cadastrar novo produto", "CreateProduto")
 </p>
 <table class="table">
     <tr>
@@ -44,9 +44,9 @@
             @Html.DisplayFor(modelItem => item.QntdEstoque)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { pId = item.IdProduto }) |
-            @Html.ActionLink("Details", "Details", new { pId = item.IdProduto }) |
-            @Html.ActionLink("Delete", "Delete", new { pId = item.IdProduto })
+            @Html.ActionLink("Editar", "EditProduto", new { pId = item.IdProduto }) |
+            @Html.ActionLink("Exibir", "DetailsProduto", new { pId = item.IdProduto }) |
+            @Html.ActionLink("Deletar", "DeleteProduto", new { pId = item.IdProduto })
         </td>
     </tr>
 }

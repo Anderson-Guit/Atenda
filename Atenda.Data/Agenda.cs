@@ -23,9 +23,11 @@ namespace Atenda.Data
         public String ClienteNome { get; set; }
 
         [Display(Name = "Hora", Description = "Horario do atendimento.")]
+        [DataType("##:##")]
         public DateTime Hora { get; set; }
 
         [Display(Name = "Data", Description = "Dia do atendimento.")]
+        [DataType("##/##/####")]
         public DateTime Data { get; set; }
 
         [Display(Name = "Local", Description = "Local do atendimento.")]
@@ -34,10 +36,12 @@ namespace Atenda.Data
         [Display(Name = "Serviço", Description = "Serviço a ser realizado.")]
         public String Servico { get; set; }
 
-        [Display(Name = "Observação", Description = "Observação sobre o atendimento.")]
-        public String Observacao { get; set; }
+        [Display(Name = "Observações", Description = "Observações sobre o atendimento.")]
+        public String Observacoes { get; set; }
 
-
+        [Display(Name = "Status", Description = "Status do atendimento.")]
+        public Boolean Status { get; set; }
+        
         public Agenda()
         {
 

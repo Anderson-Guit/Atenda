@@ -14,10 +14,10 @@ namespace Atenda.Conn
         private static SqlCommand cmd = new SqlCommand();
         private static SqlDataReader dr;
 
-        public static string StrConn = "Server=NOTEGUIT" +
+        public static string StrConn = "Server=GUIT" +
                                        ";Database=Atenda" +
                                        ";User Id=sa" +
-                                       ";Password=guit9818";
+                                       ";Password=";
         public static bool Connect()
         {
 

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Atenda.Data.Cliente>
+
+@{
+    ViewBag.Title = "Lista de clientes";
+}
+
+<h2>Lista de clientes</h2>
+
+<p>
+    @Html.ActionLink("Cadastrar novo cliente", "CreateCliente")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Endereco)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bairro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cidade)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+
+        @Html.HiddenFor(modelItem => item.IdCliente)
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Endereco)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bairro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cidade)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "EditCliente", new { pId = item.IdCliente }) |
+            @Html.ActionLink("Exibir", "DetailsCliente", new { pId = item.IdCliente }) |
+            @Html.ActionLink("Deletar", "DeleteCliente", new { pId = item.IdCliente })
+        </td>
+    </tr>
+}
+
+</table>

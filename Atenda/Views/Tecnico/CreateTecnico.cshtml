@@ -4,13 +4,13 @@
     ViewBag.Title = "CreateTecnico";
 }
 
-<h2>CreateTecnico</h2>
+<h2 class="new-page">CreateTecnico</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
+    <div class="new-page">
         <h4>Tecnico</h4>
         <hr />
         @Html.ValidationSummary(true)
@@ -40,10 +40,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Adimicao, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Adimissao, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Adimicao)
-                @Html.ValidationMessageFor(model => model.Adimicao)
+                @Html.EditorFor(model => model.Adimissao)
+                @Html.ValidationMessageFor(model => model.Adimissao)
             </div>
         </div>
 

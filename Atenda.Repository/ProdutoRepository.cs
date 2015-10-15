@@ -45,13 +45,13 @@ namespace Atenda.Repository
             SqlConn.CommandPersist(cmd);
         }
 
-        public void Delete(Produto produto)
+        public void Delete(int pId)
         {
             StringBuilder sql = new StringBuilder();
             SqlCommand cmd = new SqlCommand();
 
             sql.Append("DELETE FROM Produto ");
-            sql.Append("WHERE IdProduto=" + produto.IdProduto);
+            sql.Append("WHERE IdProduto=" + pId);
 
             cmd.CommandText = sql.ToString();
             SqlConn.CommandPersist(cmd);

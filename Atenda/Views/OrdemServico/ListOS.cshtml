@@ -1,15 +1,15 @@
 ﻿@model IEnumerable<Atenda.Data.OrdemServico>
 
 @{
-    ViewBag.Title = "ListOS";
+    ViewBag.Title = "Lista de Ordens de Serviço";
 }
 
-<h2>ListOS</h2>
+<h2 class="new-page">Lista de Ordens de Serviço</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
+<p class="btn-default new-page">
+    @Html.ActionLink("Cadastar nova OS", "CreateOS")
 </p>
-<table class="table">
+<table class="table new-list">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.ClienteNome)
@@ -25,21 +25,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Modelo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NumeroSerie)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Defeito)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Servico)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Local)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Observacoes)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Status)
@@ -68,27 +53,12 @@
             @Html.DisplayFor(modelItem => item.Modelo)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.NumeroSerie)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Defeito)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Servico)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Local)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Observacoes)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Status)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { pId = item.IdOS }) |
-            @Html.ActionLink("Details", "Details", new { pId = item.IdOS }) |
-            @Html.ActionLink("Delete", "Delete", new { pId = item.IdOS })
+            @Html.ActionLink("Editar", "EditOS", new { pId = item.IdOS }) |
+            @Html.ActionLink("Exibir", "DetailsOS", new { pId = item.IdOS }) |
+            @Html.ActionLink("Deletar", "DeleteOS", new { pId = item.IdOS })
         </td>
     </tr>
 }

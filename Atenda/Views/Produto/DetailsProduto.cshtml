@@ -1,13 +1,12 @@
 ﻿@model Atenda.Data.Produto
 
 @{
-    ViewBag.Title = "DetailsProduto";
+    ViewBag.Title = "Produto";
 }
 
-<h2>DetailsProduto</h2>
+<h2>Produto</h2>
 
 <div>
-    <h4>Produto</h4>
 	<hr />
     <dl class="dl-horizontal">
 
@@ -48,6 +47,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { pId = Model.IdProduto }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "EditProduto", new { pId = Model.IdProduto }) |
+    @Html.ActionLink("Voltar a lista", "ListProdutos")
 </p>

@@ -39,9 +39,9 @@ namespace Atenda.Data
         [Required(ErrorMessage = "País é obrigatório")]
         public String Pais { get; set; }
 
-        [Display(Name = "Cpf", Description = "Informe o Cpf do Cliente.")]
-        [Required(ErrorMessage = "Cpf é obrigatório")]
-        public String CPF { get; set; }
+        [Display(Name = "CPF/CNPJ", Description = "Informe o CPF (Pessoa Fisica) ou CNPJ (Pessoa Juridica) do Cliente.")]
+        [Required(ErrorMessage = "CPF/CNPJ é obrigatório")]
+        public String CPF_CNPJ { get; set; }
 
         public Cliente()
         {

@@ -1,27 +1,21 @@
 ﻿@model Atenda.Data.OrdemServico
 
 @{
-    ViewBag.Title = "EditOS";
+    ViewBag.Title = "Editar Ordem de Serviço";
 }
 
-<h2>EditOS</h2>
+<h2>Editar Ordem de Serviço</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>OrdemServico</h4>
         <hr />
         @Html.ValidationSummary(true)
-        <div class="form-group">
-            @Html.LabelFor(model => model.IdOS, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.IdOS)
-                @Html.ValidationMessageFor(model => model.IdOS)
-            </div>
-        </div>
 
+        @Html.HiddenFor(model => model.IdOS)
+     
         <div class="form-group">
             @Html.LabelFor(model => model.ClienteNome, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -87,6 +81,14 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.Data, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Data)
+                @Html.ValidationMessageFor(model => model.Data)
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.Local, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Local)
@@ -112,7 +114,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Salvar" class="btn btn-default" />
             </div>
         </div>
     </div>

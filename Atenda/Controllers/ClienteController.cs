@@ -89,25 +89,21 @@ namespace Atenda.Controllers
         // GET: /Cliente/Delete/5
         public ActionResult DeleteCliente(int pId)
         {
-            var cliente = ClienteRepository.GetOne(pId);
-            return View(cliente);
+            var pCliente = ClienteRepository.GetOne(pId);
+            return View(pCliente);
         }
 
         //
         // POST: /Cliente/Delete/5
         [HttpPost]
-        public ActionResult DeleteCliente(int pId)
+        public ActionResult DeleteCliente(Cliente pCliente, int pId)
         {
             try
             {
-                if (ModelState.IsValid)
-                {
-                    ClienteRepository exclui = new ClienteRepository();
-                    exclui.Delete(pId);
-                    return RedirectToAction("ListClientes");
-                }
+                ClienteRepository exclui = new ClienteRepository();
+                exclui.Delete(pId);
+                return RedirectToAction("ListClientes");
 
-                return View("ListClientes");
             }
             catch
             {

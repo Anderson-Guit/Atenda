@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Atenda.Data.Tecnico>
+
+@{
+    ViewBag.Title = "Lista de Tecnicos";
+}
+
+<h2>Lista de tecnicos</h2>
+
+<p>
+    @Html.ActionLink("Cadastrar novo tecnico", "CreateTecnico")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Endereco)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Admissao)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+
+            @Html.HiddenFor(modelItem => item.IdTecnico)
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Endereco)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Admissao.ToShortDateString())
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "EditTecnico", new { pId = item.IdTecnico }) |
+            @Html.ActionLink("Exibir", "DetailsTecnico", new { pId = item.IdTecnico }) |
+            @Html.ActionLink("Deletar", "DeleteTecnico", new { pId = item.IdTecnico })
+        </td>
+    </tr>
+}
+
+</table>

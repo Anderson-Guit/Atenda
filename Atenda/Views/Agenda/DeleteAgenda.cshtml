@@ -1,14 +1,13 @@
 ﻿@model Atenda.Data.Agenda
 
 @{
-    ViewBag.Title = "DeleteAgenda";
+    ViewBag.Title = "Deletar Agendamento";
 }
 
-<h2>DeleteAgenda</h2>
+<h2>Deletar Agendamento</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Você tem certeza que deseja deletar este agendamento?</h3>
 <div>
-    <h4>Agenda</h4>
     <hr />
     <dl class="dl-horizontal">
 
@@ -67,11 +66,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Observacao)
+            @Html.DisplayNameFor(model => model.Observacoes)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Observacao)
+            @Html.DisplayFor(model => model.Observacoes)
         </dd>
 
     </dl>
@@ -80,8 +79,9 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Deletar" class="btn btn-default" /> |
+
+            @Html.ActionLink("Voltar a lista", "ListAgendas")
         </div>
     }
 </div>

@@ -11,21 +11,20 @@ namespace Atenda.Data
     {
         public int IdProduto { get; set; }
 
-        [Display(Name = "Nome", Description = "Informe o Nome do Cliente.")]
+        [Display(Name = "Nome", Description = "Informe o Nome do Poduto.")]
         [Required(ErrorMessage = "Nome é obrigatório.")]
-
         public String Nome { get; set; }
 
         [Display(Name = "Descrição", Description = "Informe a Descrição do Poduto.")]
-        [Required(ErrorMessage = "Produto é obrigatório")]
+        [DataType(DataType.MultilineText)]
         public String Descricao { get; set; }
 
         [Display(Name = "Valor", Description = "Informe o Valor do Produto.")]
         [Required(ErrorMessage = "Valor é obrigatório")]
+        [DisplayFormat(DataFormatString = "{0,n2}")]
         public Decimal Valor { get; set; }
 
         [Display(Name = "Quantidade em Estoque", Description = "Informe a Quantidade de Produtos em Estoque.")]
-        [Required(ErrorMessage = "Modelo é obrigatório")]
         public int QntdEstoque { get; set; }
 
     }

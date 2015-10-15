@@ -1,18 +1,17 @@
 ﻿@model Atenda.Data.Cliente
 
 @{
-    ViewBag.Title = "EditCliente";
+    ViewBag.Title = "Editar Cliente";
 }
 
-<h2>EditCliente</h2>
+<h2>Editar Cliente</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Cliente</h4>
-        <hr />
+
         @Html.ValidationSummary(true)
 
         @Html.HiddenFor(model => model.IdCliente)
@@ -74,21 +73,21 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CPF, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CPF_CNPJ, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CPF)
-                @Html.ValidationMessageFor(model => model.CPF)
+                @Html.EditorFor(model => model.CPF_CNPJ)
+                @Html.ValidationMessageFor(model => model.CPF_CNPJ)
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Salvar" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Voltar a lista", "ListClientes")
 </div>

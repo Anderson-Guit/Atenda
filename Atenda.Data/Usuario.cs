@@ -17,13 +17,13 @@ namespace Atenda.Data
         public String Nome { get; set; }
 
         [Display(Name = "Senha", Description = "Informe a Senha do Usuário.")]
-        [DataType(DataType.Password)]
         [Required(ErrorMessage = "Senha é obrigatório.")]
+        [DataType(DataType.Password)]
         public String Senha { get; set; }
 
         [Display(Name = "Confirme a Senha", Description = "Repita a Senha.")]
-        [DataType(DataType.Password)]
         [Compare("Senha", ErrorMessage = "As senha esta diferente!")]
+        [DataType(DataType.Password)]
         public String ConfirmaSenha { get; set; }
 
         [Display(Name = "Administrador",

@@ -17,13 +17,13 @@ namespace Atenda.Repository
             StringBuilder sql = new StringBuilder();
             SqlCommand cmd = new SqlCommand();
 
-            sql.Append("INSERT INTO Tecnico (Nome, Telefone, Endereco, Adimicao)");
-            sql.Append("VALUES(@Nome, @Telefone, @Endereco, @Adimicao)");
+            sql.Append("INSERT INTO Tecnico (Nome, Telefone, Endereco, Admissao)");
+            sql.Append("VALUES(@Nome, @Telefone, @Endereco, @Admissao)");
 
             cmd.Parameters.AddWithValue("@Nome", pTecnico.Nome);
             cmd.Parameters.AddWithValue("@Telefone", pTecnico.Telefone);
             cmd.Parameters.AddWithValue("@Endereco", pTecnico.Endereco);
-            cmd.Parameters.AddWithValue("@Adimicao", pTecnico.Adimicao);
+            cmd.Parameters.AddWithValue("@Admissao", pTecnico.Admissao);
 
             cmd.CommandText = sql.ToString();
             SqlConn.CommandPersist(cmd);
@@ -34,13 +34,13 @@ namespace Atenda.Repository
             StringBuilder sql = new StringBuilder();
             SqlCommand cmd = new SqlCommand();
 
-            sql.Append("UPDATE Tecnico SET Nome=@Nome, Telefone=@Telefone, Endereco=@Endereco, Adimicao=@Adimicao");
+            sql.Append("UPDATE Tecnico SET Nome=@Nome, Telefone=@Telefone, Endereco=@Endereco, Admissao=@Admissao");
             sql.Append("WHERE IdTecnico=" + pTecnico.IdTecnico);
 
             cmd.Parameters.AddWithValue("@Nome", pTecnico.Nome);
             cmd.Parameters.AddWithValue("@Telefone", pTecnico.Telefone);
             cmd.Parameters.AddWithValue("@Endereco", pTecnico.Endereco);
-            cmd.Parameters.AddWithValue("@Adimicao", pTecnico.Adimicao);
+            cmd.Parameters.AddWithValue("@Admissao", pTecnico.Admissao);
 
             cmd.CommandText = sql.ToString();
             SqlConn.CommandPersist(cmd);
@@ -75,7 +75,7 @@ namespace Atenda.Repository
                 tecnico.Nome = dr.IsDBNull(dr.GetOrdinal("Nome")) ? "" : (String)dr["Nome"];
                 tecnico.Telefone = dr.IsDBNull(dr.GetOrdinal("Telefone")) ? "" : (String)dr["Telefone"];
                 tecnico.Endereco = dr.IsDBNull(dr.GetOrdinal("Endereco")) ? "" : (String)dr["Endereco"];
-                tecnico.Adimicao = (DateTime)dr["Adimicao"];
+                tecnico.Admissao = (DateTime)dr["Admissao"];
             }
             return tecnico;
         }
@@ -99,7 +99,7 @@ namespace Atenda.Repository
                         Nome = dr.IsDBNull(dr.GetOrdinal("Nome")) ? "" : (String)dr["Nome"],
                         Telefone = dr.IsDBNull(dr.GetOrdinal("Senha")) ? "" : (String)dr["Senha"],
                         Endereco = dr.IsDBNull(dr.GetOrdinal("Endereco")) ? "" : (String)dr["Endereco"],
-                        Adimicao = (DateTime)dr["Adimicao"]
+                        Admissao = Convert.ToDateTime(dr["Admissao"])
                     });
             }
             return tecnico;
@@ -112,6 +112,7 @@ namespace Atenda.Repository
 
             sql.Append("SELECT * ");
             sql.Append("FROM Tecnico ");
+            sql.Append("WHERE Nome =" + Nome);
 
             SqlDataReader dr = SqlConn.Get(sql.ToString());
 
@@ -124,7 +125,7 @@ namespace Atenda.Repository
                         Nome = dr.IsDBNull(dr.GetOrdinal("Nome")) ? "" : (String)dr["Nome"],
                         Telefone = dr.IsDBNull(dr.GetOrdinal("Telefone")) ? "" : (String)dr["Telefone"],
                         Endereco = dr.IsDBNull(dr.GetOrdinal("Endereco")) ? "" : (String)dr["Endereco"],
-                        Adimicao = (DateTime)dr["Adimicao"]                       
+                        Admissao = (DateTime)dr["Admissao"]                       
                     });
             }
 

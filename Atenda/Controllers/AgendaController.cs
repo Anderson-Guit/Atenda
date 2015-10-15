@@ -94,7 +94,7 @@ namespace Atenda.Controllers
         //
         // POST: /Agenda/Delete/5
         [HttpPost]
-        public ActionResult DeleteAgenda(int pId)
+        public ActionResult DeleteAgenda(Agenda pAgenda, int pId)
         {
             try
             {

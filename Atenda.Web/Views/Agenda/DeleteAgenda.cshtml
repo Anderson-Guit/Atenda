@@ -1,0 +1,110 @@
+﻿@model Atenda.Data.Agenda
+
+@{
+    ViewBag.Title = "Deletar Agendamento";
+}
+
+<h2>Deletar agendamento</h2>
+
+<h3>Você tem certeza que deseja deletar este agendamento?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdAgenda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdAgenda)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdTecnico)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdTecnico)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdCliente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdCliente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TecnicoNome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TecnicoNome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClienteNome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClienteNome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hora)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hora)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Data)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Local)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Local)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Servico)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Servico)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Observacoes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Observacoes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.CheckBoxFor(model => model.Status)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

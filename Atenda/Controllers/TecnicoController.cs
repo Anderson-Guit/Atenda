@@ -37,21 +37,21 @@ namespace Atenda.Controllers
         [HttpPost]
         public ActionResult CreateTecnico(Tecnico pTecnico)
         {
-            try
-            {
-                if (ModelState.IsValid)
-                {
+            //try
+            //{
+            //    if (ModelState.IsValid)
+            //    {
                     TecnicoRepository create = new TecnicoRepository();
                     create.Create(pTecnico);
                     return RedirectToAction("ListTecnicos");
-                }
+            //    }
 
-                return View("CreateTecnico");
-            }
-            catch
-            {
-                return View();
-            }
+            //    return View("CreateTecnico");
+            //}
+            //catch
+            //{
+            //    return View();
+            //}
         }
 
         //
@@ -95,7 +95,7 @@ namespace Atenda.Controllers
         //
         // POST: /Tecnico/Delete/5
         [HttpPost]
-        public ActionResult DeleteTecnico(int pId)
+        public ActionResult DeleteTecnico(Tecnico pTecnico, int pId)
         {
             try
             {

@@ -1,13 +1,12 @@
 ﻿@model Atenda.Data.Cliente
 
 @{
-    ViewBag.Title = "SearchCliente";
+    ViewBag.Title = "Cliente";
 }
 
-<h2>SearchCliente</h2>
+<h2>Cliente</h2>
 
 <div>
-    <h4>Cliente</h4>
 	<hr />
     <dl class="dl-horizontal">
 
@@ -70,16 +69,16 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CPF)
+            @Html.DisplayNameFor(model => model.CPF_CNPJ)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CPF)
+            @Html.DisplayFor(model => model.CPF_CNPJ)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { pId = Model.IdCliente }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { pId = Model.IdCliente }) |
+    @Html.ActionLink("Voltar a lista", "ListUsuarios")
 </p>

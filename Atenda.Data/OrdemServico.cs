@@ -9,13 +9,16 @@ namespace Atenda.Data
 {
     public class OrdemServico
     {
+        [Key]
         public int IdOS { get; set; }
 
+        [Key]
         public int IdCliente { get; set; }
 
         [Display(Name = "Cliente", Description = "Nome do Cliente.")]
         public String ClienteNome { get; set; }
 
+        [Key]
         public int IdTecnico { get; set; }
 
         [Display(Name = "Tecnico", Description = "Nome do Tecnico.")]
@@ -45,6 +48,11 @@ namespace Atenda.Data
         [Required(ErrorMessage = "Serviço é obrigatório")]
         public String Servico { get; set; }
 
+        [Display(Name = "Data", Description = "Informe a data do serviço.")]
+        [Required(ErrorMessage = "Data é obrigatório")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        public DateTime Data { get; set; }
+
         [Display(Name = "Local", Description = "Informe o Local do Equipamento.")]
         [Required(ErrorMessage = "Local é obrigatório")]
         public String Local { get; set; }
@@ -53,6 +61,10 @@ namespace Atenda.Data
         [StringLength(200, MinimumLength = 5, ErrorMessage =
            "Se necessário as observações devem ter no mínimo 5 e no máximo 200 caracteres.")]
         public String Observacoes { get; set; }
+
+        [Display(Name = "Custo", Description = "Valor do serviço.")]
+        [DisplayFormat(DataFormatString = "{0,n2}")]
+        public Decimal Custo { get; set; }
 
         [Display(Name = "Status", Description = "Informe o Status do Equipamento.")]
         [Required(ErrorMessage = "Status é obrigatório")]

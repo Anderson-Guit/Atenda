@@ -1,14 +1,11 @@
 ﻿@model IEnumerable<Atenda.Data.Agenda>
 
 @{
-    ViewBag.Title = "SearchClienteNome";
+    ViewBag.Title = "Agendamento";
 }
 
-<h2>SearchClienteNome</h2>
+<h2>Agendamento</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -30,7 +27,7 @@
             @Html.DisplayNameFor(model => model.Servico)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Observacao)
+            @Html.DisplayNameFor(model => model.Observacoes)
         </th>
         <th></th>
     </tr>
@@ -62,12 +59,12 @@
             @Html.DisplayFor(modelItem => item.Servico)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Observacao)
+            @Html.DisplayFor(modelItem => item.Observacoes)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { pId = item.IdAgenda }) |
-            @Html.ActionLink("Details", "Details", new { pId = item.IdAgenda }) |
-            @Html.ActionLink("Delete", "Delete", new { pId = item.IdAgenda })
+            @Html.ActionLink("Editar", "EditAgenda", new { pId = item.IdAgenda }) |
+            @Html.ActionLink("Exibir", "DetailsAgendas", new { pId = item.IdAgenda }) |
+            @Html.ActionLink("Deletar", "DeleteAgenda", new { pId = item.IdAgenda })
         </td>
     </tr>
 }

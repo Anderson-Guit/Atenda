@@ -1,13 +1,12 @@
 ﻿@model Atenda.Data.OrdemServico
 
 @{
-    ViewBag.Title = "SearchTecnicoNome";
+    ViewBag.Title = "Ordem de Serviço";
 }
 
-<h2>SearchTecnicoNome</h2>
+<h2>Ordem de Serviço</h2>
 
 <div>
-    <h4>OrdemServico</h4>
     <hr />
     <dl class="dl-horizontal">
 
@@ -78,6 +77,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Data)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Local)
         </dt>
 
@@ -104,6 +111,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "EditOS", new { pId = Model.IdOS }) |
+    @Html.ActionLink("Voltar a lista", "ListOS")
 </p>

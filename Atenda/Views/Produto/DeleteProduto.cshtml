@@ -1,14 +1,13 @@
 ﻿@model Atenda.Data.Produto
 
 @{
-    ViewBag.Title = "DeleteProduto";
+    ViewBag.Title = "Deletar Produto";
 }
 
-<h2>DeleteProduto</h2>
+<h2>Deletar Produto</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Você tem certeza que deseja deletar este produto?</h3>
 <div>
-    <h4>Produto</h4>
     <hr />
     <dl class="dl-horizontal">
 
@@ -52,8 +51,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Deletar" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar a lista", "ListProdutos")
         </div>
     }
 </div>

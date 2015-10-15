@@ -21,21 +21,27 @@ namespace Atenda.Data
         [DisplayFormat(DataFormatString = "{0,n2}")]
         public Decimal ValorServico { get; set; }
 
-        [Key]
         public int IdProduto { get; set; }
 
-        [Display(Name = "Produto", Description = "Escolha o produto.")]
-        [DisplayFormat(DataFormatString = "{0,n2}")]
+        [Display(Name = "Nome do Produto")]
         [Required]
         public String NomeProduto { get; set; }
 
-
+        [Display(Name = "Valor do Produto")]
+        [DisplayFormat(DataFormatString = "{0,n2}")]
         public Decimal ValorProduto { get; set; }
 
         [Display(Name = "Valor Total", Description = "Valor total do orçamento.")]
         [DisplayFormat(DataFormatString = "{0,n2}")]
         public Decimal ValorTotal { get; set; }
 
+        public int IdCliente { get; set; }
+
+        [Display(Name = "Produto", Description = "Escolha o produto.")]
+        [DisplayFormat(DataFormatString = "{0,n2}")]
+        [Required]
+        public String NomeCliente { get; set; }
+        
         public Orcamento()
         {
 

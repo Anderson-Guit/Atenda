@@ -1,0 +1,64 @@
+﻿@model Atenda.Data.Orcamento
+
+@{
+    ViewBag.Title = "Detalhes do Orçamento";
+}
+
+<h2>Detalhes do Orçamento</h2>
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Servico)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Servico)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorServico)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValorServico)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeProduto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomeProduto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorProduto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValorProduto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorTotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValorTotal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeCliente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomeCliente)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "EditOrcamento", new { pId = Model.IdOrcamento }) |
+    @Html.ActionLink("Voltar ao inicio","Home", "Index")
+</p>

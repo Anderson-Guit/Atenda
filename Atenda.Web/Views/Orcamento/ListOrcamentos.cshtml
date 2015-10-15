@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Atenda.Data.Orcamento>
+
+@{
+    ViewBag.Title = "Lista de Orçamentos";
+}
+
+<h2>Lista de orçamentos</h2>
+
+<p>
+    @Html.ActionLink("Cadastrar novo orçamento", "CreateOrcamento")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Servico)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ValorServico)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NomeProduto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ValorProduto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ValorTotal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NomeCliente)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Servico)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ValorServico)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NomeProduto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ValorProduto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ValorTotal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NomeCliente)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "EditOrcamento", new { pId = item.IdOrcamento }) |
+            @Html.ActionLink("Exibir", "DetailsOrcamento", new { pId = item.IdOrcamento }) |
+            @Html.ActionLink("Deletar", "DeleteOrcamento", new { pId = item.IdOrcamento })|
+        <br>
+            @Html.ActionLink("Voltar ao inicio", "Home", "Index")
+        </td>
+    </tr>
+}
+
+</table>

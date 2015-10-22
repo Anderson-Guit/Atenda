@@ -2,55 +2,101 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-     <br />
-     <br />
-     <br />
-     <br />
-     <br />
-</div>
-
 <div class="row">
     <div class="col-md-4">
-        <h2>Cliente</h2>
-        <p><a href="~/Cliente/CreateCliente" class="btn btn-default">Cadastrar &raquo;</a></p>
-        <p><a href="~/Cliente/EditCliente" class="btn btn-default">Editar &raquo;</a></p>
-        <p><a href="~/Cliente/ListClientes" class="btn btn-default">Listar &raquo;</a></p>
-        <p><a href="~/Cliente/SearchCliente" class="btn btn-default">Buscar &raquo;</a></p>
+        <table>
+            <caption><h1>Cliente</h1></caption>
+            <tr>
+                <td>
+                    <img class="img-responsive" title="Cliente" src="~/Image/Cliente_Icon-Atenda.png" />
+                </td>
+                <td>
+                    <p><a href="~/Cliente/CreateCliente" class="btn btn-xs"><img class="img-responsive" title="Cadastrar" src="~/Image/CreateOption_Icon-Atenda.png"></a></p>
+                    <p><a href="~/Cliente/ListClientes" class="btn btn-xs"><img class="img-responsive" title="Listar" src="~/Image/ListOption_Icon-Atenda.png"></a></p>
+                    <p><a href="~/Cliente/SearchCliente" class="btn btn-xs"><img class="img-responsive" title="Buscar" src="~/Image/SearchOption_Icon-Atenda.png"></a></p>
+                </td>
+            </tr>
+        </table>
     </div>
     <div class="col-md-4">
-        <h2>Tecnico</h2>
-        <p><a href="~/Tecnico/CreateTecnico" class="btn btn-default">Cadastrar &raquo;</a></p>
-        <p><a href="~/Tecnico/EditTecnico" class="btn btn-default">Editar &raquo;</a></p>
-        <p><a href="~/Tecnico/ListTecnicos" class="btn btn-default">Listar &raquo;</a></p>
-        <p><a href="~/Tecnico/SearchTecnico" class="btn btn-default">Buscar &raquo;</a></p>
+        <table>
+            <caption><h1>OS</h1></caption>
+            <tr>
+                <td>
+                    <img class="img-responsive" title="Ordem de Serviço" src="~/Image/OS_Icon-Atenda.png" />
+                </td>
+                <td>
+                    <p><a href="~/OrdemServico/CreateOS" class="btn btn-xs"><img class="img-responsive" title="Cadastrar" src="~/Image/CreateOption_Icon-Atenda.png"></a></p>
+                    <p><a href="~/OrdemServico/ListOS" class="btn btn-xs"><img class="img-responsive" title="Listar" src="~/Image/ListOption_Icon-Atenda.png"></a></p>
+                    <p><a href="~/OrdemServico/SearchOS" class="btn btn-xs"><img class="img-responsive" title="Buscar" src="~/Image/SearchOption_Icon-Atenda.png"></a></p>
+                </td>
+            </tr>
+        </table>
     </div>
     <div class="col-md-4">
-        <h2>Ordem de Serviço</h2>
-        <p><a href="~/OrdemServico/CreateOS" class="btn btn-default">Cadastrar &raquo;</a></p>
-        <p><a href="~/OrdemServico/EditOS" class="btn btn-default">Editar &raquo;</a></p>
-        <p><a href="~/OrdemServico/ListOS" class="btn btn-default">Listar &raquo;</a></p>
-        <p><a href="~/OrdemServico/SearchOS" class="btn btn-default">Buscar &raquo;</a></p>
+        <table>
+            <caption><h1>Tecnico</h1></caption>
+            <tr>
+                <td>
+                    <img class="img-responsive" title="Tecnico" src="~/Image/Tecnico_Icon-Atenda.png" />
+                </td>
+                <td>
+                    <p><a href="~/Tecnico/CreateTecnico" class="btn btn-xs"><img class="img-responsive" title="Cadastrar" src="~/Image/CreateOption_Icon-Atenda.png"></a></p>
+                    <p><a href="~/Tecnico/ListTecnicos" class="btn btn-xs"><img class="img-responsive" title="Listar" src="~/Image/ListOption_Icon-Atenda.png"></a></p>
+                    <p><a href="~/Tecnico/SearchTecnico" class="btn btn-xs"><img class="img-responsive" title="Buscar" src="~/Image/SearchOption_Icon-Atenda.png"></a></p>
+                </td>
+            </tr>
+        </table>
     </div>
     <div class="col-md-4">
-        <h2>Agenda</h2>
-        <p><a href="~/Agenda/CreateAgenda" class="btn btn-default">Cadastrar &raquo;</a></p>
-        <p><a href="~/Agenda/EditAgenda" class="btn btn-default">Editar &raquo;</a></p>
-        <p><a href="~/Agenda/ListAgendas" class="btn btn-default">Listar &raquo;</a></p>
-        <p><a href="~/Agenda/SearchAgenda" class="btn btn-default">Buscar &raquo;</a></p>
+        <table>
+            <caption><h1>Agenda</h1></caption>
+            <tr>
+                <td>
+                    <img class="img-responsive" title="Agenda" src="~/Image/Agenda_Icon-Atenda.png" />
+                </td>
+                <td>
+                    <p><a href="~/Agenda/CreateAgenda" class="btn btn-xs"><img class="img-responsive" title="Cadastrar" src="~/Image/CreateOption_Icon-Atenda.png"></a></p>
+                    <p><a href="~/Agenda/ListAgendas" class="btn btn-xs"><img class="img-responsive" title="Listar" src="~/Image/ListOption_Icon-Atenda.png"></a></p>
+                    <p><a href="~/Agenda/SearchAgenda" class="btn btn-xs"><img class="img-responsive" title="Buscar" src="~/Image/SearchOption_Icon-Atenda.png"></a></p>
+                </td>
+            </tr>
+        </table>
     </div>
     <div class="col-md-4">
-        <h2>Produto</h2>
-        <p><a href="~/Produto/CreateProduto" class="btn btn-default">Cadastrar &raquo;</a></p>
-        <p><a href="~/Produto/EditProduto" class="btn btn-default">Editar &raquo;</a></p>
-        <p><a href="~/Produto/ListProdutos" class="btn btn-default">Listar &raquo;</a></p>
-        <p><a href="~/Produto/SearchProduto" class="btn btn-default">Buscar &raquo;</a></p>
+        <table>
+            <caption><h1>Orçamento</h1></caption>
+            <tr>
+                <td>
+                    <img class="img-responsive" title="Orçamento" src="~/Image/Orcamento_Icon-Atenda.png" />
+                </td>
+                <td>
+                    <p><a href="~/Orcamento/CreateOrcamento" class="btn btn-xs"><img class="img-responsive" title="Cadastrar" src="~/Image/CreateOption_Icon-Atenda.png"></a></p>
+                    <p><a href="~/Orcamento/ListOrcamentos" class="btn btn-xs"><img class="img-responsive" title="Listar" src="~/Image/ListOption_Icon-Atenda.png"></a></p>
+                    <p><a href="~/Orcamento/SearchOrcamento" class="btn btn-xs"><img class="img-responsive" title="Buscar" src="~/Image/SearchOption_Icon-Atenda.png"></a></p>
+                </td>
+            </tr>
+        </table>
     </div>
     <div class="col-md-4">
-        <h2>Usuario</h2>
-        <p><a href="~/Usuario/CreateUsuario" class="btn btn-default">Cadastrar &raquo;</a></p>
-        <p><a href="~/Usuario/EditUsuario" class="btn btn-default">Editar &raquo;</a></p>
-        <p><a href="~/Usuario/ListUsuarios" class="btn btn-default">Listar &raquo;</a></p>
-        <p><a href="~/Usuario/SearchUsuario" class="btn btn-default">Buscar &raquo;</a></p>
+        <table>
+            <caption><h1>Produto</h1></caption>
+            <tr>
+                <td>
+                    <img class="img-responsive" title="Produto" src="~/Image/Produto_Icon-Atenda.png" />
+                </td>
+                <td>
+                    <p><a href="~/Produto/CreateProduto" class="btn btn-xs"><img class="img-responsive" title="Cadastrar" src="~/Image/CreateOption_Icon-Atenda.png"></a></p>
+                    <p><a href="~/Produto/ListProdutos" class="btn btn-xs"><img class="img-responsive" title="Listar" src="~/Image/ListOption_Icon-Atenda.png"></a></p>
+                    <p><a href="~/Produto/SearchProduto" class="btn btn-xs"><img class="img-responsive" title="Buscar" src="~/Image/SearchOption_Icon-Atenda.png"></a></p>
+                </td>
+            </tr>
+        </table>
+        <br />
+    </div>
+    <div>
+        <h1>Agendamentos</h1>
+        @Html.Partial("IndexListAgendas", ViewBag.Agenda as List<Atenda.Data.Agenda>)
+
     </div>
 </div>

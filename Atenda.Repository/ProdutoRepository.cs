@@ -70,11 +70,11 @@ namespace Atenda.Repository
 
             while (dr.Read())
             {
-                produto.IdProduto = Convert.ToInt32(dr["IdProduto"]);
-                produto.Nome = dr.IsDBNull(dr.GetOrdinal("Nome")) ? "" : (String)dr["Nome"];
-                produto.Descricao = dr.IsDBNull(dr.GetOrdinal("Descricao")) ? "" : (String)dr["Descricao"];
-                produto.Valor = (Decimal)dr["Valor"];
-                produto.QntdEstoque = Convert.ToInt32(dr["QntdEstoque"]);
+                produto.IdProduto = (int)dr["IdProduto"];
+                produto.Nome = dr.IsDBNull(dr.GetOrdinal("Nome")) ? "" : (string)dr["Nome"];
+                produto.Descricao = dr.IsDBNull(dr.GetOrdinal("Descricao")) ? "" : (string)dr["Descricao"];
+                produto.Valor = (decimal)dr["Valor"];
+                produto.QntdEstoque = (int)dr["QntdEstoque"];
 
             }
             return produto;
@@ -93,11 +93,11 @@ namespace Atenda.Repository
 
             while (dr.Read())
             {
-                produto.IdProduto = Convert.ToInt32(dr["IdProduto"]);
-                produto.Nome = dr.IsDBNull(dr.GetOrdinal("Nome")) ? "" : (String)dr["Nome"];
-                produto.Descricao = dr.IsDBNull(dr.GetOrdinal("Descricao")) ? "" : (String)dr["Descricao"];
-                produto.Valor = (Decimal)dr["Valor"];
-                produto.QntdEstoque = Convert.ToInt32(dr["QntdEstoque"]);
+                produto.IdProduto = (int)dr["IdProduto"];
+                produto.Nome = dr.IsDBNull(dr.GetOrdinal("Nome")) ? "" : (string)dr["Nome"];
+                produto.Descricao = dr.IsDBNull(dr.GetOrdinal("Descricao")) ? "" : (string)dr["Descricao"];
+                produto.Valor = (decimal)dr["Valor"];
+                produto.QntdEstoque = (int)dr["QntdEstoque"];
 
             }
             return produto;
@@ -118,11 +118,11 @@ namespace Atenda.Repository
                 produtos.Add(
                     new Produto
                     {
-                        IdProduto = Convert.ToInt32(dr["IdProduto"]),
-                        Nome = dr.IsDBNull(dr.GetOrdinal("Nome")) ? "" : (String)dr["Nome"],
-                        Descricao = dr.IsDBNull(dr.GetOrdinal("Descricao")) ? "" : (String)dr["Descricao"],
-                        Valor = (Decimal)dr["Valor"],
-                        QntdEstoque = Convert.ToInt32(dr["QntdEstoque"]),
+                        IdProduto = (int)dr["IdProduto"],
+                        Nome = dr.IsDBNull(dr.GetOrdinal("Nome")) ? "" : (string)dr["Nome"],
+                        Descricao = dr.IsDBNull(dr.GetOrdinal("Descricao")) ? "" : (string)dr["Descricao"],
+                        Valor = (decimal)dr["Valor"],
+                        QntdEstoque = (int)dr["QntdEstoque"],
                     });
             }
             return produtos;

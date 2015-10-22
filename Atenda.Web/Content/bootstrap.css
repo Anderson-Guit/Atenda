@@ -335,7 +335,12 @@ textarea {
 }
 
 a {
-  color: #428bca;
+  color: #5bc0de;
+  text-decoration: none;
+}
+
+.logout{
+    color: #fff;
   text-decoration: none;
 }
 
@@ -784,8 +789,8 @@ pre code {
 }
 
 .row {
-  margin-right: -15px;
-  margin-left: -15px;
+  margin-right: 2%;
+  margin-left: 8%;
 }
 
 .row:before,
@@ -1123,7 +1128,7 @@ pre code {
     width: 75%;
   }
   .col-md-10 {
-    width: 83.33333333333334%;
+    /*width: 83.33333333333334%;*/
   }
   .col-md-11 {
     width: 91.66666666666666%;
@@ -4501,7 +4506,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-inverse {
-  background-color: #222222;
+  background-image: url(../Image/Background.png);
+  background-size:cover;
   border-color: #080808;
 }
 
@@ -4516,7 +4522,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-inverse .navbar-text {
-  color: #999999;
+  color: #000;
 }
 
 .navbar-inverse .navbar-nav > li > a {

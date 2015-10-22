@@ -134,24 +134,30 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Atenda.ico" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\login.css" />
-    <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
-    <Content Include="Image\Agenda.png" />
+    <Content Include="Icone.ico" />
+    <Content Include="Image\Agenda_Icon-Atenda.png" />
     <Content Include="Image\Background.png" />
     <Content Include="Image\Background_Login.jpg" />
-    <Content Include="Image\Cliente.png" />
-    <Content Include="Image\Icone.png" />
+    <Content Include="Image\Cliente_Icon-Atenda.png" />
+    <Content Include="Image\CreateOption_Icon-Atenda.png" />
+    <Content Include="Image\ListOption_Icon-Atenda.png" />
     <Content Include="Image\logo.png" />
     <Content Include="Image\NewBanner_Atenda.png" />
-    <Content Include="Image\OrdemServico.png" />
-    <Content Include="Image\Tecnico.png" />
+    <Content Include="Image\Orcamento_Icon-Atenda.png" />
+    <Content Include="Image\OS_Icon-Atenda.png" />
+    <Content Include="Image\Produto_Icon-Atenda.png" />
+    <Content Include="Image\SearchOption_Icon-Atenda.png" />
+    <Content Include="Image\Tecnico_Icon-Atenda.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\methods_pt.js" />
+    <Content Include="__TemplateIcon.ico" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -171,15 +177,15 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Usuario\Login.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Usuario\CreateUsuario.cshtml" />
     <Content Include="Views\Usuario\EditUsuario.cshtml" />
     <Content Include="Views\Usuario\DeleteUsuario.cshtml" />
@@ -221,17 +227,17 @@
     <Content Include="Views\Orcamento\EditOrcamento.cshtml" />
     <Content Include="Views\Orcamento\DeleteOrcamento.cshtml" />
     <Content Include="Views\Orcamento\ListOrcamentos.cshtml" />
+    <Content Include="Views\Orcamento\SearchClienteNome.cshtml" />
+    <Content Include="Views\Home\IndexListAgendas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
-    <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Atenda.Conn\Atenda.Conn.csproj">
@@ -250,6 +256,13 @@
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Atenda.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Win32Resource>
+    </Win32Resource>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

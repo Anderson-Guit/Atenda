@@ -13,35 +13,30 @@ namespace Atenda.Data
 
         [Display(Name = "Nome", Description = "Informe o Nome do Cliente.")]
         [Required(ErrorMessage = "Nome é obrigatório.")]
-        public String Nome { get; set; }
+        public string Nome { get; set; }
 
         [Display(Name = "Telefone", Description = "Informe o telefone do Cliente.")]
         [Required(ErrorMessage = "Telefone é obrigatório")]
-        public String Telefone { get; set; }
+        [DataType(DataType.PhoneNumber)]
+        public string Telefone { get; set; }
 
         [Display(Name = "Endereço", Description = "Informe o Endereço do Cliente.")]
-        [Required(ErrorMessage = "Endereço é obrigatório")]
-        public String Endereco { get; set; }
+        public string Endereco { get; set; }
 
         [Display(Name = "Bairro", Description = "Informe o Bairro do Cliente.")]
-        [Required(ErrorMessage = "Bairro é obrigatório")]
-        public String Bairro { get; set; }
+        public string Bairro { get; set; }
 
         [Display(Name = "Cidade", Description = "Informe a Cidade do Cliente.")]
-        [Required(ErrorMessage = "Cidade é obrigatório")]
-        public String Cidade { get; set; }
+        public string Cidade { get; set; }
 
         [Display(Name = "Estado", Description = "Informe o Estado do Cliente.")]
-        [Required(ErrorMessage = "Estado é obrigatório")]
-        public String Estado { get; set; }
+        public string Estado { get; set; }
 
         [Display(Name = "País", Description = "Informe o País do Cliente.")]
-        [Required(ErrorMessage = "País é obrigatório")]
-        public String Pais { get; set; }
+        public string Pais { get; set; }
 
         [Display(Name = "CPF/CNPJ", Description = "Informe o CPF (Pessoa Fisica) ou CNPJ (Pessoa Juridica) do Cliente.")]
-        [Required(ErrorMessage = "CPF/CNPJ é obrigatório")]
-        public String CPF_CNPJ { get; set; }
+        public string CPF_CNPJ { get; set; }
 
         public Cliente()
         {

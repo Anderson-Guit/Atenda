@@ -21,8 +21,17 @@ namespace Atenda.Controllers
         // GET: /Cliente/Details/5
         public ActionResult DetailsCliente(int pId)
         {
-            var cliente = ClienteRepository.GetOne(pId);
-            return View(cliente);
+            if (pId != 0)
+            {
+                var cliente = ClienteRepository.GetOne(pId);
+                return View(cliente);
+            }
+            else 
+            {
+                var busca = ViewBag.IdCliente;
+                var cliente = ClienteRepository.GetOne(busca);
+                return View();
+            }
         }
 
         //
@@ -129,7 +138,8 @@ namespace Atenda.Controllers
         public ActionResult SearchCliente(String Nome)
         {
             var cliente = ClienteRepository.GetName(Nome);
-            return View(DetailsCliente(cliente.IdCliente));
+            ViewBag.IdCliente = cliente.IdCliente;
+            return RedirectToAction("DetailsCliente", null, cliente.IdCliente);
         }
     }
 }

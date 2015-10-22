@@ -55,9 +55,12 @@
         <td>
             @Html.ActionLink("Editar", "EditOrcamento", new { pId = item.IdOrcamento }) |
             @Html.ActionLink("Exibir", "DetailsOrcamento", new { pId = item.IdOrcamento }) |
-            @Html.ActionLink("Deletar", "DeleteOrcamento", new { pId = item.IdOrcamento })|
-        <br>
-            @Html.ActionLink("Voltar ao inicio", "Home", "Index")
+            @Html.ActionLink("Deletar", "DeleteOrcamento", new { pId = item.IdOrcamento })            
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.ActionLink("Voltar ao inicio", "Index", "Home")
         </td>
     </tr>
 }

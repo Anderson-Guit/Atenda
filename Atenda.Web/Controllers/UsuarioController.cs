@@ -12,58 +12,6 @@ namespace Atenda.Controllers
     public class UsuarioController : Controller
     {
         //
-        // GET: /Usuario/
-        public ActionResult Login()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Login(String Nome, String Senha)
-        {
-            if (ModelState.IsValid)
-            {
-                Usuario usuario = UsuarioRepository.CheckUser(Nome, Senha);
-
-                if (usuario.Nome != null)
-                {
-
-                    Session["Nome"] = usuario.Nome;
-
-                    if (usuario.Adm != false)
-                    {
-                        Session["Adm"] = usuario.Adm;
-                    }
-
-                    return View("../Home/Index");
-
-                }
-                else
-                {
-                    return RedirectToAction("Login");
-                }
-
-            }
-            return View();
-        }
-
-        public ActionResult Logout()
-        {
-            @Session["Nome"] = null;
-            @Session["Adm"] = null;
-
-            if (Session["Nome"] == null && Session["Adm"] == null)
-            {
-                return RedirectToAction("Login");
-            }
-            else
-            {
-                return View("Logout");
-            }
-
-        }
-
-        //
         // GET: /Usuario/Create
         public ActionResult CreateUsuario()
         {

@@ -69,10 +69,10 @@ namespace Atenda.Repository
 
             while (dr.Read())
             {
-                usuario.IdUsuario = (int)(dr["IdUsuario"]);
-                usuario.Nome = (String)dr["Nome"];
-                usuario.Senha = (String)dr["Senha"];
-                usuario.Adm = Convert.ToBoolean(dr["Adm"]);
+                usuario.IdUsuario = (int)dr["IdUsuario"];
+                usuario.Nome = (string)dr["Nome"];
+                usuario.Senha = (string)dr["Senha"];
+                usuario.Adm = (bool)dr["Adm"];
             }
             return usuario;
         }
@@ -92,10 +92,10 @@ namespace Atenda.Repository
                 usuario.Add(
                     new Usuario
                     {
-                        IdUsuario = (int)(dr["IdUsuario"]),
-                        Nome = dr.IsDBNull(dr.GetOrdinal("Nome")) ? "" : (String)dr["Nome"],
-                        Senha = dr.IsDBNull(dr.GetOrdinal("Senha")) ? "" : (String)dr["Senha"],
-                        Adm = Convert.ToBoolean(dr["Adm"]),
+                        IdUsuario = (int)dr["IdUsuario"],
+                        Nome = (string)dr["Nome"],
+                        Senha = (string)dr["Senha"],
+                        Adm = (bool)dr["Adm"],
                     });
             }
             return usuario;
@@ -119,7 +119,7 @@ namespace Atenda.Repository
                     usuario.IdUsuario = (int)dr["IdUsuario"];
                     usuario.Nome = (string)dr["Nome"];
                     usuario.Senha = (string)dr["Senha"];
-                    usuario.Adm = Convert.ToBoolean(dr["Adm"]);
+                    usuario.Adm = (bool)dr["Adm"];
                 }
                 return usuario;
             }

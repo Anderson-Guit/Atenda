@@ -14,7 +14,7 @@
             @Html.HiddenFor(model => model.IdTecnico)
 
             @Html.HiddenFor(model => model.IdCliente)
-
+        <dt>
             @Html.DisplayNameFor(model => model.TecnicoNome)
         </dt>
 
@@ -75,13 +75,13 @@
         </dt>
 
         <dd>
-            @Html.CheckBoxFor(model => model.Status)
+            @Html.DisplayFor(model => model.Status)
         </dd>
 
     </dl>
 </div>
 <p>
     @Html.ActionLink("Editar", "EditAgenda", new { pId = Model.IdAgenda }) |
-    @Html.ActionLink("Deletar", "DeleteAgenda", new { pId = Model.IdAgenda })
+    @Html.ActionLink("Deletar", "DeleteAgenda", new { pId = Model.IdAgenda }) |
     @Html.ActionLink("Voltar ao inicio", "Index", "Home")
 </p>

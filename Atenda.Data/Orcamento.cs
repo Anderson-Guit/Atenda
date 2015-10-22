@@ -15,32 +15,31 @@ namespace Atenda.Data
         [Display(Name = "Serviço", Description = "Informe o Serviço do Equipamento.")]
         [Required(ErrorMessage = "Serviço é obrigatório")]
         [DataType(DataType.MultilineText)]
-        public String Servico { get; set; }
+        public string Servico { get; set; }
 
-        [Display(Name = "Valor", Description = "Valor do serviço.")]
-        [DisplayFormat(DataFormatString = "{0,n2}")]
-        public Decimal ValorServico { get; set; }
+        [Display(Name = "Valor do serviço", Description = "Valor do serviço.")]
+        [DataType(DataType.Currency)]
+        public decimal ValorServico { get; set; }
 
+        [Required]
         public int IdProduto { get; set; }
 
-        [Display(Name = "Nome do Produto")]
-        [Required]
-        public String NomeProduto { get; set; }
+        [Display(Name = "Produto")]
+        public string NomeProduto { get; set; }
 
         [Display(Name = "Valor do Produto")]
-        [DisplayFormat(DataFormatString = "{0,n2}")]
-        public Decimal ValorProduto { get; set; }
+        [DataType(DataType.Currency)]
+        public decimal ValorProduto { get; set; }
 
         [Display(Name = "Valor Total", Description = "Valor total do orçamento.")]
-        [DisplayFormat(DataFormatString = "{0,n2}")]
-        public Decimal ValorTotal { get; set; }
+        [DataType(DataType.Currency)]
+        public decimal ValorTotal { get; set; }
 
+        [Required]
         public int IdCliente { get; set; }
 
-        [Display(Name = "Produto", Description = "Escolha o produto.")]
-        [DisplayFormat(DataFormatString = "{0,n2}")]
-        [Required]
-        public String NomeCliente { get; set; }
+        [Display(Name = "Cliente")]
+        public string NomeCliente { get; set; }
         
         public Orcamento()
         {

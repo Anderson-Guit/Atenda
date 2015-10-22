@@ -30,18 +30,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IdProduto, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.IdProduto, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.IdProduto, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.NomeProduto, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.NomeProduto, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NomeProduto, "", new { @class = "text-danger" })
+                @Html.DropDownList("IdProduto", null, "-Escolha um Produto", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IdProduto, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -62,18 +54,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IdCliente, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.IdCliente, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.IdCliente, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.NomeCliente, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.NomeCliente, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NomeCliente, "", new { @class = "text-danger" })
+                @Html.DropDownList("IdCliente", null, "-Escolha um Cliente", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IdCliente, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -86,7 +70,7 @@
 }
 
 <div>
-    @Html.ActionLink("Voltar ao inicio", "Home", "Index")
+    @Html.ActionLink("Voltar ao inicio", "Index", "Home")
 </div>
 
 @section Scripts {

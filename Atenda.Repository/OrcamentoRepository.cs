@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 
 namespace Atenda.Repository
 {
-    class OrcamentoRepository
+    public class OrcamentoRepository
     {
 
         public void Create(Orcamento pOrcamento)
@@ -17,12 +17,13 @@ namespace Atenda.Repository
             StringBuilder sql = new StringBuilder();
             SqlCommand cmd = new SqlCommand();
 
-            sql.Append("INSERT INTO Orcamento (Servico, ValorServico, IdProduto, ValorTotal, IdCliente)");
-            sql.Append("VALUES(@Servico, @ValorServico, @IdProduto, @ValorTotal, @IdCliente)");
+            sql.Append("INSERT INTO Orcamento (Servico, ValorServico, IdProduto, ValorProduto, ValorTotal, IdCliente)");
+            sql.Append("VALUES(@Servico, @ValorServico, @IdProduto, @ValorProduto, @ValorTotal, @IdCliente)");
 
             cmd.Parameters.AddWithValue("@Servico", pOrcamento.Servico);
             cmd.Parameters.AddWithValue("@ValorServico", pOrcamento.ValorServico);
             cmd.Parameters.AddWithValue("@IdProduto", pOrcamento.IdProduto);
+            cmd.Parameters.AddWithValue("@ValorProduto", pOrcamento.ValorProduto);
             cmd.Parameters.AddWithValue("@ValorTotal", pOrcamento.ValorTotal);
             cmd.Parameters.AddWithValue("@IdCliente", pOrcamento.IdCliente);
 
@@ -35,12 +36,13 @@ namespace Atenda.Repository
             StringBuilder sql = new StringBuilder();
             SqlCommand cmd = new SqlCommand();
 
-            sql.Append("UPDATE Orcamento SET Servico=@Servico, ValorServico=@ValorServico, IdProduto=@IdProduto, ValorTotal=@ValorTotal");
+            sql.Append("UPDATE Orcamento SET Servico=@Servico, ValorServico=@ValorServico, IdProduto=@IdProduto, ValorProduto=@ValorProduto, ValorTotal=@ValorTotal");
             sql.Append(" WHERE IdOrcamento=" + pOrcamento.IdOrcamento);
 
             cmd.Parameters.AddWithValue("@Servico", pOrcamento.Servico);
             cmd.Parameters.AddWithValue("@ValorServico", pOrcamento.ValorServico);
             cmd.Parameters.AddWithValue("@IdProduto", pOrcamento.IdProduto);
+            cmd.Parameters.AddWithValue("@ValorProduto", pOrcamento.ValorProduto);
             cmd.Parameters.AddWithValue("@ValorTotal", pOrcamento.ValorTotal);
             cmd.Parameters.AddWithValue("@IdCliente", pOrcamento.IdCliente);
 
@@ -65,27 +67,59 @@ namespace Atenda.Repository
             StringBuilder sql = new StringBuilder();
             Orcamento orcamento = new Orcamento();
 
-            sql.Append("select or.IdOrcamento, or.Servico, or.ValorServico, or.IdProduto, pr.Nome as nomeproduto, pr.Valor as valorproduto, or.ValorTotal, or.IdCliente, cl.Nome as nomecliente");
-            sql.Append(" from Orcamento as or");
+            sql.Append("select oc.IdOrcamento, oc.Servico, oc.ValorServico, oc.IdProduto, pr.Nome as nomeproduto, pr.Valor as valorproduto, oc.ValorTotal, oc.IdCliente, cl.Nome as nomecliente");
+            sql.Append(" from Orcamento as oc");
             sql.Append(" inner join Cliente as cl");
-            sql.Append(" on or.IdCliente = cl.IdCliente");
+            sql.Append(" on oc.IdCliente = cl.IdCliente");
             sql.Append(" inner join produto as pr");
-            sql.Append(" on or.IdProduto = pr.IdProduto");
-            sql.Append(" WHERE or.IdOrcamento = " + pId);
+            sql.Append(" on oc.IdProduto = pr.IdProduto");
+            sql.Append(" WHERE oc.IdOrcamento = " + pId);
 
             SqlDataReader dr = SqlConn.Get(sql.ToString());
 
             while (dr.Read())
             {
                 orcamento.IdOrcamento = (int)dr["IdOrcamento"];
-                orcamento.Servico = (String)dr["Servico"];
-                orcamento.ValorServico = (Decimal)dr["ValorServico"];
-                orcamento.IdProduto = Convert.ToInt32(dr["IdProduto"]);
-                orcamento.NomeProduto = (String)dr["nomeproduto"];
-                orcamento.ValorProduto = (Decimal)dr["valorproduto"];
-                orcamento.ValorTotal = (Decimal)dr["ValorTotal"];
+                orcamento.Servico = (string)dr["Servico"];
+                orcamento.ValorServico = (decimal)dr["ValorServico"];
+                orcamento.IdProduto = (int)dr["IdProduto"];
+                orcamento.NomeProduto = (string)dr["nomeproduto"];
+                orcamento.ValorProduto = (decimal)dr["valorproduto"];
+                orcamento.ValorTotal = (decimal)dr["ValorTotal"];
                 orcamento.IdCliente = (int)dr["IdCliente"];
-                orcamento.NomeCliente = (String)dr["nomecliente"];
+                orcamento.NomeCliente = (string)dr["nomecliente"];
+
+            }
+            dr.Close();
+            return orcamento;
+        }
+
+        public static Orcamento GetByClienteName(String Nome)
+        {
+            StringBuilder sql = new StringBuilder();
+            Orcamento orcamento = new Orcamento();
+
+            sql.Append("select oc.IdOrcamento, oc.Servico, oc.ValorServico, oc.IdProduto, pr.Nome as nomeproduto, pr.Valor as valorproduto, oc.ValorTotal, oc.IdCliente, cl.Nome as nomecliente");
+            sql.Append(" from Orcamento as oc");
+            sql.Append(" inner join Cliente as cl");
+            sql.Append(" on oc.IdCliente = cl.IdCliente");
+            sql.Append(" inner join produto as pr");
+            sql.Append(" on oc.IdProduto = pr.IdProduto");
+            sql.Append(" WHERE nomecliente = " + Nome);
+
+            SqlDataReader dr = SqlConn.Get(sql.ToString());
+
+            while (dr.Read())
+            {
+                orcamento.IdOrcamento = (int)dr["IdOrcamento"];
+                orcamento.Servico = (string)dr["Servico"];
+                orcamento.ValorServico = (decimal)dr["ValorServico"];
+                orcamento.IdProduto = (int)dr["IdProduto"];
+                orcamento.NomeProduto = (string)dr["nomeproduto"];
+                orcamento.ValorProduto = (decimal)dr["valorproduto"];
+                orcamento.ValorTotal = (decimal)dr["ValorTotal"];
+                orcamento.IdCliente = (int)dr["IdCliente"];
+                orcamento.NomeCliente = (string)dr["nomecliente"];
 
             }
             dr.Close();
@@ -97,12 +131,12 @@ namespace Atenda.Repository
             StringBuilder sql = new StringBuilder();
             List<Orcamento> orcamentos = new List<Orcamento>();
 
-            sql.Append("select or.IdOrcamento, or.Servico, or.ValorServico, or.IdProduto, pr.Nome as nomeproduto, pr.Valor as valorproduto, or.ValorTotal, or.IdCliente, cl.Nome as nomecliente");
-            sql.Append(" from Orcamento as or");
+            sql.Append("select oc.IdOrcamento, oc.Servico, oc.ValorServico, oc.IdProduto, pr.Nome as nomeproduto, pr.Valor as valorproduto, oc.ValorTotal, oc.IdCliente, cl.Nome as nomecliente");
+            sql.Append(" from Orcamento as oc");
             sql.Append(" inner join Cliente as cl");
-            sql.Append(" on or.IdCliente = cl.IdCliente");
+            sql.Append(" on oc.IdCliente = cl.IdCliente");
             sql.Append(" inner join produto as pr");
-            sql.Append(" on or.IdProduto = pr.IdProduto");
+            sql.Append(" on oc.IdProduto = pr.IdProduto");
 
             SqlDataReader dr = SqlConn.Get(sql.ToString());
 
@@ -112,14 +146,14 @@ namespace Atenda.Repository
                     new Orcamento
                     {
                         IdOrcamento = (int)dr["IdOrcamento"],
-                        Servico = (String)dr["Servico"],
-                        ValorServico = (Decimal)dr["ValorServico"],
-                        IdProduto = Convert.ToInt32(dr["IdProduto"]),
-                        NomeProduto = (String)dr["nomeproduto"],
-                        ValorProduto = (Decimal)dr["valorproduto"],
-                        ValorTotal = (Decimal)dr["ValorTotal"],
+                        Servico = (string)dr["Servico"],
+                        ValorServico = (decimal)dr["ValorServico"],
+                        IdProduto = (int)dr["IdProduto"],
+                        NomeProduto = (string)dr["nomeproduto"],
+                        ValorProduto = (decimal)dr["valorproduto"],
+                        ValorTotal = (decimal)dr["ValorTotal"],
                         IdCliente = (int)dr["IdCliente"],
-                        NomeCliente = (String)dr["nomecliente"],
+                        NomeCliente = (string)dr["nomecliente"],
                     });
             }
             dr.Close();

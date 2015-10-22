@@ -14,21 +14,20 @@ namespace Atenda.Data
 
         [Display(Name = "Nome", Description = "Informe o Nome do Cliente.")]
         [Required(ErrorMessage = "Nome é obrigatório.")]
-        public String Nome { get; set; }
+        public string Nome { get; set; }
 
         [Display(Name = "Senha", Description = "Informe a Senha do Usuário.")]
         [Required(ErrorMessage = "Senha é obrigatório.")]
         [DataType(DataType.Password)]
-        public String Senha { get; set; }
+        public string Senha { get; set; }
 
         [Display(Name = "Confirme a Senha", Description = "Repita a Senha.")]
         [Compare("Senha", ErrorMessage = "As senha esta diferente!")]
         [DataType(DataType.Password)]
-        public String ConfirmaSenha { get; set; }
+        public string ConfirmaSenha { get; set; }
 
-        [Display(Name = "Administrador",
-            Description = "Define Usuário Simples ou Administrador.")]
-        public Boolean Adm { get; set; }
+        [Display(Name = "Administrador", Description = "Define Usuário Simples ou Administrador.")]
+        public bool Adm { get; set; }
         
         public Usuario()
         {
@@ -41,14 +40,14 @@ namespace Atenda.Data
     {
         [Display(Name = "Nome", Description = "Informe o Nome do Usuario.")]
         [Required(ErrorMessage = "Digite o Nome de Usuario!")]
-        public String Nome { get; set; }
+        public string Nome { get; set; }
 
         [Display(Name = "Senha", Description = "Informe a Senha do Usuário.")]
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "Digite a Senha!")]
-        public String Senha { get; set; }
+        public string Senha { get; set; }
 
         [Display(Name = "Lembre-me", Description = "Lembrar do Login")]
-        public Boolean LembreMe { get; set; }
+        public bool LembreMe { get; set; }
     }
 }

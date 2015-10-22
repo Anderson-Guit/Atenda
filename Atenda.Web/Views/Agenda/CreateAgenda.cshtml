@@ -16,20 +16,18 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
          <div class="form-group">
-            @Html.LabelFor(model => model.TecnicoNome, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @ViewBag.TecnicosId
-                    @Html.DropDownList("TecnicosId", String.Empty)
-                    @Html.ValidationMessageFor(model => model.TecnicoNome, "", new { @class = "text-danger" })
-                </div>
-          </div>
+             @Html.LabelFor(model => model.TecnicoNome, htmlAttributes: new { @class = "control-label col-md-2" })
+             <div class="col-md-10">
+                 @Html.DropDownList("IdTecnico", null, "-Escolha um Tecnico", new { @class = "form-control" })
+                 @Html.ValidationMessageFor(model => model.IdTecnico, "", new { @class = "text-danger" })
+             </div>
+            </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.ClienteNome, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ClienteNome, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @ViewBag.ClientesId
-                    @Html.DropDownList("ClientesId", String.Empty)
-                    @Html.ValidationMessageFor(model => model.ClienteNome, "", new { @class = "text-danger" })
+                    @Html.DropDownList("IdCliente", null, "-Escolha um Cliente", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.IdCliente, "", new { @class = "text-danger" })
                 </div>
             </div>
 

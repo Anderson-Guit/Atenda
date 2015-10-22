@@ -17,8 +17,8 @@ namespace Atenda.Repository
             StringBuilder sql = new StringBuilder();
             SqlCommand cmd = new SqlCommand();
 
-            sql.Append("INSERT INTO OrdemServico (Cliente_IdCliente, Tecnico_IdTecnico, Equipamento, Marca, Modelo, NumeroSerie, Defeito, Servico, Local_, Observacoes, Custo, Status_)");
-            sql.Append("VALUES(@Cliente, @Tecnico, @Equipamento, @Marca, @Modelo, @NumeroSerie, @Defeito, @Servico, @Local, @Observacoes, @Custo, @Status)");
+            sql.Append("INSERT INTO OrdemServico (IdCliente, IdTecnico, Equipamento, Marca, Modelo, NumeroSerie, Defeito, Servico, DataEntrada, DataSaida, Local_, Observacoes, Custo, Status_) ");
+            sql.Append("VALUES(@Cliente, @Tecnico, @Equipamento, @Marca, @Modelo, @NumeroSerie, @Defeito, @Servico, @DataEntrada, @DataSaida, @Local, @Observacoes, @Custo, @Status)");
 
             cmd.Parameters.AddWithValue("@Cliente", (pOS.IdCliente));
             cmd.Parameters.AddWithValue("@Tecnico", (pOS.IdTecnico));
@@ -28,6 +28,8 @@ namespace Atenda.Repository
             cmd.Parameters.AddWithValue("@NumeroSerie", pOS.NumeroSerie);
             cmd.Parameters.AddWithValue("@Defeito", pOS.Defeito);
             cmd.Parameters.AddWithValue("@Servico", pOS.Servico);
+            cmd.Parameters.AddWithValue("@DataEntrada", pOS.DataEntrada);
+            cmd.Parameters.AddWithValue("@DataSaida", pOS.DataSaida);
             cmd.Parameters.AddWithValue("@Local", pOS.Local);
             cmd.Parameters.AddWithValue("@Observacoes", pOS.Observacoes);
             cmd.Parameters.AddWithValue("@Custo", pOS.Custo);
@@ -42,7 +44,7 @@ namespace Atenda.Repository
             StringBuilder sql = new StringBuilder();
             SqlCommand cmd = new SqlCommand();
 
-            sql.Append("UPDATE OrdemServico SET Equipamento=@Equipamento, Marca=@Marca, Modelo=@Modelo, NumeroSerie=@NumeroSerie, Defeito=@Defeito, Servico=@Servico, Local_=@Local, Observacoes=@Observacoes, Custo=@Custo, Status_=@Status");
+            sql.Append("UPDATE OrdemServico SET Equipamento=@Equipamento, Marca=@Marca, Modelo=@Modelo, NumeroSerie=@NumeroSerie, Defeito=@Defeito, Servico=@Servico, DataEntrada=@DataEntrada, DataSaida=@DataSaida, Local_=@Local, Observacoes=@Observacoes, Custo=@Custo, Status_=@Status");
             sql.Append(" WHERE IdOS=" + pOS.IdOS);
 
             cmd.Parameters.AddWithValue("@Equipamento", (pOS.Equipamento));
@@ -51,6 +53,8 @@ namespace Atenda.Repository
             cmd.Parameters.AddWithValue("@NumeroSerie", pOS.NumeroSerie);
             cmd.Parameters.AddWithValue("@Defeito", pOS.Defeito);
             cmd.Parameters.AddWithValue("@Servico", pOS.Servico);
+            cmd.Parameters.AddWithValue("@DataEntrada", pOS.DataEntrada);
+            cmd.Parameters.AddWithValue("@DataSaida", pOS.DataSaida);
             cmd.Parameters.AddWithValue("@Local", pOS.Local);
             cmd.Parameters.AddWithValue("@Observacoes", pOS.Observacoes);
             cmd.Parameters.AddWithValue("@Custo", pOS.Custo);
@@ -77,65 +81,73 @@ namespace Atenda.Repository
             StringBuilder sql = new StringBuilder();
             OrdemServico os = new OrdemServico();
 
-            sql.Append("select os.IdOS, os.Cliente, cl.Nome, os.Tecnico, tc.Nome, os.Equipamento, os.Marca, os.modelo, os.NumeroSerie, os.Defeito, os.Servico, os.Local_, os.Observacoes, os.Custo, os.Status_");
+            sql.Append("select os.IdOS, os.IdCliente, cl.Nome as clientenome, os.IdTecnico, tc.Nome as tecniconome, os.Equipamento, os.Marca, os.modelo, os.NumeroSerie, os.Defeito, os.Servico, os.DataEntrada, os.DataSaida, os.Local_, os.Observacoes, os.Custo, os.Status_");
             sql.Append(" from OrdemServico as os");
-            sql.Append(" inner join Cliente as cl on cl.IdCliente=os.Cliente");
-            sql.Append(" inner join Tecnico as tc on tc.IdTecnico=os.Tecnico");
-            sql.Append(" where os.IdOS = " + pId );
+            sql.Append(" inner join Cliente as cl");
+            sql.Append(" on os.IdCliente = cl.IdCliente");
+            sql.Append(" inner join Tecnico as tc");
+            sql.Append(" on os.IdTecnico = tc.IdTecnico");
+            sql.Append(" WHERE os.IdOS = " + pId);
 
             SqlDataReader dr = SqlConn.Get(sql.ToString());
 
             while (dr.Read())
             {
-                os.IdOS = Convert.ToInt32(dr["IdOS"]);
-                os.IdCliente = Convert.ToInt32(dr["Cliente_IdCliente"]);
-                os.ClienteNome = dr.IsDBNull(dr.GetOrdinal("Cliente")) ? "" : (String)dr["Cliente"];
-                os.IdTecnico = Convert.ToInt32(dr["Tecnico_IdTecnico"]);
-                os.TecnicoNome = dr.IsDBNull(dr.GetOrdinal("Tecnico")) ? "" : (String)dr["Tecnico"];
-                os.Equipamento = dr.IsDBNull(dr.GetOrdinal("Equipamento")) ? "" : (String)dr["Equipamento"];
-                os.Marca = dr.IsDBNull(dr.GetOrdinal("Marca")) ? "" : (String)dr["Marca"];
-                os.Modelo = dr.IsDBNull(dr.GetOrdinal("Modelo")) ? "" : (String)dr["Modelo"];
-                os.NumeroSerie = dr.IsDBNull(dr.GetOrdinal("NumeroSerie")) ? "" : (String)dr["NumeroSerie"];
-                os.Defeito = dr.IsDBNull(dr.GetOrdinal("Defeito")) ? "" : (String)dr["Defeito"];
-                os.Servico = dr.IsDBNull(dr.GetOrdinal("Servico")) ? "" : (String)dr["Servico"];
-                os.Local = dr.IsDBNull(dr.GetOrdinal("Local_")) ? "" : (String)dr["Local_"];
-                os.Observacoes = dr.IsDBNull(dr.GetOrdinal("Observacoes")) ? "" : (String)dr["Observacoes"];
-                os.Custo = (Decimal)dr["Custo"];
-                os.Status = dr.IsDBNull(dr.GetOrdinal("Status_")) ? "" : (String)dr["Status_"];
+                os.IdOS = (int)dr["IdOS"];
+                os.IdCliente = (int)dr["IdCliente"];
+                os.ClienteNome = dr.IsDBNull(dr.GetOrdinal("clientenome")) ? "" : (string)dr["clientenome"];
+                os.IdTecnico = (int)dr["IdTecnico"];
+                os.TecnicoNome = dr.IsDBNull(dr.GetOrdinal("tecniconome")) ? "" : (string)dr["tecniconome"];
+                os.Equipamento = dr.IsDBNull(dr.GetOrdinal("Equipamento")) ? "" : (string)dr["Equipamento"];
+                os.Marca = dr.IsDBNull(dr.GetOrdinal("Marca")) ? "" : (string)dr["Marca"];
+                os.Modelo = dr.IsDBNull(dr.GetOrdinal("Modelo")) ? "" : (string)dr["Modelo"];
+                os.NumeroSerie = dr.IsDBNull(dr.GetOrdinal("NumeroSerie")) ? "" : (string)dr["NumeroSerie"];
+                os.Defeito = dr.IsDBNull(dr.GetOrdinal("Defeito")) ? "" : (string)dr["Defeito"];
+                os.Servico = dr.IsDBNull(dr.GetOrdinal("Servico")) ? "" : (string)dr["Servico"];
+                os.DataEntrada = (DateTime)dr["DataEntrada"];
+                os.DataSaida = (DateTime)dr["DataSaida"];
+                os.Local = dr.IsDBNull(dr.GetOrdinal("Local_")) ? "" : (string)dr["Local_"];
+                os.Observacoes = dr.IsDBNull(dr.GetOrdinal("Observacoes")) ? "" : (string)dr["Observacoes"];
+                os.Custo = (decimal)dr["Custo"];
+                os.Status = dr.IsDBNull(dr.GetOrdinal("Status_")) ? "" : (string)dr["Status_"];
             }
             return os;
         }
 
-        public static OrdemServico GetSearchByCliente(String pTecnicoNome)
+        public static OrdemServico GetSearchByCliente(String pClienteNome)
         {
             StringBuilder sql = new StringBuilder();
             OrdemServico os = new OrdemServico();
 
-            sql.Append("select os.IdOS, os.Cliente, cl.Nome, os.Tecnico, tc.Nome, os.Equipamento, os.Marca, os.modelo, os.NumeroSerie, os.Defeito, os.Servico, os.Local_, os.Observacoes, os.Custo, os.Status_");
+            sql.Append("select os.IdOS, os.IdCliente, cl.Nome as clientenome, os.IdTecnico, tc.Nome as tecniconome, os.Equipamento, os.Marca, os.modelo, os.NumeroSerie, os.Defeito, os.Servico, os.DataEntrada, os.DataSaida, os.Local_, os.Observacoes, os.Custo, os.Status_");
             sql.Append(" from OrdemServico as os");
-            sql.Append(" inner join Cliente as cl on cl.IdCliente=os.Cliente");
-            sql.Append(" inner join Tecnico as tc on tc.IdTecnico=os.Tecnico");
-            sql.Append(" where os.Cliente = cl.IdCliente");
+            sql.Append(" inner join Cliente as cl");
+            sql.Append(" on os.IdCliente = cl.IdCliente");
+            sql.Append(" inner join Tecnico as tc");
+            sql.Append(" on os.IdTecnico = tc.IdTecnico");
+            sql.Append(" WHERE clientenome = " + pClienteNome);
 
             SqlDataReader dr = SqlConn.Get(sql.ToString());
 
             while (dr.Read())
             {
-                os.IdOS = Convert.ToInt32(dr["IdOS"]);
-                os.IdCliente = Convert.ToInt32(dr["Cliente_IdCliente"]);
-                os.ClienteNome = dr.IsDBNull(dr.GetOrdinal("Cliente")) ? "" : (String)dr["Cliente"];
-                os.IdTecnico = Convert.ToInt32(dr["Tecnico_IdTecnico"]);
-                os.TecnicoNome = dr.IsDBNull(dr.GetOrdinal("Tecnico")) ? "" : (String)dr["Tecnico"];
-                os.Equipamento = dr.IsDBNull(dr.GetOrdinal("Equipamento")) ? "" : (String)dr["Equipamento"];
-                os.Marca = dr.IsDBNull(dr.GetOrdinal("Marca")) ? "" : (String)dr["Marca"];
-                os.Modelo = dr.IsDBNull(dr.GetOrdinal("Modelo")) ? "" : (String)dr["Modelo"];
-                os.NumeroSerie = dr.IsDBNull(dr.GetOrdinal("NumeroSerie")) ? "" : (String)dr["NumeroSerie"];
-                os.Defeito = dr.IsDBNull(dr.GetOrdinal("Defeito")) ? "" : (String)dr["Defeito"];
-                os.Servico = dr.IsDBNull(dr.GetOrdinal("Servico")) ? "" : (String)dr["Servico"];
-                os.Local = dr.IsDBNull(dr.GetOrdinal("Local_")) ? "" : (String)dr["Local_"];
-                os.Observacoes = dr.IsDBNull(dr.GetOrdinal("Observacoes")) ? "" : (String)dr["Observacoes"];
-                os.Custo = (Decimal)dr["Custo"];
-                os.Status = dr.IsDBNull(dr.GetOrdinal("Status_")) ? "" : (String)dr["Status_"];
+                os.IdOS = (int)dr["IdOS"];
+                os.IdCliente = (int)dr["IdCliente"];
+                os.ClienteNome = dr.IsDBNull(dr.GetOrdinal("clientenome")) ? "" : (string)dr["clientenome"];
+                os.IdTecnico = (int)dr["IdTecnico"];
+                os.TecnicoNome = dr.IsDBNull(dr.GetOrdinal("tecniconome")) ? "" : (string)dr["tecniconome"];
+                os.Equipamento = dr.IsDBNull(dr.GetOrdinal("Equipamento")) ? "" : (string)dr["Equipamento"];
+                os.Marca = dr.IsDBNull(dr.GetOrdinal("Marca")) ? "" : (string)dr["Marca"];
+                os.Modelo = dr.IsDBNull(dr.GetOrdinal("Modelo")) ? "" : (string)dr["Modelo"];
+                os.NumeroSerie = dr.IsDBNull(dr.GetOrdinal("NumeroSerie")) ? "" : (string)dr["NumeroSerie"];
+                os.Defeito = dr.IsDBNull(dr.GetOrdinal("Defeito")) ? "" : (string)dr["Defeito"];
+                os.Servico = dr.IsDBNull(dr.GetOrdinal("Servico")) ? "" : (string)dr["Servico"];
+                os.DataEntrada = (DateTime)dr["DataEntrada"];
+                os.DataSaida = (DateTime)dr["DataSaida"];
+                os.Local = dr.IsDBNull(dr.GetOrdinal("Local_")) ? "" : (string)dr["Local_"];
+                os.Observacoes = dr.IsDBNull(dr.GetOrdinal("Observacoes")) ? "" : (string)dr["Observacoes"];
+                os.Custo = (decimal)dr["Custo"];
+                os.Status = dr.IsDBNull(dr.GetOrdinal("Status_")) ? "" : (string)dr["Status_"];
             }
             return os;
         }
@@ -145,29 +157,35 @@ namespace Atenda.Repository
             StringBuilder sql = new StringBuilder();
             OrdemServico os = new OrdemServico();
 
-            sql.Append("select os.IdOS, os.Cliente, cl.Nome, os.Tecnico, tc.Nome, os.Equipamento, os.Marca, os.modelo, os.NumeroSerie, os.Defeito, os.Servico, os.Local_, os.Observacoes, os.Custo, os.Status_");
+            sql.Append("select os.IdOS, os.IdCliente, cl.Nome as clientenome, os.IdTecnico, tc.Nome as tecniconome, os.Equipamento, os.Marca, os.modelo, os.NumeroSerie, os.Defeito, os.Servico, os.DataEntrada, os.DataSaida, os.Local_, os.Observacoes, os.Custo, os.Status_");
             sql.Append(" from OrdemServico as os");
-            sql.Append(" inner join Cliente as cl on cl.IdCliente=os.Cliente");
-            sql.Append(" inner join Tecnico as tc on tc.IdTecnico=os.Tecnico");
-            sql.Append(" where os.Tecnico = tc.IdTecnico");
+            sql.Append(" inner join Cliente as cl");
+            sql.Append(" on os.IdCliente = cl.IdCliente");
+            sql.Append(" inner join Tecnico as tc");
+            sql.Append(" on os.IdTecnico = tc.IdTecnico");
+            sql.Append(" WHERE tecniconome = " + pTecnicoNome);
 
             SqlDataReader dr = SqlConn.Get(sql.ToString());
 
             while (dr.Read())
             {
-                os.IdOS = Convert.ToInt32(dr["IdOS"]);
-                os.IdCliente = Convert.ToInt32(dr["Cliente_IdCliente"]);
-                os.IdTecnico = Convert.ToInt32(dr["Tecnico_IdTecnico"]);
-                os.Equipamento = dr.IsDBNull(dr.GetOrdinal("Equipamento")) ? "" : (String)dr["Equipamento"];
-                os.Marca = dr.IsDBNull(dr.GetOrdinal("Marca")) ? "" : (String)dr["Marca"];
-                os.Modelo = dr.IsDBNull(dr.GetOrdinal("Modelo")) ? "" : (String)dr["Modelo"];
-                os.NumeroSerie = dr.IsDBNull(dr.GetOrdinal("NumeroSerie")) ? "" : (String)dr["NumeroSerie"];
-                os.Defeito = dr.IsDBNull(dr.GetOrdinal("Defeito")) ? "" : (String)dr["Defeito"];
-                os.Servico = dr.IsDBNull(dr.GetOrdinal("Servico")) ? "" : (String)dr["Servico"];
-                os.Local = dr.IsDBNull(dr.GetOrdinal("Local_")) ? "" : (String)dr["Local_"];
-                os.Observacoes = dr.IsDBNull(dr.GetOrdinal("Observacoes")) ? "" : (String)dr["Observacoes"];
-                os.Custo = (Decimal)dr["Custo"];
-                os.Status = dr.IsDBNull(dr.GetOrdinal("Status_")) ? "" : (String)dr["Status_"];
+                os.IdOS = (int)dr["IdOS"];
+                os.IdCliente = (int)dr["IdCliente"];
+                os.ClienteNome = dr.IsDBNull(dr.GetOrdinal("clientenome")) ? "" : (string)dr["clientenome"];
+                os.IdTecnico = (int)dr["IdTecnico"];
+                os.TecnicoNome = dr.IsDBNull(dr.GetOrdinal("tecniconome")) ? "" : (string)dr["tecniconome"];
+                os.Equipamento = dr.IsDBNull(dr.GetOrdinal("Equipamento")) ? "" : (string)dr["Equipamento"];
+                os.Marca = dr.IsDBNull(dr.GetOrdinal("Marca")) ? "" : (string)dr["Marca"];
+                os.Modelo = dr.IsDBNull(dr.GetOrdinal("Modelo")) ? "" : (string)dr["Modelo"];
+                os.NumeroSerie = dr.IsDBNull(dr.GetOrdinal("NumeroSerie")) ? "" : (string)dr["NumeroSerie"];
+                os.Defeito = dr.IsDBNull(dr.GetOrdinal("Defeito")) ? "" : (string)dr["Defeito"];
+                os.Servico = dr.IsDBNull(dr.GetOrdinal("Servico")) ? "" : (string)dr["Servico"];
+                os.DataEntrada = (DateTime)dr["DataEntrada"];
+                os.DataSaida = (DateTime)dr["DataSaida"];
+                os.Local = dr.IsDBNull(dr.GetOrdinal("Local_")) ? "" : (string)dr["Local_"];
+                os.Observacoes = dr.IsDBNull(dr.GetOrdinal("Observacoes")) ? "" : (string)dr["Observacoes"];
+                os.Custo = (decimal)dr["Custo"];
+                os.Status = dr.IsDBNull(dr.GetOrdinal("Status_")) ? "" : (string)dr["Status_"];
             }
             return os;
         }
@@ -177,10 +195,12 @@ namespace Atenda.Repository
             StringBuilder sql = new StringBuilder();
             List<OrdemServico> os = new List<OrdemServico>();
 
-            sql.Append("select os.IdOS, os.Cliente, cl.Nome, os.Tecnico, tc.Nome, os.Equipamento, os.Marca, os.modelo, os.NumeroSerie, os.Defeito, os.Servico, os.Local_, os.Observacoes, os.Custo, os.Status_");
+            sql.Append("select os.IdOS, os.IdCliente, cl.Nome as clientenome, os.IdTecnico, tc.Nome as tecniconome, os.Equipamento, os.Marca, os.modelo, os.NumeroSerie, os.Defeito, os.Servico, os.DataEntrada, os.DataSaida, os.Local_, os.Observacoes, os.Custo, os.Status_");
             sql.Append(" from OrdemServico as os");
-            sql.Append(" inner join Cliente as cl on cl.IdCliente=os.Cliente");
-            sql.Append(" inner join Tecnico as tc on tc.IdTecnico=os.Tecnico");
+            sql.Append(" inner join Cliente as cl");
+            sql.Append(" on os.IdCliente = cl.IdCliente");
+            sql.Append(" inner join Tecnico as tc");
+            sql.Append(" on os.IdTecnico = tc.IdTecnico");
 
             SqlDataReader dr = SqlConn.Get(sql.ToString());
 
@@ -189,19 +209,23 @@ namespace Atenda.Repository
                 os.Add(
                     new OrdemServico
                     {
-                        IdOS = Convert.ToInt32(dr["IdOS"]),
-                        IdCliente = Convert.ToInt32(dr["Cliente_IdCliente"]),
-                        IdTecnico = Convert.ToInt32(dr["Tecnico_IdTecnico"]),
-                        Equipamento = dr.IsDBNull(dr.GetOrdinal("Equipamento")) ? "" : (String)dr["Equipamento"],
-                        Marca = dr.IsDBNull(dr.GetOrdinal("Marca")) ? "" : (String)dr["Marca"],
-                        Modelo = dr.IsDBNull(dr.GetOrdinal("Modelo")) ? "" : (String)dr["Modelo"],
-                        NumeroSerie = dr.IsDBNull(dr.GetOrdinal("NumeroSerie")) ? "" : (String)dr["NumeroSerie"],
-                        Defeito = dr.IsDBNull(dr.GetOrdinal("Defeito")) ? "" : (String)dr["Defeito"],
-                        Servico = dr.IsDBNull(dr.GetOrdinal("Servico")) ? "" : (String)dr["Servico"],
-                        Local = dr.IsDBNull(dr.GetOrdinal("Local_")) ? "" : (String)dr["Local_"],
-                        Observacoes = dr.IsDBNull(dr.GetOrdinal("Observacoes")) ? "" : (String)dr["Observacoes"],
-                        Custo = (Decimal)dr["Custo"],
-                        Status = dr.IsDBNull(dr.GetOrdinal("Status_")) ? "" : (String)dr["Status_"]
+                        IdOS = (int)dr["IdOS"],
+                        IdCliente = (int)dr["IdCliente"],
+                        ClienteNome = dr.IsDBNull(dr.GetOrdinal("clientenome")) ? "" : (string)dr["clientenome"],
+                        IdTecnico = (int)dr["IdTecnico"],
+                        TecnicoNome = dr.IsDBNull(dr.GetOrdinal("tecniconome")) ? "" : (string)dr["tecniconome"],
+                        Equipamento = dr.IsDBNull(dr.GetOrdinal("Equipamento")) ? "" : (string)dr["Equipamento"],
+                        Marca = dr.IsDBNull(dr.GetOrdinal("Marca")) ? "" : (string)dr["Marca"],
+                        Modelo = dr.IsDBNull(dr.GetOrdinal("Modelo")) ? "" : (string)dr["Modelo"],
+                        NumeroSerie = dr.IsDBNull(dr.GetOrdinal("NumeroSerie")) ? "" : (string)dr["NumeroSerie"],
+                        Defeito = dr.IsDBNull(dr.GetOrdinal("Defeito")) ? "" : (string)dr["Defeito"],
+                        Servico = dr.IsDBNull(dr.GetOrdinal("Servico")) ? "" : (string)dr["Servico"],
+                        DataEntrada = (DateTime)dr["DataEntrada"],
+                        DataSaida = (DateTime)dr["DataSaida"],
+                        Local = dr.IsDBNull(dr.GetOrdinal("Local_")) ? "" : (string)dr["Local_"],
+                        Observacoes = dr.IsDBNull(dr.GetOrdinal("Observacoes")) ? "" : (string)dr["Observacoes"],
+                        Custo = (decimal)dr["Custo"],
+                        Status = dr.IsDBNull(dr.GetOrdinal("Status_")) ? "" : (string)dr["Status_"]
                     });
             }
             return os;

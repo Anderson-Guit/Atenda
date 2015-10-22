@@ -29,6 +29,18 @@ namespace Atenda.Controllers
         // GET: /OrdemServico/Create
         public ActionResult CreateOS()
         {
+            ViewBag.IdCliente = new SelectList
+            (
+                ClienteRepository.GetAll(),
+                "IdCliente",
+                "Nome"
+            );
+            ViewBag.IdTecnico = new SelectList
+            (
+                TecnicoRepository.GetAll(),
+                "IdTecnico",
+                "Nome"
+            );
             return View();
         }
 
@@ -37,21 +49,36 @@ namespace Atenda.Controllers
         [HttpPost]
         public ActionResult CreateOS(OrdemServico pOS)
         {
-            try
-            {
+            //try
+            //{
                 if (ModelState.IsValid)
                 {
+                    ViewBag.IdCliente = new SelectList
+                    (
+                        ClienteRepository.GetAll(),
+                        "IdCliente",
+                        "Nome",
+                        pOS.IdCliente
+                    );
+                    ViewBag.IdTecnico = new SelectList
+                    (
+                        TecnicoRepository.GetAll(),
+                        "IdTecnico",
+                        "Nome",
+                        pOS.IdTecnico
+                    );
+
                     OrdemServicoRepository nova = new OrdemServicoRepository();
                     nova.Create(pOS);
                     return RedirectToAction("ListOS");
                 }
 
                 return View("CreateOS");
-            }
-            catch
-            {
-                return View();
-            }
+            //}
+            //catch
+            //{
+            //    return View();
+            //}
         }
 
         //

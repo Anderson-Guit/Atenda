@@ -19,12 +19,15 @@ namespace Atenda.Web.Controllers
         // GET: Orcamento/Details/5
         public ActionResult DetailsOrcamento(int pId)
         {
-            return View();
+            var orcamento = OrcamentoRepository.GetOne(pId);
+            return View(orcamento);
         }
 
         // GET: Orcamento/Create
         public ActionResult CreateOrcamento()
         {
+            ViewBag.IdProduto = new SelectList (ProdutoRepository.GetAll(), "IdProduto", "Nome");
+            ViewBag.IdCliente = new SelectList (ClienteRepository.GetAll(), "IdCliente", "Nome");
             return View();
         }
 
@@ -34,9 +37,15 @@ namespace Atenda.Web.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    ViewBag.IdProduto = new SelectList (ProdutoRepository.GetAll(), "IdProduto", "Nome", pOrcamento.IdProduto);
+                    ViewBag.IdCliente = new SelectList (ClienteRepository.GetAll(), "IdCliente", "Nome", pOrcamento.IdProduto);
+                    OrcamentoRepository nova = new OrcamentoRepository();
+                    nova.Create(pOrcamento);
+                    return RedirectToAction("ListOrcamentos");
+                }
+                return View("CreateOrcamento");
             }
             catch
             {
@@ -47,7 +56,9 @@ namespace Atenda.Web.Controllers
         // GET: Orcamento/Edit/5
         public ActionResult EditOrcamento(int pId)
         {
-            return View();
+            ViewBag.IdProduto = new SelectList(ProdutoRepository.GetAll(), "IdProduto", "Nome");
+            var orcamento = OrcamentoRepository.GetOne(pId);
+            return View(orcamento);
         }
 
         // POST: Orcamento/Edit/5
@@ -56,9 +67,15 @@ namespace Atenda.Web.Controllers
         {
             try
             {
-                // TODO: Add update logic here
+                if (ModelState.IsValid)
+                {
+                    ViewBag.IdProduto = new SelectList(ProdutoRepository.GetAll(), "IdProduto", "Nome", pOrcamento.IdProduto);
+                    OrcamentoRepository edit = new OrcamentoRepository();
+                    edit.Update(pOrcamento);
+                    return RedirectToAction("ListOrcamentos");
+                }
 
-                return RedirectToAction("Index");
+                return View("EditOrcamento");
             }
             catch
             {
@@ -69,7 +86,8 @@ namespace Atenda.Web.Controllers
         // GET: Orcamento/Delete/5
         public ActionResult DeleteOrcamento(int pId)
         {
-            return View();
+            var orcamento = OrcamentoRepository.GetOne(pId);
+            return View(orcamento);
         }
 
         // POST: Orcamento/Delete/5
@@ -78,9 +96,9 @@ namespace Atenda.Web.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                OrcamentoRepository exclui = new OrcamentoRepository();
+                exclui.Delete(pId);
+                return RedirectToAction("ListOrcamentos");
             }
             catch
             {
@@ -97,8 +115,8 @@ namespace Atenda.Web.Controllers
         // POST: /Orcamento/SearchCliente/5
         public ActionResult SearchClienteNome(String pClienteNome)
         {
-            var orcamento = OrcamentoRepository.GetClienteName(pClienteNome);
-            return View(orcamento);
+            var cliente = OrcamentoRepository.GetByClienteName(pClienteNome);
+            return View(cliente);
         }
 
     }

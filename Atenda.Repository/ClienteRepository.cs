@@ -65,31 +65,37 @@ namespace Atenda.Repository
             SqlConn.CommandPersist(cmd);
         }
 
-        public static Cliente GetName(String Nome)
+        public static List<Cliente> GetName(String Nome)
         {
             StringBuilder sql = new StringBuilder();
-            Cliente cliente = new Cliente();
+            List<Cliente> clientes = new List<Cliente>();
 
             sql.Append("SELECT * ");
             sql.Append("FROM Cliente ");
-            sql.Append("WHERE Nome = '" + Nome + "'");
+            sql.Append("WHERE Nome like '%" + Nome.Trim() + "%'");
 
             SqlDataReader dr = SqlConn.Get(sql.ToString());
 
             while (dr.Read())
             {
-                cliente.IdCliente = (int)dr["IdCliente"];
-                cliente.Nome = dr.IsDBNull(dr.GetOrdinal("Nome")) ? "" : (string)dr["Nome"];
-                cliente.Telefone = dr.IsDBNull(dr.GetOrdinal("Telefone")) ? "" : (string)dr["Telefone"];
-                cliente.Endereco = dr.IsDBNull(dr.GetOrdinal("Endereco")) ? "" : (string)dr["Endereco"];
-                cliente.Bairro = dr.IsDBNull(dr.GetOrdinal("Bairro")) ? "" : (string)dr["Bairro"];
-                cliente.Cidade = dr.IsDBNull(dr.GetOrdinal("Cidade")) ? "" : (string)dr["Cidade"];
-                cliente.Estado = dr.IsDBNull(dr.GetOrdinal("Estado")) ? "" : (string)dr["Estado"];
-                cliente.Pais = dr.IsDBNull(dr.GetOrdinal("Pais")) ? "" : (string)dr["Pais"];
-                cliente.CPF_CNPJ = dr.IsDBNull(dr.GetOrdinal("CPF_CNPJ")) ? "" : (string)dr["CPF_CNPJ"];
+                clientes.Add(
+                    new Cliente
+                    {
+                        IdCliente = (int)dr["IdCliente"],
+                        Nome = dr.IsDBNull(dr.GetOrdinal("Nome")) ? "" : (string)dr["Nome"],
+                        Telefone = dr.IsDBNull(dr.GetOrdinal("Telefone")) ? "" : (string)dr["Telefone"],
+                        Endereco = dr.IsDBNull(dr.GetOrdinal("Endereco")) ? "" : (string)dr["Endereco"],
+                        Bairro = dr.IsDBNull(dr.GetOrdinal("Bairro")) ? "" : (string)dr["Bairro"],
+                        Cidade = dr.IsDBNull(dr.GetOrdinal("Cidade")) ? "" : (string)dr["Cidade"],
+                        Estado = dr.IsDBNull(dr.GetOrdinal("Estado")) ? "" : (string)dr["Estado"],
+                        Pais = dr.IsDBNull(dr.GetOrdinal("Pais")) ? "" : (string)dr["Pais"],
+                        CPF_CNPJ = dr.IsDBNull(dr.GetOrdinal("CPF_CNPJ")) ? "" : (string)dr["CPF_CNPJ"]
+
+
+                    });
             }
             dr.Close();
-            return cliente;
+            return clientes;
         }
 
         public static Cliente GetOne(int pId)

@@ -121,13 +121,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AgendaController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
-    <Compile Include="Controllers\EmpresaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrcamentoController.cs" />
     <Compile Include="Controllers\OrdemServicoController.cs" />
     <Compile Include="Controllers\ProdutoController.cs" />
     <Compile Include="Controllers\TecnicoController.cs" />
-    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -146,14 +144,19 @@
     <Content Include="Image\Background_Login.jpg" />
     <Content Include="Image\Cliente_Icon-Atenda.png" />
     <Content Include="Image\CreateOption_Icon-Atenda.png" />
+    <Content Include="Image\DeleteOption_Icon-Atenda.png" />
+    <Content Include="Image\DetailsOption_Icon-Atenda.png" />
     <Content Include="Image\ListOption_Icon-Atenda.png" />
     <Content Include="Image\logo.png" />
+    <Content Include="Image\LogoutOption_Icon-Atenda.png" />
     <Content Include="Image\NewBanner_Atenda.png" />
     <Content Include="Image\Orcamento_Icon-Atenda.png" />
     <Content Include="Image\OS_Icon-Atenda.png" />
     <Content Include="Image\Produto_Icon-Atenda.png" />
+    <Content Include="Image\SearchOptionB_Icon-Atenda.png" />
     <Content Include="Image\SearchOption_Icon-Atenda.png" />
     <Content Include="Image\Tecnico_Icon-Atenda.png" />
+    <Content Include="Image\UpdateOption_Icon-Atenda.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\methods_pt.js" />
@@ -186,10 +189,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\Login.cshtml" />
-    <Content Include="Views\Usuario\CreateUsuario.cshtml" />
-    <Content Include="Views\Usuario\EditUsuario.cshtml" />
-    <Content Include="Views\Usuario\DeleteUsuario.cshtml" />
-    <Content Include="Views\Usuario\ListUsuarios.cshtml" />
     <Content Include="Views\Cliente\DetailsCliente.cshtml" />
     <Content Include="Views\Cliente\CreateCliente.cshtml" />
     <Content Include="Views\Cliente\EditCliente.cshtml" />
@@ -229,6 +228,7 @@
     <Content Include="Views\Orcamento\ListOrcamentos.cshtml" />
     <Content Include="Views\Orcamento\SearchClienteNome.cshtml" />
     <Content Include="Views\Home\IndexListAgendas.cshtml" />
+    <Content Include="Views\OrdemServico\SearchOS.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

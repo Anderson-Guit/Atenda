@@ -4,13 +4,22 @@
     ViewBag.Title = "Lista de OS";
 }
 
-<h2>Lista de OS</h2>
+<h1>Lista de OS</h1>
 
-<p>
-    @Html.ActionLink("Cadastrar nova OS", "CreateOS")
-</p>
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal col-md-10">
+        <input type="text" name="NomeCliente" value="Digite o nome do Cliente" class="form-control" />
+    </div>
+    <button class="btn btn-xs" type="submit"><img class="img-responsive" title="Buscar por Cliente" src="~/Image/SearchOption_Icon-Atenda.png"></button>
+    <a href="~/OrdemServico/CreateOS" class="btn btn-xs col-md-offset-10" style="float:right;margin-left: 0%"><img class="img-responsive" title="Nova OS" src="~/Image/CreateOption_Icon-Atenda.png"></a>
+}
+
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayName("Nº de OS")
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.ClienteNome)
         </th>
@@ -40,8 +49,9 @@
 
 @foreach (var item in Model) {
     <tr>
-            @Html.HiddenFor(modelItem => item.IdOS)
-
+        <td>
+            @Html.DisplayFor(modelItem => item.IdOS)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.ClienteNome)
         </td>
@@ -67,9 +77,9 @@
             @Html.DisplayFor(modelItem => item.Status)
         </td>
         <td>
-            @Html.ActionLink("Editar", "EditOS", new { pId = item.IdOS }) |
-            @Html.ActionLink("Exibir", "DetailsOS", new { pId = item.IdOS }) |
-            @Html.ActionLink("Deletar", "DeleteOS", new { pId = item.IdOS })
+            @Html.Raw(@Html.ActionLink("[replacetext]", "DetailsCliente", new { pId = item.IdTecnico }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/DetailsOption_Icon-Atenda.png\" ... />"))
+            @Html.Raw(@Html.ActionLink("[replacetext]", "EditCliente", new { pId = item.IdTecnico }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/UpdateOption_Icon-Atenda.png\" ... />"))
+            @Html.Raw(@Html.ActionLink("[replacetext]", "DeleteCliente", new { pId = item.IdTecnico }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/DeleteOption_Icon-Atenda.png\" ... />"))
         </td>
     </tr>
 }

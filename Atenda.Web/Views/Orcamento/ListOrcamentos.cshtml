@@ -4,11 +4,17 @@
     ViewBag.Title = "Lista de Orçamentos";
 }
 
-<h2>Lista de orçamentos</h2>
+<h1>Lista de orçamentos</h1>
 
-<p>
-    @Html.ActionLink("Cadastrar novo orçamento", "CreateOrcamento")
-</p>
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal col-md-10">
+        <input type="text" name="NomeCliente" value="Digite o nome do Cliente" class="form-control" />
+    </div>
+    <button class="btn btn-xs" type="submit"><img class="img-responsive" title="Buscar por Cliente" src="~/Image/SearchOption_Icon-Atenda.png"></button>
+    <a href="~/Orcamento/CreateOrcamento" class="btn btn-xs col-md-offset-10" style="float:right;margin-left: 0%"><img class="img-responsive" title="Novo Orçamento" src="~/Image/CreateOption_Icon-Atenda.png"></a>
+}
+
 <table class="table">
     <tr>
         <th>
@@ -53,9 +59,9 @@
             @Html.DisplayFor(modelItem => item.NomeCliente)
         </td>
         <td>
-            @Html.ActionLink("Editar", "EditOrcamento", new { pId = item.IdOrcamento }) |
-            @Html.ActionLink("Exibir", "DetailsOrcamento", new { pId = item.IdOrcamento }) |
-            @Html.ActionLink("Deletar", "DeleteOrcamento", new { pId = item.IdOrcamento })            
+            @Html.Raw(@Html.ActionLink("[replacetext]", "DetailsOrcamento", new { pId = item.IdOrcamento }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/DetailsOption_Icon-Atenda.png\" ... />"))
+            @Html.Raw(@Html.ActionLink("[replacetext]", "EditOrcamento", new { pId = item.IdOrcamento }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/UpdateOption_Icon-Atenda.png\" ... />"))           
+            @Html.Raw(@Html.ActionLink("[replacetext]", "DeleteOrcamento", new { pId = item.IdOrcamento }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/DeleteOption_Icon-Atenda.png\" ... />"))    
         </td>
     </tr>
     <tr>

@@ -72,10 +72,11 @@ namespace Atenda.App.Classes.Dbs
             return orcamento;
         }
 
-        public static List<Orcamento> GetAll()
+        public static List<Orcamento> GetAll(int pIdCliente)
         {
             dataBase db = getDataBase();
             var query = from o in db.Orcamento
+                        where o.idCliente == pIdCliente
                         select o;
 
             List<Orcamento> orcamentos = new List<Orcamento>(query.AsEnumerable());

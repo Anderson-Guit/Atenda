@@ -46,7 +46,6 @@
     <Compile Include="ProdutoRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TecnicoRepository.cs" />
-    <Compile Include="UsuarioRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Atenda.Conn\Atenda.Conn.csproj">

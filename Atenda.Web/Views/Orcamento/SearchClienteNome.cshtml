@@ -1,7 +1,7 @@
 ﻿@model Atenda.Data.Orcamento
 
 @{
-    ViewBag.Title = "Buscar Cliente";
+    ViewBag.Title = "Buscar por Cliente";
 }
 
 @using (Html.BeginForm())
@@ -12,15 +12,13 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">Buscar Cliente</h4>
+                    <h4 class="modal-title">Buscar orçamentos por Cliente</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <b class="control-label col-md-2">Nome</b>
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                            <input type="text" name="NomeCliente" class="form-control" />
                         </div>
                     </div>
                 </div>

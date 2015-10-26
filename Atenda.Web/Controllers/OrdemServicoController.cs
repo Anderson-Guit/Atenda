@@ -144,6 +144,20 @@ namespace Atenda.Controllers
             return View(os);
         }
         //
+        // GET: /Cliente/Search/5
+        public ActionResult SearchOS()
+        {
+            return View();
+        }
+        //
+        // POST: /Cliente/Search/5
+        [HttpPost]
+        public ActionResult SearchOS(FormCollection form)
+        {
+            var nome = form["NumOS"];
+            return RedirectToAction("NumOS", form);
+        }
+        //
         // POST: /OrdemServico/SearchTecnico/5
         public ActionResult SearchTecnicoNome(String pTecnicoNome)
         {

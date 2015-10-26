@@ -108,20 +108,36 @@ namespace Atenda.Controllers
                 return View();
             }
         }
-
+        //
+        // GET: /Produto/List/5
         public ActionResult ListProdutos()
         {
-            var produto = ProdutoRepository.GetAll();
-
-            return View(produto);
-
+            var produtos = ProdutoRepository.GetAll();
+            return View(produtos);
         }
+        //
+        // POST: /Produto/Delete/5
+        [HttpPost]
+        public ActionResult ListProdutos(FormCollection form)
+        {
+            string pNome = form["NomeProduto"];
 
+                var produtos = ProdutoRepository.GetName(pNome);
+                return View(produtos);
+        }
+        //
+        // GET: /Produto/SearchProduto/5
+        public ActionResult SearchProduto()
+        {
+            return View();
+        }
+        //
+        // POST: /Produto/SearchProduto/5
+        [HttpPost]
         public ActionResult SearchProduto(String pNome)
         {
             var produto = ProdutoRepository.GetName(pNome);
             return View(produto);
-
         }
 
     }

@@ -32,5 +32,8 @@ namespace Atenda.App.Classes
         [Column(CanBeNull = true)]
         public decimal ValorTotal { get; set; }
 
+        [Column]
+        public int idCliente { get; set; }
+
     }
 }

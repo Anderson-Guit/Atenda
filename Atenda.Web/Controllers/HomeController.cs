@@ -27,17 +27,12 @@ namespace Atenda.Controllers
         {
             if (ModelState.IsValid)
             {
-                Usuario usuario = UsuarioRepository.CheckUser(Nome, Senha);
+                Tecnico tecnico = TecnicoRepository.CheckUser(Nome, Senha);
 
-                if (usuario.Nome != null)
+                if (tecnico.Nome != null)
                 {
 
-                    Session["Nome"] = usuario.Nome;
-
-                    if (usuario.Adm != false)
-                    {
-                        Session["Adm"] = usuario.Adm;
-                    }
+                    Session["Nome"] = tecnico.Nome;
 
                     return RedirectToAction("Index");
 
@@ -54,9 +49,8 @@ namespace Atenda.Controllers
         public ActionResult Logout()
         {
             @Session["Nome"] = null;
-            @Session["Adm"] = null;
 
-            if (Session["Nome"] == null && Session["Adm"] == null)
+            if (Session["Nome"] == null)
             {
                 return RedirectToAction("Login");
             }

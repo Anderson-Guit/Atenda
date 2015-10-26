@@ -17,6 +17,8 @@ namespace Atenda.Data
 
         [Display(Name = "Telefone", Description = "Informe o telefone do Cliente.")]
         [Required(ErrorMessage = "Telefone é obrigatório")]
+        [RegularExpression(@"^\d+$", ErrorMessage="Digite apenas numeros")]
+        [StringLength(maximumLength:10,MinimumLength=9)]
         [DataType(DataType.PhoneNumber)]
         public string Telefone { get; set; }
 

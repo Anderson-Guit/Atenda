@@ -57,27 +57,32 @@ namespace Atenda.Repository
             SqlConn.CommandPersist(cmd);
         }
 
-        public static Produto GetName(String pNome)
+        public static List<Produto> GetName(String pNome)
         {
             StringBuilder sql = new StringBuilder();
-            Produto produto = new Produto();
+            List<Produto> produtos = new List<Produto>();
 
-            sql.Append("SELECT * ");
-            sql.Append("FROM Produto ");
-            sql.Append("WHERE Nome = '" + pNome + "'");
+            sql.Append(" SELECT *");
+            sql.Append(" FROM Produto");
+            sql.Append(" WHERE Nome like '%" + pNome.Trim() + "%'");
+            sql.Append(" ORDER BY Nome");
 
             SqlDataReader dr = SqlConn.Get(sql.ToString());
 
             while (dr.Read())
             {
-                produto.IdProduto = (int)dr["IdProduto"];
-                produto.Nome = dr.IsDBNull(dr.GetOrdinal("Nome")) ? "" : (string)dr["Nome"];
-                produto.Descricao = dr.IsDBNull(dr.GetOrdinal("Descricao")) ? "" : (string)dr["Descricao"];
-                produto.Valor = (decimal)dr["Valor"];
-                produto.QntdEstoque = (int)dr["QntdEstoque"];
-
+                produtos.Add(
+                    new Produto
+                    {
+                        IdProduto = (int)dr["IdProduto"],
+                        Nome = dr.IsDBNull(dr.GetOrdinal("Nome")) ? "" : (string)dr["Nome"],
+                        Descricao = dr.IsDBNull(dr.GetOrdinal("Descricao")) ? "" : (string)dr["Descricao"],
+                        Valor = (decimal)dr["Valor"],
+                        QntdEstoque = (int)dr["QntdEstoque"],
+                    });
             }
-            return produto;
+            dr.Close();
+            return produtos;
         }
 
         public static Produto GetOne(int pId)
@@ -100,6 +105,7 @@ namespace Atenda.Repository
                 produto.QntdEstoque = (int)dr["QntdEstoque"];
 
             }
+            dr.Close();
             return produto;
         }
 
@@ -125,6 +131,7 @@ namespace Atenda.Repository
                         QntdEstoque = (int)dr["QntdEstoque"],
                     });
             }
+            dr.Close();
             return produtos;
         }
     }

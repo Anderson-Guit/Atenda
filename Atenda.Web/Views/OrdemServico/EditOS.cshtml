@@ -18,6 +18,14 @@
         @Html.HiddenFor(model => model.IdOS, new { htmlAttributes = new { @class = "form-control" } })
 
         <div class="form-group">
+            @Html.DisplayName("Nº de OS", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.IdCliente, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.IdCliente, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.IdCliente, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.IdCliente, new { htmlAttributes = new { @class = "form-control" } })

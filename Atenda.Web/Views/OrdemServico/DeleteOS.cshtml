@@ -10,8 +10,12 @@
 <div>
 
     <dl class="dl-horizontal">
-
-            @Html.HiddenFor(model => model.IdOS)
+        <dt>
+            @Html.DisplayName("Nº de OS")
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdOS)
+        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.ClienteNome)

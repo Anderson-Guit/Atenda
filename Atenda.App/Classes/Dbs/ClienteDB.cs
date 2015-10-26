@@ -66,6 +66,7 @@ namespace Atenda.App.Classes
             dataBase db = getDataBase();
             var query = from c in db.Cliente
                         where c.IdCliente == pId
+                        
                         select c;
                         
                         

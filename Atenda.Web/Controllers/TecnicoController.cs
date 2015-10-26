@@ -114,17 +114,36 @@ namespace Atenda.Controllers
             }
         }
         //
-        // POST: /Tecnico/List/5
+        // GET: /Tecnico/List/5
         public ActionResult ListTecnicos()
         {
-            var tecnico = TecnicoRepository.GetAll();
-            return View(tecnico);
+            var tecnicos = TecnicoRepository.GetAll();
+            return View(tecnicos);
+        }
+        //
+        // POST: /Tecnico/List/5
+        [HttpPost]
+        public ActionResult ListTecnicos(FormCollection form)
+        {
+            string pNome = form["NomeTecnico"];
+
+                var tecnicos = TecnicoRepository.GetName(pNome);
+                return View(tecnicos);
+
+        }
+        //
+        // GET: /Tenico/Search/5
+        public ActionResult SearchTecnico()
+        {
+            return View();
         }
         //
         // POST: /Tecnico/Search/5
-        public ActionResult SearchTecnico(String pNome)
+        [HttpPost]
+        public ActionResult SearchTecnico(FormCollection form)
         {
-            var tecnico = TecnicoRepository.GetBySearch(pNome);
+            var nome = form["NomeTecnico"];
+            var tecnico = TecnicoRepository.GetName(nome);
             return View(tecnico);
         }
     }

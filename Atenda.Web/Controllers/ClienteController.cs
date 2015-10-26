@@ -119,12 +119,27 @@ namespace Atenda.Controllers
                 return View();
             }
         }
-        //
-        // POST: /Cliente/List/5
         public ActionResult ListClientes()
         {
-            var Cliente = ClienteRepository.GetAll();
-            return View(Cliente);
+                var Cliente = ClienteRepository.GetAll();
+                return View(Cliente);
+        }
+        //
+        // POST: /Cliente/List/5
+        [HttpPost]
+        public ActionResult ListClientes(FormCollection form)
+        {
+            
+            if (form != null) 
+            {
+                string nome = form["NomeCliente"];
+                var ClienteNome = ClienteRepository.GetName(nome);
+                return View(ClienteNome);
+            }
+            else
+            {
+                return View();
+            }
         }
         //
         // GET: /Cliente/Search/5
@@ -135,11 +150,10 @@ namespace Atenda.Controllers
         //
         // POST: /Cliente/Search/5
         [HttpPost]
-        public ActionResult SearchCliente(String Nome)
+        public ActionResult SearchCliente(FormCollection form)
         {
-            var cliente = ClienteRepository.GetName(Nome);
-            ViewBag.IdCliente = cliente.IdCliente;
-            return RedirectToAction("DetailsCliente", null, cliente.IdCliente);
+            //var nome = form["NomeCliente"];
+            return RedirectToAction("ListClientes", form);
         }
     }
 }

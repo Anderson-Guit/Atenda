@@ -27,9 +27,33 @@ namespace Atenda.Data
         [DataType(DataType.Date)]
         public DateTime Admissao { get; set; }
 
+        [Display(Name = "Senha", Description = "Informe a senha do Tecnico")]
+        [DataType(DataType.Password)]
+        [Required]
+        public string Senha { get; set; }
+
+        [Display(Name = "Corfirme a Senha", Description = "Repita a senha")]
+        [Compare("Senha", ErrorMessage = "A senha esta diferente!")]
+        [DataType(DataType.Password)]
+        public string ConfirmaSenha { get; set; }
+
         public Tecnico()
         {
 
         }
+    }
+    public class Login
+    {
+        [Display(Name = "Nome", Description = "Informe o Nome do Usuario.")]
+        [Required(ErrorMessage = "Digite o Nome de Usuario!")]
+        public string Nome { get; set; }
+
+        [Display(Name = "Senha", Description = "Informe a Senha do Usuário.")]
+        [DataType(DataType.Password)]
+        [Required(ErrorMessage = "Digite a Senha!")]
+        public string Senha { get; set; }
+
+        [Display(Name = "Lembre-me", Description = "Lembrar do Login")]
+        public bool LembreMe { get; set; }
     }
 }

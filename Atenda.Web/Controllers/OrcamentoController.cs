@@ -112,7 +112,14 @@ namespace Atenda.Web.Controllers
             return View(orcamentos);
         }
         //
+        // GET: /Orcamento/SearchClienteNome/5
+        public ActionResult SearchClienteNome()
+        {
+            return View();
+        }
+        //
         // POST: /Orcamento/SearchCliente/5
+        [HttpPost]
         public ActionResult SearchClienteNome(String pClienteNome)
         {
             var cliente = OrcamentoRepository.GetByClienteName(pClienteNome);

@@ -118,24 +118,50 @@ namespace Atenda.Controllers
             }
         }
         //
-        // POST: /Agenda/List/5
+        // GET: /Agenda/List/5
         public ActionResult ListAgendas()
         {
             var agendas = AgendaRepository.GetAll();
             return View(agendas);
         }
         //
+        // POST: /Agenda/List/5
+        [HttpPost]
+        public ActionResult ListAgendas(FormCollection form)
+        {
+            string nome = form["NomeTecnico"];
+
+            if (nome != null)
+            {
+                var agendas = AgendaRepository.GetTecnicoNome(nome);
+                return View(agendas);
+            }
+            else
+            {
+                var agendas = AgendaRepository.GetAll();
+                return View(agendas);
+            }
+
+        }
+        //
+        // GET: /Agenda/SearchTecnico/5
+        public ActionResult SearchTecnicoNome()
+        {
+            return View();
+        }
+        //
         // POST: /Agenda/SearchTecnico/5
+        [HttpPost]
         public ActionResult SearchTecnicoNome(String pTecnicoNome)
         {
-            var tecnico = AgendaRepository.GetTecnicoName(pTecnicoNome);
+            var tecnico = AgendaRepository.GetTecnicoNome(pTecnicoNome);
             return View(tecnico);
         }
         //
         // POST: /Agenda/SearchCliente/5
         public ActionResult SearchClienteNome(String pClienteNome)
         {
-            var cliente = AgendaRepository.GetClienteName(pClienteNome);
+            var cliente = AgendaRepository.GetClienteNome(pClienteNome);
             return View(cliente);
         }
 

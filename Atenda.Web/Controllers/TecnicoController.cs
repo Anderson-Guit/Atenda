@@ -125,26 +125,11 @@ namespace Atenda.Controllers
         [HttpPost]
         public ActionResult ListTecnicos(FormCollection form)
         {
-            string pNome = form["NomeTecnico"];
+            string pNome = form["TecnicoNome"];
 
                 var tecnicos = TecnicoRepository.GetName(pNome);
                 return View(tecnicos);
 
-        }
-        //
-        // GET: /Tenico/Search/5
-        public ActionResult SearchTecnico()
-        {
-            return View();
-        }
-        //
-        // POST: /Tecnico/Search/5
-        [HttpPost]
-        public ActionResult SearchTecnico(FormCollection form)
-        {
-            var nome = form["NomeTecnico"];
-            var tecnico = TecnicoRepository.GetName(nome);
-            return View(tecnico);
         }
     }
 }

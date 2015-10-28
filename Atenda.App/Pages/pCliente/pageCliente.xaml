@@ -12,7 +12,7 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
-    shell:SystemTray.IsVisible="True" BackKeyPress="Page_Cliente_BackKeyPress">
+    shell:SystemTray.IsVisible="True">
 
     <phone:PhoneApplicationPage.Resources>
         <toolkit:TileSizeToHeightConverter x:Key="TileSizeToHeightConverter"/>
@@ -24,20 +24,25 @@
         </DataTemplate>
     </phone:PhoneApplicationPage.Resources>
 
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar>
+            <shell:ApplicationBarIconButton x:Name="Abtn_Abrir" Text="Abrir" Click="Abtn_Abrir_Click" IconUri="/Toolkit.Content/ApplicationBar.Select.png"/>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+    
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <!--Pivot Control-->
+
         <phone:Pivot Title="CLIENTE">
-            <!--Pivot item one-->
+
             <phone:PivotItem Header="Lista">
                 <StackPanel>
                     <ListBox Name="Lst_Clientes">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="0,0,0,17">
-                                    <TextBlock x:Name="Tb_Btn_Cliente" Text="{Binding Nome}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" Tap="Tb_Btn_Cliente_Tap"/>
+                                    <TextBlock x:Name="ItemList" Tap="ItemList_Tap"  Text="{Binding Nome}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
                                     <TextBlock Text="{Binding Telefone}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
-                                    <TextBlock x:Name="Tb_IdCliente" Text="{Binding IdCliente}" />
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
@@ -45,10 +50,10 @@
                 </StackPanel>
             </phone:PivotItem>
 
-            <phone:PivotItem Header="Novo" Margin="12,28,12,-379">
-                <ScrollViewer Height="592" VerticalAlignment="Top">
-                    <StackPanel Height="990">
-                        <Grid Height="990">
+            <phone:PivotItem Header="Novo" Margin="12,28,12,-301">
+                <ScrollViewer Height="603" VerticalAlignment="Top">
+                    <StackPanel Height="898">
+                        <Grid Height="880">
                             <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Nome" VerticalAlignment="Top" FontSize="36"/>
                             <TextBox x:Name="Tb_Nome" HorizontalAlignment="Left" Height="72" Margin="0,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="456"/>
                             <TextBlock HorizontalAlignment="Left" Margin="10,125,0,0" TextWrapping="Wrap" Text="Telefone" VerticalAlignment="Top" FontSize="36"/>
@@ -58,18 +63,16 @@
                             <TextBlock HorizontalAlignment="Left" Margin="10,375,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="36" Text="Cidade"/>
                             <TextBox x:Name="Tb_Cidade" HorizontalAlignment="Left" Height="72" Margin="0,423,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="456"/>
                             <TextBlock HorizontalAlignment="Left" Margin="10,500,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="36" Text="Estado"/>
-                            <toolkit:ListPicker FullModeItemTemplate="{Binding Lpk_FullItemTemplate}" ItemTemplate="{Binding Lpk_ItemTemplate}" x:Name="Lpk_Estado" Margin="10,548,14,-524" FontSize="36"/>
-                            <TextBlock HorizontalAlignment="Left" Margin="10,621,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="36" Text="País"/>
-                            <TextBox x:Name="Tb_Pais" HorizontalAlignment="Left" Height="72" Margin="0,669,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="456"/>
-                            <TextBlock HorizontalAlignment="Left" Margin="10,746,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="36" Text="CPF/CNPJ"/>
-                            <TextBox x:Name="Tb_CPF_CPNJ" HorizontalAlignment="Left" Height="72" Margin="0,794,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="456"/>
-                            <Button x:Name="Btn_Salvar" Content="Salvar" HorizontalAlignment="Left" Height="91" Margin="124,871,0,0" VerticalAlignment="Top" Width="198" Click="Btn_Salvar_Click"/>
+                            <toolkit:ListPicker FullModeItemTemplate="{Binding Lpk_FullItemTemplate}" ItemTemplate="{Binding Lpk_ItemTemplate}" x:Name="Lpk_Estado" Margin="10,548,14,0" FontSize="36" Height="74" VerticalAlignment="Top"/>
+                            <TextBlock HorizontalAlignment="Left" Margin="10,622,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="36" Text="CPF/CNPJ"/>
+                            <TextBox x:Name="Tb_CPF_CPNJ" HorizontalAlignment="Left" Height="72" Margin="0,670,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="456"/>
+                            <Button x:Name="Btn_Salvar" Content="Salvar" HorizontalAlignment="Left" Height="95" Margin="124,747,0,0" VerticalAlignment="Top" Width="198" Click="Btn_Salvar_Click"/>
                         </Grid>
                     </StackPanel>
                 </ScrollViewer>
             </phone:PivotItem>
 
-            <phone:PivotItem Header="Buscar">
+            <phone:PivotItem Header="Busca">
                 <Grid>
                     <TextBox x:Name="Tb_Busca" HorizontalAlignment="Left" Height="72" Margin="0,17,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="360" InputScope="Search"/>
                     <Button x:Name="Btn_Busca" Content="" HorizontalAlignment="Left" Height="104" Margin="350,3,0,0" VerticalAlignment="Top" Width="106" ClickMode="Press" BorderBrush="{x:Null}" Click="Btn_Busca_Click">

@@ -12,7 +12,7 @@ namespace Atenda.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Agenda = AgendaRepository.GetAll();
+            ViewBag.Agenda = AgendaRepository.GetAllToIndex();
             ViewBag.Title="Atenda";
             return View();
         }
@@ -59,12 +59,6 @@ namespace Atenda.Controllers
                 return View("Logout");
             }
 
-        }
-
-        public ActionResult IndexListAgendas()
-        {
-            var agendas = AgendaRepository.GetAll();
-            return View(agendas);
         }
     }
 }

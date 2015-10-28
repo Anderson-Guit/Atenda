@@ -38,6 +38,9 @@ namespace Atenda.Controllers
         // GET: /Cliente/Create
         public ActionResult CreateCliente()
         {
+            Cliente estados = new Cliente();
+
+            ViewBag.Estado = new SelectList(new Cliente().ListaEstados(), "Estado", "Estado");
             return View();
         }
 
@@ -50,6 +53,8 @@ namespace Atenda.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    ViewBag.Estado = new SelectList(new Cliente().ListaEstados(), "Estado", "Estado", pCliente.Estado);
+
                     ClienteRepository create = new ClienteRepository();
                     create.Create(pCliente);
                     return RedirectToAction("ListClientes");
@@ -69,6 +74,7 @@ namespace Atenda.Controllers
         public ActionResult EditCliente(int pId)
         {
             var cliente = ClienteRepository.GetOne(pId);
+            ViewBag.Estado = new SelectList(new Cliente().ListaEstados(), "Estado", "Estado", cliente.Estado);
             return View(cliente);
         }
 
@@ -81,6 +87,8 @@ namespace Atenda.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    ViewBag.Estado = new SelectList(new Cliente().ListaEstados(), "Estado", "Estado", pCliente.Estado);
+
                     ClienteRepository edit = new ClienteRepository();
                     edit.Update(pCliente);
                     return RedirectToAction("ListClientes");
@@ -132,7 +140,7 @@ namespace Atenda.Controllers
             
             if (form != null) 
             {
-                string nome = form["NomeCliente"];
+                string nome = form["ClienteNome"];
                 var ClienteNome = ClienteRepository.GetName(nome);
                 return View(ClienteNome);
             }
@@ -140,20 +148,6 @@ namespace Atenda.Controllers
             {
                 return View();
             }
-        }
-        //
-        // GET: /Cliente/Search/5
-        public ActionResult SearchCliente()
-        {
-            return View();
-        }
-        //
-        // POST: /Cliente/Search/5
-        [HttpPost]
-        public ActionResult SearchCliente(FormCollection form)
-        {
-            //var nome = form["NomeCliente"];
-            return RedirectToAction("ListClientes", form);
         }
     }
 }

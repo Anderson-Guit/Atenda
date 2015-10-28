@@ -4,6 +4,14 @@
     ViewBag.Title = "Cadastrar novo Agendamento";
 }
 
+<script>
+    function goBack() {
+        window.history.back()
+    }
+</script>
+
+
+
 <h2>Cadastrar novo agendamento</h2>
 
 
@@ -18,7 +26,7 @@
          <div class="form-group">
              @Html.LabelFor(model => model.TecnicoNome, htmlAttributes: new { @class = "control-label col-md-2" })
              <div class="col-md-10">
-                 @Html.DropDownList("IdTecnico", null, "-Escolha um Tecnico", new { @class = "form-control" })
+                 @Html.DropDownList("IdTecnico", null, string.Empty, new { @class = "form-control" })
                  @Html.ValidationMessageFor(model => model.IdTecnico, "", new { @class = "text-danger" })
              </div>
             </div>
@@ -26,7 +34,7 @@
             <div class="form-group">
             @Html.LabelFor(model => model.ClienteNome, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("IdCliente", null, "-Escolha um Cliente", new { @class = "form-control" })
+                    @Html.DropDownList("IdCliente", null, string.Empty, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.IdCliente, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -74,23 +82,19 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.CheckBoxFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.DropDownList("Status", null, string.Empty, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Salvar" class="btn btn-default" />
+                    <button class="btn btn-link" onclick="goBack()"><img src="/Image/BackOption_Icon-Atenda.png"/></button>
+                    <button type="submit" value="Salvar" class="btn btn-link"><img src="~/Image/SaveOption_Icon-Atenda.png"/></button>
                 </div>
             </div>
         </div>
 }
-
-<div>
-    @Html.ActionLink("Voltar ao inicio", "Index", "Home")
-</div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

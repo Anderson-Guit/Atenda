@@ -38,7 +38,7 @@ namespace Atenda.Repository
             StringBuilder sql = new StringBuilder();
             SqlCommand cmd = new SqlCommand();
 
-            sql.Append("UPDATE Agenda SET IdTecnico=@IdTecnico, Data_=@Data, Hora=@Hora, Local_=@Local, Servico=@Servico, Observacoes=@Observacoes");
+            sql.Append("UPDATE Agenda SET IdTecnico=@IdTecnico, Data_=@Data, Hora=@Hora, Local_=@Local, Servico=@Servico, Observacoes=@Observacoes, Status_=@Status");
             sql.Append(" WHERE IdAgenda=" + pAgenda.IdAgenda);
 
             cmd.Parameters.AddWithValue("@IdTecnico", pAgenda.IdTecnico);
@@ -88,7 +88,7 @@ namespace Atenda.Repository
                 agenda.Local = (string)dr["Local_"];
                 agenda.Servico = (string)dr["Servico"];
                 agenda.Observacoes = (string)dr["Observacoes"];
-                agenda.Status = (bool)dr["Status_"];
+                agenda.Status = (string)dr["Status_"];
             }
             dr.Close();
             return agenda;
@@ -99,14 +99,13 @@ namespace Atenda.Repository
             StringBuilder sql = new StringBuilder();
             List<Agenda> agendas = new List<Agenda>();
 
-            sql.Append("select ag.IdAgenda, ag.IdTecnico, tc.Nome as TecnicoNome, ag.IdCliente, cl.Nome as ClienteNome, ag.Data_, ag.Hora, ag.Local_, ag.Servico, ag.Observacoes, Status_");
+            sql.Append("select ag.IdAgenda, ag.IdTecnico, tc.Nome as TecnicoNome, ag.IdCliente, cl.Nome as ClienteNome, ag.Data_, ag.Hora, ag.Local_, ag.Servico, ag.Observacoes, ag.Status_");
             sql.Append(" from Agenda as ag");
             sql.Append(" inner join Cliente as cl");
             sql.Append(" on ag.IdCliente = cl.IdCliente");
             sql.Append(" inner join Tecnico as tc");
             sql.Append(" on ag.IdTecnico = tc.IdTecnico");
-            // descobrir como pesquisar por tecnico em tabela de relacionamento
-            sql.Append(" WHERE TecnicoNome Like '%" + pTecnicoNome.Trim() + "%'");
+            sql.Append(" WHERE tc.Nome Like '%" + pTecnicoNome.Trim() + "%'");
             sql.Append(" ORDER BY ag.Data_");
 
             SqlDataReader dr = SqlConn.Get(sql.ToString());
@@ -126,7 +125,7 @@ namespace Atenda.Repository
                         Local = (string)dr["Local_"],
                         Servico = (string)dr["Servico"],
                         Observacoes = (string)dr["Observacoes"],
-                        Status = (bool)dr["Status_"],
+                        Status = (string)dr["Status_"],
                     });
             }
             dr.Close();
@@ -138,7 +137,7 @@ namespace Atenda.Repository
             StringBuilder sql = new StringBuilder();
             Agenda agenda = new Agenda();
 
-            sql.Append("select ag.IdAgenda, ag.IdTecnico, tc.Nome as TecnicoNome, ag.IdCliente, cl.Nome as ClienteNome, ag.Data_, ag.Hora, ag.Local_, ag.Servico, ag.Observacoes, Status_");
+            sql.Append("select ag.IdAgenda, ag.IdTecnico, tc.Nome as TecnicoNome, ag.IdCliente, cl.Nome as ClienteNome, ag.Data_, ag.Hora, ag.Local_, ag.Servico, ag.Observacoes, ag.Status_");
             sql.Append(" from Agenda as ag");
             sql.Append(" inner join Cliente as cl");
             sql.Append(" on ag.IdCliente = cl.IdCliente");
@@ -160,7 +159,7 @@ namespace Atenda.Repository
                 agenda.Local = (string)dr["Local_"];
                 agenda.Servico = (string)dr["Servico"];
                 agenda.Observacoes = (string)dr["Observacoes"];
-                agenda.Status = (bool)dr["Status_"];
+                agenda.Status = (string)dr["Status_"];
             }
             dr.Close();
             return agenda;
@@ -196,7 +195,45 @@ namespace Atenda.Repository
                         Local = (string)dr["Local_"],
                         Servico = (string)dr["Servico"],
                         Observacoes = (string)dr["Observacoes"],
-                        Status = (bool)dr["Status_"],
+                        Status = (string)dr["Status_"],
+                    });
+            }
+            dr.Close();
+            return agendas;
+        }
+
+        public static List<Agenda> GetAllToIndex()
+        {
+            StringBuilder sql = new StringBuilder();
+            List<Agenda> agendas = new List<Agenda>();
+
+            sql.Append(" select top (5)");
+            sql.Append(" ag.IdAgenda, ag.IdTecnico, tc.Nome as TecnicoNome, ag.IdCliente, cl.Nome as ClienteNome, ag.Data_, ag.Hora, ag.Local_, ag.Servico, ag.Observacoes, ag.Status_");
+            sql.Append(" from Agenda as ag");
+            sql.Append(" inner join Cliente as cl");
+            sql.Append(" on ag.IdCliente = cl.IdCliente");
+            sql.Append(" inner join Tecnico as tc");
+            sql.Append(" on ag.IdTecnico = tc.IdTecnico");
+            sql.Append(" ORDER BY ag.Data_");
+
+            SqlDataReader dr = SqlConn.Get(sql.ToString());
+
+            while (dr.Read())
+            {
+                agendas.Add(
+                    new Agenda
+                    {
+                        IdAgenda = (int)dr["IdAgenda"],
+                        IdCliente = (int)dr["IdCliente"],
+                        ClienteNome = (string)dr["ClienteNome"],
+                        IdTecnico = (int)dr["IDTecnico"],
+                        TecnicoNome = (string)dr["TecnicoNome"],
+                        Data = (DateTime)dr["Data_"],
+                        Hora = (DateTime)dr["Hora"],
+                        Local = (string)dr["Local_"],
+                        Servico = (string)dr["Servico"],
+                        Observacoes = (string)dr["Observacoes"],
+                        Status = (string)dr["Status_"],
                     });
             }
             dr.Close();

@@ -8,6 +8,13 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+
+    <script>
+    function goBack() {
+        window.history.back()
+    }
+    </script>
+
     <div class="navbar-collapse navbar-inverse navbar-top">
         <div class="container">
             <div class="navbar-header">
@@ -26,7 +33,7 @@
                     {
                         <ul class="navbar-text navbar-nav navbar-left" style="margin-bottom:0px;margin-top:4px">
                             Olá @Session["Nome"] !
-                            @Html.Raw(@Html.ActionLink("[replacetext]", "DetailsCliente").ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/LogoutOption_Icon-Atenda.png\" ... />"))
+                            @Html.Raw(@Html.ActionLink("[replacetext]", "Logout", "Home").ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/LogoutOption_Icon-Atenda.png\" ... />"))
                         </ul>
                     }
                     else

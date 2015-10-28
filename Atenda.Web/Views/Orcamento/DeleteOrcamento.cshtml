@@ -62,9 +62,9 @@
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Deletar" class="btn btn-default" /> |
-            @Html.ActionLink("Voltar ao inicio", "Index", "Home")
-        </div>
+    <div class="form-actions no-color">
+        <button class="btn btn-link" onclick="goBack()"><img src="/Image/BackOption_Icon-Atenda.png" /></button>
+        <button type="submit" value="Delete" class="btn btn-link"><img src="~/Image/DeleteBOption_Icon-Atenda.png" /></button>
+    </div>
     }
 </div>

@@ -8,15 +8,18 @@
 
 @using (Html.BeginForm())
 {
-    <div class="form-horizontal col-md-10">
-        <input type="text" name="NomeCliente" value="Digite o nome do Cliente" class="form-control" />
+    <div class="form-horizontal col-md-10" style="margin-top:2px;padding:inherit">
+        <input type="text" name="ClienteNome" class="form-control" />
     </div>
-    <button class="btn btn-xs" type="submit"><img class="img-responsive" title="Buscar por Cliente" src="~/Image/SearchOption_Icon-Atenda.png"></button>
-    <a href="~/Orcamento/CreateOrcamento" class="btn btn-xs col-md-offset-10" style="float:right;margin-left: 0%"><img class="img-responsive" title="Novo Orçamento" src="~/Image/CreateOption_Icon-Atenda.png"></a>
+    <button class="btn btn-link" type="submit" style="padding:initial"><img class="img-responsive" title="Buscar por Cliente" src="~/Image/SearchOption_Icon-Atenda.png"></button>
+    <a href="~/Orcamento/CreateOrcamento" class="btn btn-xs col-md-offset-10" style="float:right;margin-left:0%;margin-top:-16px"><img class="img-responsive" title="Novo Orçamento" src="~/Image/CreateOption_Icon-Atenda.png"></a>
 }
 
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NomeCliente)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Servico)
         </th>
@@ -32,14 +35,14 @@
         <th>
             @Html.DisplayNameFor(model => model.ValorTotal)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NomeCliente)
-        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NomeCliente)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Servico)
         </td>
@@ -56,19 +59,14 @@
             @Html.DisplayFor(modelItem => item.ValorTotal)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.NomeCliente)
-        </td>
-        <td>
             @Html.Raw(@Html.ActionLink("[replacetext]", "DetailsOrcamento", new { pId = item.IdOrcamento }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/DetailsOption_Icon-Atenda.png\" ... />"))
             @Html.Raw(@Html.ActionLink("[replacetext]", "EditOrcamento", new { pId = item.IdOrcamento }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/UpdateOption_Icon-Atenda.png\" ... />"))           
             @Html.Raw(@Html.ActionLink("[replacetext]", "DeleteOrcamento", new { pId = item.IdOrcamento }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/DeleteOption_Icon-Atenda.png\" ... />"))    
         </td>
     </tr>
-    <tr>
-        <td>
-            @Html.ActionLink("Voltar ao inicio", "Index", "Home")
-        </td>
-    </tr>
-}
 
+}
 </table>
+<div>
+    <button class="btn btn-link" onclick="goBack()"><img src="/Image/BackOption_Icon-Atenda.png" /></button>
+</div>

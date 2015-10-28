@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<Atenda.Data.Agenda>
-
+<h1>Agendamentos</h1>
 <table class="table">
     <tr>
         <th>
@@ -39,9 +39,8 @@
             @Html.DisplayFor(modelItem => item.Status)
         </td>
         <td>
-            @Html.ActionLink("Exibir", "../Agenda/DetailsAgenda", new { pId = item.IdAgenda })
+            @Html.Raw(@Html.ActionLink("[replacetext]", "../Agenda/DetailsAgenda", new { pId = item.IdAgenda }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/DetailsOption_Icon-Atenda.png\" ... />"))
         </td>
     </tr>
 }
-
 </table>

@@ -18,42 +18,26 @@
         @Html.HiddenFor(model => model.IdOS, new { htmlAttributes = new { @class = "form-control" } })
 
         <div class="form-group">
-            @Html.DisplayName("Nº de OS", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Nº de OS", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DisplayFor(model => model.IdCliente, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.IdCliente, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IdCliente, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.IdCliente, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.IdCliente, "", new { @class = "text-danger" })
+                @Html.DisplayFor(model => model.IdOS, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.IdOS, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.ClienteNome, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.LabelFor(model => model.ClienteNome, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ClienteNome, "", new { @class = "text-danger" })
+                @Html.DisplayFor(model => model.ClienteNome)
+                @Html.ValidationMessageFor(model => model.IdCliente, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.IdTecnico, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.IdTecnico, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownList("IdTecnico", null, "Nome", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.IdTecnico, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TecnicoNome, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TecnicoNome, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TecnicoNome, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -148,22 +132,19 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownList("Status", null, string.Empty, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Salvar" class="btn btn-default" />
+                <button class="btn btn-link" onclick="goBack()"><img src="/Image/BackOption_Icon-Atenda.png" /></button>
+                <button type="submit" value="Salvar" class="btn btn-link"><img src="~/Image/SaveOption_Icon-Atenda.png" /></button>
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Voltar ao inicio", "Index", "Home")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

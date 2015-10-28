@@ -8,11 +8,11 @@
 
 @using (Html.BeginForm())
 {
-    <div class="form-horizontal col-md-10">
-        <input type="text" name="NomeCliente" value="Digite o nome do Cliente" class="form-control" />
+    <div class="form-horizontal col-md-10" style="margin-top:2px;padding:inherit">
+        <input type="text" name="ClienteNome" class="form-control" />
     </div>
-    <button class="btn btn-xs" type="submit"><img class="img-responsive" title="Buscar por Cliente" src="~/Image/SearchOption_Icon-Atenda.png"></button>
-    <a href="~/OrdemServico/CreateOS" class="btn btn-xs col-md-offset-10" style="float:right;margin-left: 0%"><img class="img-responsive" title="Nova OS" src="~/Image/CreateOption_Icon-Atenda.png"></a>
+    <button class="btn btn-xs" type="submit" style="padding:initial"><img class="img-responsive" title="Buscar por Cliente" src="~/Image/SearchOption_Icon-Atenda.png"></button>
+    <a href="~/OrdemServico/CreateOS" class="btn btn-xs col-md-offset-10" style="float:right;margin-left:0%;margin-top:-16px"><img class="img-responsive" title="Nova OS" src="~/Image/CreateOption_Icon-Atenda.png"></a>
 }
 
 <table class="table">
@@ -77,11 +77,13 @@
             @Html.DisplayFor(modelItem => item.Status)
         </td>
         <td>
-            @Html.Raw(@Html.ActionLink("[replacetext]", "DetailsCliente", new { pId = item.IdTecnico }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/DetailsOption_Icon-Atenda.png\" ... />"))
-            @Html.Raw(@Html.ActionLink("[replacetext]", "EditCliente", new { pId = item.IdTecnico }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/UpdateOption_Icon-Atenda.png\" ... />"))
-            @Html.Raw(@Html.ActionLink("[replacetext]", "DeleteCliente", new { pId = item.IdTecnico }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/DeleteOption_Icon-Atenda.png\" ... />"))
+            @Html.Raw(@Html.ActionLink("[replacetext]", "DetailsOS", new { pId = item.IdOS }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/DetailsOption_Icon-Atenda.png\" ... />"))
+            @Html.Raw(@Html.ActionLink("[replacetext]", "EditOS", new { pId = item.IdOS }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/UpdateOption_Icon-Atenda.png\" ... />"))
+            @Html.Raw(@Html.ActionLink("[replacetext]", "DeleteOS", new { pId = item.IdOS }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/DeleteOption_Icon-Atenda.png\" ... />"))
         </td>
     </tr>
 }
-
 </table>
+<div>
+    <button class="btn btn-link" onclick="goBack()"><img src="/Image/BackOption_Icon-Atenda.png" /></button>
+</div>

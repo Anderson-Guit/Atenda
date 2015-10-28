@@ -29,18 +29,9 @@ namespace Atenda.Controllers
         // GET: /OrdemServico/Create
         public ActionResult CreateOS()
         {
-            ViewBag.IdCliente = new SelectList
-            (
-                ClienteRepository.GetAll(),
-                "IdCliente",
-                "Nome"
-            );
-            ViewBag.IdTecnico = new SelectList
-            (
-                TecnicoRepository.GetAll(),
-                "IdTecnico",
-                "Nome"
-            );
+            ViewBag.IdCliente = new SelectList(ClienteRepository.GetAll(), "IdCliente", "Nome");
+            ViewBag.IdTecnico = new SelectList(TecnicoRepository.GetAll(), "IdTecnico", "Nome");
+            ViewBag.Status = new SelectList(new OrdemServico().ListStatus(), "Status", "Status");
             return View();
         }
 
@@ -53,21 +44,9 @@ namespace Atenda.Controllers
             //{
                 if (ModelState.IsValid)
                 {
-                    ViewBag.IdCliente = new SelectList
-                    (
-                        ClienteRepository.GetAll(),
-                        "IdCliente",
-                        "Nome",
-                        pOS.IdCliente
-                    );
-                    ViewBag.IdTecnico = new SelectList
-                    (
-                        TecnicoRepository.GetAll(),
-                        "IdTecnico",
-                        "Nome",
-                        pOS.IdTecnico
-                    );
-
+                    ViewBag.IdCliente = new SelectList(ClienteRepository.GetAll(), "IdCliente", "Nome", pOS.IdCliente);
+                    ViewBag.IdTecnico = new SelectList(TecnicoRepository.GetAll(), "IdTecnico", "Nome", pOS.IdTecnico);
+                    ViewBag.Status = new SelectList(new OrdemServico().ListStatus(), "Status", "Status", pOS.Status);
                     OrdemServicoRepository nova = new OrdemServicoRepository();
                     nova.Create(pOS);
                     return RedirectToAction("ListOS");
@@ -86,6 +65,8 @@ namespace Atenda.Controllers
         public ActionResult EditOS(int pId)
         {
             var os = OrdemServicoRepository.GetOne(pId);
+            ViewBag.IdTecnico = new SelectList(TecnicoRepository.GetAll(), "IdTecnico", "Nome", os.IdTecnico);
+            ViewBag.Status = new SelectList(new OrdemServico().ListStatus(), "Status", "Status", os.Status);
             return View(os);
         }
 
@@ -98,6 +79,8 @@ namespace Atenda.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    ViewBag.IdTecnico = new SelectList(TecnicoRepository.GetAll(), "IdTecnico", "Nome", pOS.IdTecnico);
+                    ViewBag.Status = new SelectList(new OrdemServico().ListStatus(), "Status", "Status", pOS.Status);
                     OrdemServicoRepository edit = new OrdemServicoRepository();
                     edit.Update(pOS);
                     return RedirectToAction("ListOS");
@@ -137,39 +120,29 @@ namespace Atenda.Controllers
             }
         }
         //
-        // POST: /OrdemServico/List/5
+        // GET: /OrdemServico/List/5
         public ActionResult ListOS()
         {
             var os = OrdemServicoRepository.GetAll();
             return View(os);
         }
         //
-        // GET: /Cliente/Search/5
-        public ActionResult SearchOS()
-        {
-            return View();
-        }
-        //
-        // POST: /Cliente/Search/5
+        // POST: /Agenda/List/5
         [HttpPost]
-        public ActionResult SearchOS(FormCollection form)
+        public ActionResult ListAgendas(FormCollection form)
         {
-            var nome = form["NumOS"];
-            return RedirectToAction("NumOS", form);
-        }
-        //
-        // POST: /OrdemServico/SearchTecnico/5
-        public ActionResult SearchTecnicoNome(String pTecnicoNome)
-        {
-            var tecnico = OrdemServicoRepository.GetSearchByTecnico(pTecnicoNome);
-            return View(tecnico);
-        }
-        //
-        // POST: /OrdemServico/SearchCliente/5
-        public ActionResult SearchClienteNome(String pClienteNome)
-        {
-            var cliente = OrdemServicoRepository.GetSearchByCliente(pClienteNome);
-            return View(cliente);
+            string nome = form["TecnicoNome"];
+
+            if (nome != null)
+            {
+                var agendas = OrdemServicoRepository.GetTecnicoNome(nome);
+                return View(agendas);
+            }
+            else
+            {
+                var agendas = OrdemServicoRepository.GetAll();
+                return View(agendas);
+            }
         }
     }
 }

@@ -111,12 +111,18 @@
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Login.xaml.cs" />
     <Compile Include="MainPage.xaml.cs" />
+    <Compile Include="Pages\pAgenda\pageAgenda.xaml.cs">
+      <DependentUpon>pageAgenda.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\pCliente\pageDetailsCliente.xaml.cs">
       <DependentUpon>pageDetailsCliente.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\pCliente\pageCliente.xaml.cs" />
     <Compile Include="Pages\pOrcamento\pageOrcamento.xaml.cs">
       <DependentUpon>pageOrcamento.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\pOS\pageOS.xaml.cs">
+      <DependentUpon>pageOS.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\pProduto\pageProduto.xaml.cs">
       <DependentUpon>pageProduto.xaml</DependentUpon>
@@ -142,6 +148,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Pages\pAgenda\pageAgenda.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\pCliente\pageDetailsCliente.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -151,6 +161,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\pOrcamento\pageOrcamento.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\pOS\pageOS.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -194,10 +208,13 @@
     </Content>
     <Content Include="Assets\Tiles\Logo.png" />
     <Content Include="Assets\Tiles\StoreLogo.png" />
+    <Content Include="Images\Agenda_Icon-Atenda.png" />
+    <Content Include="Images\BannerWP.png" />
     <Content Include="Images\Cliente_Icon-Atenda.png" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\Orcamento_Icon-Atenda.png" />
     <Content Include="Images\OS_Icon-Atenda.png" />
+    <Content Include="Images\Produto_Icon-Atenda.png" />
     <Content Include="Images\SearchOption_Icon-Atenda.png" />
     <Content Include="Images\Tecnico_Icon-Atenda.png" />
     <Content Include="SplashScreenImage.jpg" />
@@ -220,10 +237,7 @@
       <Private>True</Private>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Pages\pAgenda\" />
-    <Folder Include="Pages\pOS\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

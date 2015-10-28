@@ -4,13 +4,16 @@
     ViewBag.Title = "Cadastrar Orçamento";
 }
 
+<script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="~/Scripts/functions.js"></script>
+
 <h2>Cadastrar novo orçamento</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -32,46 +35,27 @@
         <div class="form-group">
             @Html.LabelFor(model => model.NomeProduto, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("IdProduto", null, "-Escolha um Produto", new { @class = "form-control" })
+                @Html.DropDownList("IdProduto", null, string.Empty, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.IdProduto, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ValorProduto, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ValorProduto, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ValorProduto, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ValorTotal, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ValorTotal, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ValorTotal, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.NomeCliente, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("IdCliente", null, "-Escolha um Cliente", new { @class = "form-control" })
+                @Html.DropDownList("IdCliente", null, string.Empty, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.IdCliente, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Salvar" class="btn btn-default" />
+                <button class="btn btn-link" onclick="goBack()"><img src="/Image/BackOption_Icon-Atenda.png" /></button>
+                <button type="submit" value="Salvar" class="btn btn-link"><img src="~/Image/SaveOption_Icon-Atenda.png" /></button>
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Voltar ao inicio", "Index", "Home")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

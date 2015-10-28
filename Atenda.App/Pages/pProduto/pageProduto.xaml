@@ -24,7 +24,7 @@
             </phone:PivotItem>
 
             <phone:PivotItem Header="Novo">
-                <ScrollViewer Height="593" VerticalAlignment="Top">
+                <ScrollViewer Height="603" VerticalAlignment="Top">
                     <StackPanel Height="669">
                         <Grid Height="670">
                             <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Nome" VerticalAlignment="Top" FontSize="36"/>
@@ -46,7 +46,17 @@
             </phone:PivotItem>
 
             <phone:PivotItem Header="Busca">
-                <Grid/>
+                <Grid>
+                    <TextBox x:Name="Tb_Busca" HorizontalAlignment="Left" Height="72" Margin="0,17,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="360" InputScope="Search"/>
+                    <Button x:Name="Btn_Busca" Content="" HorizontalAlignment="Left" Height="104" Margin="350,3,0,0" VerticalAlignment="Top" Width="106" ClickMode="Press" BorderBrush="{x:Null}" Click="Btn_Busca_Click">
+                        <Button.Background>
+                            <ImageBrush ImageSource="/Images/SearchOption_Icon-Atenda.png"/>
+                        </Button.Background>
+                    </Button>
+                    <ScrollViewer Margin="0,112,0,0">
+
+                    </ScrollViewer>
+                </Grid>
             </phone:PivotItem>
 
         </phone:Pivot>

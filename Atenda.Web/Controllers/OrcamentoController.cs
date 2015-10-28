@@ -20,7 +20,8 @@ namespace Atenda.Web.Controllers
         public ActionResult DetailsOrcamento(int pId)
         {
             var orcamento = OrcamentoRepository.GetOne(pId);
-            return View(orcamento);
+            orcamento.ValorTotal = orcamento.ValorServico + orcamento.ValorProduto;
+            return View(orcamento);  
         }
 
         // GET: Orcamento/Create
@@ -41,8 +42,9 @@ namespace Atenda.Web.Controllers
                 {
                     ViewBag.IdProduto = new SelectList (ProdutoRepository.GetAll(), "IdProduto", "Nome", pOrcamento.IdProduto);
                     ViewBag.IdCliente = new SelectList (ClienteRepository.GetAll(), "IdCliente", "Nome", pOrcamento.IdProduto);
-                    OrcamentoRepository nova = new OrcamentoRepository();
-                    nova.Create(pOrcamento);
+                    pOrcamento.ValorTotal = pOrcamento.ValorServico + pOrcamento.ValorProduto;
+                    OrcamentoRepository create = new OrcamentoRepository();
+                    create.Create(pOrcamento);
                     return RedirectToAction("ListOrcamentos");
                 }
                 return View("CreateOrcamento");
@@ -56,8 +58,10 @@ namespace Atenda.Web.Controllers
         // GET: Orcamento/Edit/5
         public ActionResult EditOrcamento(int pId)
         {
-            ViewBag.IdProduto = new SelectList(ProdutoRepository.GetAll(), "IdProduto", "Nome");
             var orcamento = OrcamentoRepository.GetOne(pId);
+            ViewBag.IdProduto = new SelectList(ProdutoRepository.GetAll(), "IdProduto", "Nome", orcamento.IdProduto);
+            orcamento.ValorTotal = orcamento.ValorServico + orcamento.ValorProduto;
+
             return View(orcamento);
         }
 
@@ -70,6 +74,7 @@ namespace Atenda.Web.Controllers
                 if (ModelState.IsValid)
                 {
                     ViewBag.IdProduto = new SelectList(ProdutoRepository.GetAll(), "IdProduto", "Nome", pOrcamento.IdProduto);
+                    pOrcamento.ValorTotal = pOrcamento.ValorServico + pOrcamento.ValorProduto;
                     OrcamentoRepository edit = new OrcamentoRepository();
                     edit.Update(pOrcamento);
                     return RedirectToAction("ListOrcamentos");
@@ -105,25 +110,30 @@ namespace Atenda.Web.Controllers
                 return View();
             }
         }
-
+        //
+        // GET: /Orcamento/List/5
         public ActionResult ListOrcamentos()
         {
             var orcamentos = OrcamentoRepository.GetAll();
             return View(orcamentos);
         }
         //
-        // GET: /Orcamento/SearchClienteNome/5
-        public ActionResult SearchClienteNome()
-        {
-            return View();
-        }
-        //
-        // POST: /Orcamento/SearchCliente/5
+        // POST: /Agenda/List/5
         [HttpPost]
-        public ActionResult SearchClienteNome(String pClienteNome)
+        public ActionResult ListOrcamentos(FormCollection form)
         {
-            var cliente = OrcamentoRepository.GetByClienteName(pClienteNome);
-            return View(cliente);
+            string nome = form["ClienteNome"];
+
+            if (nome != null)
+            {
+                var orcamentos = OrcamentoRepository.GetClienteName(nome);
+                return View(orcamentos);
+            }
+            else
+            {
+                var orcamentos = OrcamentoRepository.GetAll();
+                return View(orcamentos);
+            }
         }
 
     }

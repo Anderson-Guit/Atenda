@@ -28,17 +28,6 @@ namespace Atenda.App.Pages.pTecnico
 
         private void Btn_Salvar_Click(object sender, RoutedEventArgs e)
         {
-            if (tecnico != null) // alterar
-            {
-                //atualiza o objeto com os dados digitados pelo usuário
-                tecnico.Nome = Tb_Nome.Text;
-                tecnico.Telefone = Tb_Telefone.Text;
-                tecnico.Endereco = Tb_Endereco.Text;
-                tecnico.Admissao = Convert.ToDateTime(Dp_Admissao);
-                TecnicoDB.Update(tecnico);
-            }
-            else
-            {
                 tecnico = new Tecnico
                 {
                     Nome = Tb_Nome.Text,
@@ -47,19 +36,25 @@ namespace Atenda.App.Pages.pTecnico
                     Admissao = Convert.ToDateTime(Dp_Admissao)
                 };
                 TecnicoDB.Create(tecnico);
-            }
-            
-
         }
 
         private void Btn_Busca_Click(object sender, RoutedEventArgs e)
         {
-
+            //tecnico = new Tecnico
+            //{
+            //    IdTecnico = Tb_IdTecnico;
+            //};
+            //TecnicoDB.GetOne(tecnico);
         }
 
         private void Page_Tecnico_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
         {
             NavigationService.GoBack();
+        }
+
+        private void Tb_Btn_Cliente_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+
         }
 
     }

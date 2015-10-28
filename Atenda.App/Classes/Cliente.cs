@@ -30,9 +30,6 @@ namespace Atenda.App.Classes
             public string Estado { get; set; }
 
             [Column(CanBeNull = true)]
-            public string Pais { get; set; }
-
-            [Column(CanBeNull = true)]
             public string CPF_CNPJ { get; set; }
 
         }

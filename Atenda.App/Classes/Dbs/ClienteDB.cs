@@ -55,7 +55,6 @@ namespace Atenda.App.Classes
             cliente.Endereco = pCliente.Endereco;
             cliente.Cidade = pCliente.Cidade;
             cliente.Estado = pCliente.Estado;
-            cliente.Pais = pCliente.Pais;
             cliente.CPF_CNPJ = pCliente.CPF_CNPJ;
 
             db.SubmitChanges();

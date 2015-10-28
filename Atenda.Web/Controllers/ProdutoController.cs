@@ -120,25 +120,10 @@ namespace Atenda.Controllers
         [HttpPost]
         public ActionResult ListProdutos(FormCollection form)
         {
-            string pNome = form["NomeProduto"];
+            string pNome = form["ProdutoNome"];
 
                 var produtos = ProdutoRepository.GetName(pNome);
                 return View(produtos);
         }
-        //
-        // GET: /Produto/SearchProduto/5
-        public ActionResult SearchProduto()
-        {
-            return View();
-        }
-        //
-        // POST: /Produto/SearchProduto/5
-        [HttpPost]
-        public ActionResult SearchProduto(String pNome)
-        {
-            var produto = ProdutoRepository.GetName(pNome);
-            return View(produto);
-        }
-
     }
 }

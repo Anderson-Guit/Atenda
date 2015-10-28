@@ -94,10 +94,10 @@ namespace Atenda.Repository
             return orcamento;
         }
 
-        public static Orcamento GetByClienteName(String Nome)
+        public static List<Orcamento> GetClienteName(String pClienteNome)
         {
             StringBuilder sql = new StringBuilder();
-            Orcamento orcamento = new Orcamento();
+            List<Orcamento> orcamentos = new List<Orcamento>();
 
             sql.Append("select oc.IdOrcamento, oc.Servico, oc.ValorServico, oc.IdProduto, pr.Nome as nomeproduto, pr.Valor as valorproduto, oc.ValorTotal, oc.IdCliente, cl.Nome as nomecliente");
             sql.Append(" from Orcamento as oc");
@@ -105,25 +105,28 @@ namespace Atenda.Repository
             sql.Append(" on oc.IdCliente = cl.IdCliente");
             sql.Append(" inner join produto as pr");
             sql.Append(" on oc.IdProduto = pr.IdProduto");
-            sql.Append(" WHERE nomecliente = " + Nome);
+            sql.Append(" WHERE cl.Nome Like '%" + pClienteNome.Trim() + "%'");
 
             SqlDataReader dr = SqlConn.Get(sql.ToString());
 
             while (dr.Read())
             {
-                orcamento.IdOrcamento = (int)dr["IdOrcamento"];
-                orcamento.Servico = (string)dr["Servico"];
-                orcamento.ValorServico = (decimal)dr["ValorServico"];
-                orcamento.IdProduto = (int)dr["IdProduto"];
-                orcamento.NomeProduto = (string)dr["nomeproduto"];
-                orcamento.ValorProduto = (decimal)dr["valorproduto"];
-                orcamento.ValorTotal = (decimal)dr["ValorTotal"];
-                orcamento.IdCliente = (int)dr["IdCliente"];
-                orcamento.NomeCliente = (string)dr["nomecliente"];
-
+                orcamentos.Add(
+                    new Orcamento
+                    {
+                        IdOrcamento = (int)dr["IdOrcamento"],
+                        Servico = (string)dr["Servico"],
+                        ValorServico = (decimal)dr["ValorServico"],
+                        IdProduto = (int)dr["IdProduto"],
+                        NomeProduto = (string)dr["nomeproduto"],
+                        ValorProduto = (decimal)dr["valorproduto"],
+                        ValorTotal = (decimal)dr["ValorTotal"],
+                        IdCliente = (int)dr["IdCliente"],
+                        NomeCliente = (string)dr["nomecliente"],
+                    });
             }
             dr.Close();
-            return orcamento;
+            return orcamentos;
         }
 
         public static List<Orcamento> GetAll()

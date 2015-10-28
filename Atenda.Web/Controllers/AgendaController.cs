@@ -31,6 +31,7 @@ namespace Atenda.Controllers
         {
             ViewBag.IdTecnico = new SelectList(TecnicoRepository.GetAll(), "IdTecnico", "Nome");
             ViewBag.IdCliente = new SelectList(ClienteRepository.GetAll(), "IdCliente", "Nome");
+            ViewBag.Status = new SelectList(new Agenda().ListStatus(), "Status", "Status");
             return View();
         }
 
@@ -44,10 +45,9 @@ namespace Atenda.Controllers
 
                 if (ModelState.IsValid)
                 {
-
                     ViewBag.IdTecnico = new SelectList(TecnicoRepository.GetAll(), "IdTecnico", "Nome", pAgenda.IdTecnico);
                     ViewBag.IdCliente = new SelectList(ClienteRepository.GetAll(), "IdCliente", "Nome", pAgenda.IdCliente);
-
+                    ViewBag.Status = new SelectList(new Agenda().ListStatus(), "Status", "Status", pAgenda.Status);
                     AgendaRepository nova = new AgendaRepository();
                     nova.Create(pAgenda);
                     return RedirectToAction("ListAgendas");
@@ -65,11 +65,11 @@ namespace Atenda.Controllers
         // GET: /Agenda/Edit/5
         public ActionResult EditAgenda(int pId)
         {
-            ViewBag.IdTecnico = new SelectList(TecnicoRepository.GetAll(), "IdTecnico", "Nome");
             var agenda = AgendaRepository.GetOne(pId);
+            ViewBag.IdTecnico = new SelectList(TecnicoRepository.GetAll(), "IdTecnico", "Nome", agenda.IdTecnico);
+            ViewBag.Status = new SelectList(new Agenda().ListStatus(), "Status", "Status", agenda.Status);
             return View(agenda);
         }
-
         //
         // POST: /Agenda/Edit/5
         [HttpPost]
@@ -80,6 +80,7 @@ namespace Atenda.Controllers
                 if (ModelState.IsValid)
                 {
                     ViewBag.IdTecnico = new SelectList(TecnicoRepository.GetAll(), "IdTecnico", "Nome", pAgenda.IdTecnico);
+                    ViewBag.Status = new SelectList(new Agenda().ListStatus(), "Status", "Status", pAgenda.Status);
                     AgendaRepository edit = new AgendaRepository();
                     edit.Update(pAgenda);
                     return RedirectToAction("ListAgendas");
@@ -129,7 +130,7 @@ namespace Atenda.Controllers
         [HttpPost]
         public ActionResult ListAgendas(FormCollection form)
         {
-            string nome = form["NomeTecnico"];
+            string nome = form["TecnicoNome"];
 
             if (nome != null)
             {
@@ -141,29 +142,6 @@ namespace Atenda.Controllers
                 var agendas = AgendaRepository.GetAll();
                 return View(agendas);
             }
-
         }
-        //
-        // GET: /Agenda/SearchTecnico/5
-        public ActionResult SearchTecnicoNome()
-        {
-            return View();
-        }
-        //
-        // POST: /Agenda/SearchTecnico/5
-        [HttpPost]
-        public ActionResult SearchTecnicoNome(String pTecnicoNome)
-        {
-            var tecnico = AgendaRepository.GetTecnicoNome(pTecnicoNome);
-            return View(tecnico);
-        }
-        //
-        // POST: /Agenda/SearchCliente/5
-        public ActionResult SearchClienteNome(String pClienteNome)
-        {
-            var cliente = AgendaRepository.GetClienteNome(pClienteNome);
-            return View(cliente);
-        }
-
     }
 }

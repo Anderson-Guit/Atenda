@@ -16,7 +16,10 @@ namespace Atenda.App.Pages.pCliente
     {
         String[] Estado = { "AC","RS","SC","PR","MT","RJ","SP","MP"};
 
+
         public Cliente cliente { get; set; }
+
+        Cliente pCliente;
 
         public pageCliente()
         {
@@ -38,15 +41,14 @@ namespace Atenda.App.Pages.pCliente
                     Endereco = Tb_Endereco.Text,
                     Cidade = Tb_Cidade.Text,
                     Estado = Convert.ToString(Lpk_Estado.SelectedItem),
-                    Pais = Tb_Cidade.Text,
                     CPF_CNPJ = Tb_Cidade.Text  
                 };
                 ClienteDB.Create(cliente);
-        }
-
-        private void Page_Cliente_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            NavigationService.GoBack();
+                Tb_Nome.Text = null;
+                Tb_Telefone.Text = null;
+                Tb_Endereco.Text = null;
+                Tb_Cidade.Text = null;
+                Tb_CPF_CPNJ.Text = null;
         }
 
         private void Btn_Busca_Click(object sender, RoutedEventArgs e)
@@ -54,11 +56,30 @@ namespace Atenda.App.Pages.pCliente
 
         }
 
-        private void Tb_Btn_Cliente_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void onSelectionChange(object sender, SelectionChangedEventArgs e)
         {
-            string uri = string.Format("/Pages/Cliente/pageDetailsCliente.xaml?pIdCliente={0}",  Tb_Nome.Text);
-            
-            NavigationService.Navigate(new Uri(uri, UriKind.Relative));
+            //seleciona um cliente da lista
+            pCliente = (sender as ListBox).SelectedItem as Cliente;
         }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            //manda o cliente selecionado para proxima pagina
+            if (pCliente != null)
+            {
+                pageDetailsCliente page = e.Content as pageDetailsCliente;
+                page.clienteDetails = pCliente;
+            }
+
+            //elimina o evento do listbox para quando voltar pra essa page ela não voltar pra outra pagina.
+            Lst_Clientes.SelectionChanged -= onSelectionChange;
+        }
+
+        private void Abtn_Abrir_Click(object sender, EventArgs e)
+        {
+            //seleciona um cliente da lista
+            pCliente = (sender as ListBox).SelectedItem as Cliente;
+        }
+
     }
 }

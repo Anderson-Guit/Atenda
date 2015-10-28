@@ -1,0 +1,68 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="Atenda.App.Pages.pAgenda.pageAgenda"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+
+        <phone:Pivot Title="AGENDA">
+
+            <phone:PivotItem Header="Lista">
+                <Grid/>
+            </phone:PivotItem>
+
+            <phone:PivotItem Header="Novo">
+                <ScrollViewer Height="603" VerticalAlignment="Top">
+                    <StackPanel Height="1046">
+                        <Grid Height="1046">
+                            <TextBlock HorizontalAlignment="Left" Margin="7,5,0,0" TextWrapping="Wrap" Text="Tecnico" VerticalAlignment="Top" FontSize="36"/>
+                            <toolkit:ListPicker FullModeItemTemplate="{Binding Lpk_FullItemTemplate}" ItemTemplate="{Binding Lpk_ItemTemplate}" x:Name="Lpk_Tecnico" Margin="7,173,3,0" FontSize="36" Height="75" VerticalAlignment="Top"/>
+                            <TextBlock HorizontalAlignment="Left" Margin="7,125,0,0" TextWrapping="Wrap" Text="Cliente" VerticalAlignment="Top" FontSize="36"/>
+                            <toolkit:ListPicker FullModeItemTemplate="{Binding Lpk_FullItemTemplate}" ItemTemplate="{Binding Lpk_ItemTemplate}" x:Name="Lpk_Cliente" Margin="7,53,3,0" FontSize="36" Height="75" VerticalAlignment="Top"/>
+                            <TextBlock HorizontalAlignment="Left" Margin="7,245,0,0" TextWrapping="Wrap" Text="Data" VerticalAlignment="Top" FontSize="36"/>
+                            <toolkit:DatePicker x:Name="Dp_Data" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-3,293,294,0" Height="71" Width="165" FontSize="24"/>
+                            <TextBlock HorizontalAlignment="Left" Margin="366,245,0,0" TextWrapping="Wrap" Text="Hora" VerticalAlignment="Top" FontSize="36"/>
+                            <toolkit:TimePicker x:Name="Dp_Hora" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="312,293,3,0" Height="71" Width="141" FontSize="24"/>
+                            <TextBlock HorizontalAlignment="Left" Margin="7,369,0,0" TextWrapping="Wrap" Text="Local" VerticalAlignment="Top" FontSize="36"/>
+                            <TextBox x:Name="Tb_Local" HorizontalAlignment="Left" Height="72" Margin="-3,417,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="456"/>
+                            <TextBlock HorizontalAlignment="Left" Margin="4,740,0,0" TextWrapping="Wrap" Text="Status" VerticalAlignment="Top" FontSize="36"/>
+                            <toolkit:ToggleSwitch x:Name="Ts_Status" Margin="-6,788,6,0" Height="150" VerticalAlignment="Top"/>
+                            <Button x:Name="Btn_Salvar" Content="Salvar" HorizontalAlignment="Left" Height="71" Margin="118,938,0,0" VerticalAlignment="Top" Width="198" Click="Btn_Salvar_Click"/>
+                            <TextBlock HorizontalAlignment="Left" Margin="0,489,0,0" TextWrapping="Wrap" Text="Serviço" VerticalAlignment="Top" FontSize="36"/>
+                            <TextBox x:Name="Tb_Servico" HorizontalAlignment="Left" Height="72" Margin="-6,542,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="456"/>
+                            <TextBlock HorizontalAlignment="Left" Margin="-6,619,0,0" TextWrapping="Wrap" Text="Observações" VerticalAlignment="Top" FontSize="36"/>
+                            <TextBox x:Name="Tb_ObservacoesS" HorizontalAlignment="Left" Height="72" Margin="-6,667,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="456"/>
+                        </Grid>
+                    </StackPanel>
+                </ScrollViewer>
+            </phone:PivotItem>
+
+            <phone:PivotItem Header="Busca">
+                <Grid>
+                    <TextBox x:Name="Tb_Busca" HorizontalAlignment="Left" Height="72" Margin="0,17,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="360" InputScope="Search"/>
+                    <Button x:Name="Btn_Busca" Content="" HorizontalAlignment="Left" Height="104" Margin="350,3,0,0" VerticalAlignment="Top" Width="106" ClickMode="Press" BorderBrush="{x:Null}" Click="Btn_Busca_Click">
+                        <Button.Background>
+                            <ImageBrush ImageSource="/Images/SearchOption_Icon-Atenda.png"/>
+                        </Button.Background>
+                    </Button>
+                    <ScrollViewer Margin="0,112,0,0">
+
+                    </ScrollViewer>
+                </Grid>
+            </phone:PivotItem>
+        </phone:Pivot>
+    </Grid>
+
+</phone:PhoneApplicationPage>

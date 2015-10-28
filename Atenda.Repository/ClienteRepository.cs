@@ -16,8 +16,8 @@ namespace Atenda.Repository
             StringBuilder sql = new StringBuilder();
             SqlCommand cmd = new SqlCommand();
 
-            sql.Append("INSERT INTO Cliente (Nome, Telefone, Endereco, Bairro, Cidade, Estado, Pais, CPF_CNPJ)");
-            sql.Append("VALUES(@Nome, @Telefone, @Endereco, @Bairro, @Cidade, @Estado, @Pais, @CPF_CNPJ)");
+            sql.Append("INSERT INTO Cliente (Nome, Telefone, Endereco, Bairro, Cidade, Estado, CPF_CNPJ)");
+            sql.Append("VALUES(@Nome, @Telefone, @Endereco, @Bairro, @Cidade, @Estado, @CPF_CNPJ)");
 
             cmd.Parameters.AddWithValue("@Nome", (pCliente.Nome));
             cmd.Parameters.AddWithValue("@Telefone", pCliente.Telefone);
@@ -25,7 +25,6 @@ namespace Atenda.Repository
             cmd.Parameters.AddWithValue("@Bairro", pCliente.Bairro);
             cmd.Parameters.AddWithValue("@Cidade", pCliente.Cidade);
             cmd.Parameters.AddWithValue("@Estado", pCliente.Estado);
-            cmd.Parameters.AddWithValue("@Pais", pCliente.Pais);
             cmd.Parameters.AddWithValue("@CPF_CNPJ", pCliente.CPF_CNPJ);
 
             cmd.CommandText = sql.ToString();
@@ -37,7 +36,7 @@ namespace Atenda.Repository
             StringBuilder sql = new StringBuilder();
             SqlCommand cmd = new SqlCommand();
 
-            sql.Append("UPDATE Cliente SET Nome=@Nome, Telefone=@Telefone, Endereco=@Endereco, Bairro=@Bairro, Cidade=@Cidade, Estado=@Estado, Pais=@Pais, CPF_CNPJ=@CPF_CNPJ");
+            sql.Append("UPDATE Cliente SET Nome=@Nome, Telefone=@Telefone, Endereco=@Endereco, Bairro=@Bairro, Cidade=@Cidade, Estado=@Estado, CPF_CNPJ=@CPF_CNPJ");
             sql.Append(" WHERE IdCliente = " + pCliente.IdCliente);
 
             cmd.Parameters.AddWithValue("@Nome", pCliente.Nome);
@@ -46,7 +45,6 @@ namespace Atenda.Repository
             cmd.Parameters.AddWithValue("@Bairro", pCliente.Bairro);
             cmd.Parameters.AddWithValue("@Cidade", pCliente.Cidade);
             cmd.Parameters.AddWithValue("@Estado", pCliente.Estado);
-            cmd.Parameters.AddWithValue("@Pais", pCliente.Pais);
             cmd.Parameters.AddWithValue("@CPF_CNPJ", pCliente.CPF_CNPJ);
 
             cmd.CommandText = sql.ToString();
@@ -88,10 +86,7 @@ namespace Atenda.Repository
                         Bairro = dr.IsDBNull(dr.GetOrdinal("Bairro")) ? "" : (string)dr["Bairro"],
                         Cidade = dr.IsDBNull(dr.GetOrdinal("Cidade")) ? "" : (string)dr["Cidade"],
                         Estado = dr.IsDBNull(dr.GetOrdinal("Estado")) ? "" : (string)dr["Estado"],
-                        Pais = dr.IsDBNull(dr.GetOrdinal("Pais")) ? "" : (string)dr["Pais"],
                         CPF_CNPJ = dr.IsDBNull(dr.GetOrdinal("CPF_CNPJ")) ? "" : (string)dr["CPF_CNPJ"]
-
-
                     });
             }
             dr.Close();
@@ -118,7 +113,6 @@ namespace Atenda.Repository
                 cliente.Bairro = dr.IsDBNull(dr.GetOrdinal("Bairro")) ? "" : (string)dr["Bairro"];
                 cliente.Cidade = dr.IsDBNull(dr.GetOrdinal("Cidade")) ? "" : (string)dr["Cidade"];
                 cliente.Estado = dr.IsDBNull(dr.GetOrdinal("Estado")) ? "" : (string)dr["Estado"];
-                cliente.Pais = dr.IsDBNull(dr.GetOrdinal("Pais")) ? "" : (string)dr["Pais"];
                 cliente.CPF_CNPJ = dr.IsDBNull(dr.GetOrdinal("CPF_CNPJ")) ? "" : (string)dr["CPF_CNPJ"];
             }
             dr.Close();
@@ -147,46 +141,11 @@ namespace Atenda.Repository
                         Bairro = dr.IsDBNull(dr.GetOrdinal("Bairro")) ? "" : (string)dr["Bairro"],
                         Cidade = dr.IsDBNull(dr.GetOrdinal("Cidade")) ? "" : (string)dr["Cidade"],
                         Estado = dr.IsDBNull(dr.GetOrdinal("Estado")) ? "" : (string)dr["Estado"],
-                        Pais = dr.IsDBNull(dr.GetOrdinal("Pais")) ? "" : (string)dr["Pais"],
                         CPF_CNPJ = dr.IsDBNull(dr.GetOrdinal("CPF_CNPJ")) ? "" : (string)dr["CPF_CNPJ"]
-
-
                     });
             }
             dr.Close();
             return clientes;
-        }
-
-        public static List<Cliente> GetBySearch(String Nome)
-        {
-            StringBuilder sql = new StringBuilder();
-            List<Cliente> cliente = new List<Cliente>();
-
-            sql.Append("SELECT * ");
-            sql.Append("FROM Curso ");
-
-            SqlDataReader dr = SqlConn.Get(sql.ToString());
-
-            while (dr.Read())
-            {
-                cliente.Add(
-                    new Cliente
-                    {
-                        IdCliente = (int)dr["IdCliente"],
-                        Nome = dr.IsDBNull(dr.GetOrdinal("Nome")) ? "" : (string)dr["Nome"],
-                        Telefone = dr.IsDBNull(dr.GetOrdinal("Telefone")) ? "" : (string)dr["Telefone"],
-                        Endereco = dr.IsDBNull(dr.GetOrdinal("Endereco")) ? "" : (string)dr["Endereco"],
-                        Bairro = dr.IsDBNull(dr.GetOrdinal("Bairro")) ? "" : (string)dr["Bairro"],
-                        Cidade = dr.IsDBNull(dr.GetOrdinal("Cidade")) ? "" : (string)dr["Cidade"],
-                        Estado = dr.IsDBNull(dr.GetOrdinal("Estado")) ? "" : (string)dr["Estado"],
-                        Pais = dr.IsDBNull(dr.GetOrdinal("Pais")) ? "" : (string)dr["Pais"],
-                        CPF_CNPJ = dr.IsDBNull(dr.GetOrdinal("CPF_CNPJ")) ? "" : (string)dr["CPF_CNPJ"]
-                    });
-            }
-
-            dr.Close();
-
-            return cliente;
         }
     }
 }

@@ -131,7 +131,10 @@
 
     </dl>
 </div>
-    @Html.ActionLink("Editar", "EditOS", new { pId = Model.IdOS }) |
-    @Html.ActionLink("Deletar", "DeleteOS", new { pId = Model.IdOS })
-    @Html.ActionLink("Voltar ao inicio", "Index", "Home")
+<p>
+    @Html.Raw(@Html.ActionLink("[replacetext]", "EditOS", new { pId = Model.IdOS }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/UpdateOption_Icon-Atenda.png\" ... />"))
+    @Html.Raw(@Html.ActionLink("[replacetext]", "DeleteOS", new { pId = Model.IdOS }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/DeleteOption_Icon-Atenda.png\" ... />"))
 </p>
+<div>
+    <button class="btn btn-link" onclick="goBack()"><img src="/Image/BackOption_Icon-Atenda.png" /></button>
+</div>

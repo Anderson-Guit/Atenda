@@ -31,37 +31,53 @@
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="NOME_EMPRESA" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <Image Height="118" Source="/Images/logo.png"/>
+        <StackPanel Grid.Row="0" Margin="12,17,12,10">
+            <Image Height="130" Source="/Images/BannerWP.png" Stretch="Fill" Margin="-11,0,-12,0"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,-936">
-            <ScrollViewer Margin="0,488,0,0">
-                <TextBlock Text="Agendamentos" FontSize="40"/>
-            </ScrollViewer>
-            <Button x:Name="Btn_Tecnico" Content="" HorizontalAlignment="Center" Margin="230,0,0,0" Width="226" Height="239" VerticalAlignment="Top" BorderBrush="{x:Null}" Click="Btn_Tecnico_Click" ClickMode="Press">
-                <Button.Background>
-                    <ImageBrush Stretch="None" ImageSource="/Images/Tecnico_Icon-Atenda.png"/>
-                </Button.Background>
-            </Button>
-            <Button x:Name="Btn_Cliente" Content="" HorizontalAlignment="Center" Margin="0,0,230,0" Width="226" Height="239" VerticalAlignment="Top" BorderBrush="{x:Null}" Click="Btn_Cliente_Click" ClickMode="Hover">
-                <Button.Background>
-                    <ImageBrush Stretch="None" ImageSource="/Images/Cliente_Icon-Atenda.png"/>
-                </Button.Background>
-            </Button>
-            <Button x:Name="Btn_OS" Content="" HorizontalAlignment="Center" Margin="0,244,230,0" Width="226" Height="239" VerticalAlignment="Top" BorderBrush="{x:Null}" Click="Btn_OS_Click" ClickMode="Press">
-                <Button.Background>
-                    <ImageBrush ImageSource="/Images/OS_Icon-Atenda.png" Stretch="None"/>
-                </Button.Background>
-            </Button>
-            <Button x:Name="Btn_Orcamento" Content="" HorizontalAlignment="Center" Margin="230,244,0,0" Width="226" Height="239" VerticalAlignment="Top" BorderBrush="{x:Null}" Click="Btn_Orcamento_Click" ClickMode="Press">
-                <Button.Background>
-                    <ImageBrush Stretch="None" ImageSource="/Images/Orcamento_Icon-Atenda.png"/>
-                </Button.Background>
-            </Button>
 
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,-883">
+            <StackPanel>
+                <ScrollViewer Height="609">
+                    <Grid>
+                        <Button x:Name="Btn_Cliente" Content="Cliente" HorizontalAlignment="Right" Margin="0,10,0,0" Width="456" Height="114" VerticalAlignment="Top" BorderBrush="{x:Null}" Click="Btn_Cliente_Click" FontSize="48">
+                            <Button.Background>
+                                <ImageBrush ImageSource="/Images/Cliente_Icon-Atenda.png" AlignmentX="Left" Stretch="Uniform"/>
+                            </Button.Background>
+                        </Button>
+                        <Button x:Name="Btn_OS" Content="OS" HorizontalAlignment="Right" Margin="0,124,0,0" Width="456" Height="117" VerticalAlignment="Top" BorderBrush="{x:Null}" Click="Btn_OS_Click" FontSize="48">
+                            <Button.Background>
+                                <ImageBrush ImageSource="/Images/OS_Icon-Atenda.png" AlignmentX="Left" Stretch="Uniform"/>
+                            </Button.Background>
+                        </Button>
+                        <Button x:Name="Btn_Orcamento" Content="Orçamento" HorizontalAlignment="Right" Margin="0,241,0,0" Width="456" Height="114" VerticalAlignment="Top" BorderBrush="{x:Null}" Click="Btn_Orcamento_Click" FontSize="48">
+                            <Button.Background>
+                                <ImageBrush ImageSource="/Images/Orcamento_Icon-Atenda.png" AlignmentX="Left" Stretch="Uniform"/>
+                            </Button.Background>
+                        </Button>
+                        <Button x:Name="Btn_Produto" Content="Produto" HorizontalAlignment="Right" Margin="0,355,0,0" Width="456" Height="115" VerticalAlignment="Top" BorderBrush="{x:Null}" Click="Btn_Produto_Click" FontSize="48">
+                            <Button.Background>
+                                <ImageBrush ImageSource="/Images/Produto_Icon-Atenda.png" AlignmentX="Left" Stretch="Uniform"/>
+                            </Button.Background>
+                        </Button>
+                        <Button x:Name="Btn_Agenda" Content="Agenda" HorizontalAlignment="Right" Margin="0,470,0,0" Width="456" Height="115" VerticalAlignment="Top" BorderBrush="{x:Null}" Click="Btn_Agenda_Click" FontSize="48">
+                            <Button.Background>
+                                <ImageBrush ImageSource="/Images/Agenda_Icon-Atenda.png" AlignmentX="Left" Stretch="Uniform"/>
+                            </Button.Background>
+                        </Button>
+                        <Button x:Name="Btn_Tecnico" Content="Tecnico" HorizontalAlignment="Right" Margin="0,585,0,0" Width="456" Height="115" VerticalAlignment="Top" BorderBrush="{x:Null}" Click="Btn_Tecnico_Click" FontSize="48">
+                            <Button.Background>
+                                <ImageBrush ImageSource="/Images/Tecnico_Icon-Atenda.png" AlignmentX="Left" Stretch="Uniform"/>
+                            </Button.Background>
+                        </Button>
+                        <TextBlock Text="Agendamentos" FontSize="40" Margin="0,718,179,0" Height="60" VerticalAlignment="Top" HorizontalAlignment="Right" Width="277"/>
+                        <ScrollViewer Margin="0,783,0,0" Height="529" VerticalAlignment="Top">
+
+                        </ScrollViewer>
+                    </Grid>
+                </ScrollViewer>
+            </StackPanel>
         </Grid>
 
     </Grid>

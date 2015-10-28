@@ -8,6 +8,9 @@
 
 <div>
     <dl class="dl-horizontal">
+
+        @Html.HiddenFor(model => model.IdOrcamento)
+
         <dt>
             @Html.DisplayNameFor(model => model.Servico)
         </dt>
@@ -58,7 +61,12 @@
 
     </dl>
 </div>
+
 <p>
-    @Html.ActionLink("Editar", "EditOrcamento", new { pId = Model.IdOrcamento }) |
-    @Html.ActionLink("Voltar ao inicio", "Index", "Home")
+    @Html.Raw(@Html.ActionLink("[replacetext]", "EditCliente", new { pId = Model.IdOrcamento }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/UpdateOption_Icon-Atenda.png\" ... />"))
+    @Html.Raw(@Html.ActionLink("[replacetext]", "DeleteCliente", new { pId = Model.IdOrcamento }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/DeleteOption_Icon-Atenda.png\" ... />"))
 </p>
+
+<div>
+    <button class="btn btn-link" onclick="goBack()"><img src="/Image/BackOption_Icon-Atenda.png" /></button>
+</div>

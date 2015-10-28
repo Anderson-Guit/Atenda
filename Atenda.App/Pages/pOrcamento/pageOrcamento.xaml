@@ -16,6 +16,9 @@
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <!--Pivot Control-->
         <phone:Pivot Title="ORÇAMENTO">
             <!--Pivot item one-->
@@ -26,19 +29,17 @@
             <!--Pivot item two-->
             <phone:PivotItem Header="Novo">
                 <ScrollViewer>
-                    <StackPanel Height="860">
-                        <Grid Height="860">
+                    <StackPanel Height="770">
+                        <Grid Height="786">
                             <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Serviço" VerticalAlignment="Top" FontSize="36"/>
                             <TextBox x:Name="Tb_Servico" HorizontalAlignment="Left" Height="194" Margin="0,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="456" VerticalScrollBarVisibility="Auto"/>
                             <TextBlock HorizontalAlignment="Left" Margin="10,257,0,0" TextWrapping="Wrap" Text="Valor do Serviço" VerticalAlignment="Top" FontSize="36"/>
                             <TextBox x:Name="Tb_ValorServico" HorizontalAlignment="Left" Height="72" Margin="0,305,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="174" InputScope="Number"/>
                             <TextBlock HorizontalAlignment="Left" Margin="10,382,0,0" TextWrapping="Wrap" Text="Produto" VerticalAlignment="Top" FontSize="36"/>
-                            <toolkit:ListPicker x:Name="Lp_Produto" Margin="0,430,0,131" FullModeItemTemplate="{Binding}"/>
-                            <TextBlock HorizontalAlignment="Left" Margin="10,503,0,0" TextWrapping="Wrap" Text="Valor do Produto" VerticalAlignment="Top" FontSize="36"/>
-                            <TextBox x:Name="Tb_ValorProduto" HorizontalAlignment="Left" Height="72" Margin="0,551,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="174" InputScope="Number"/>
-                            <TextBlock HorizontalAlignment="Left" Margin="10,628,0,0" TextWrapping="Wrap" Text="Valor Total" VerticalAlignment="Top" FontSize="36"/>
-                            <TextBox x:Name="Tb_ValorTotal" HorizontalAlignment="Left" Height="72" Margin="0,676,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="174" InputScope="Number"/>
-                            <Button x:Name="Btn_Salvar" Content="Salvar" HorizontalAlignment="Left" Height="91" Margin="124,760,0,0" VerticalAlignment="Top" Width="198" Click="Btn_Salvar_Click"/>
+                            <toolkit:ListPicker x:Name="Lp_Produto" Margin="0,430,0,0" FullModeItemTemplate="{Binding Nome}" Height="79" VerticalAlignment="Top"/>
+                            <TextBlock HorizontalAlignment="Left" Margin="10,508,0,0" TextWrapping="Wrap" Text="Cliente" VerticalAlignment="Top" FontSize="36"/>
+                            <toolkit:ListPicker x:Name="Lp_Cliente" Margin="0,556,0,0" FullModeItemTemplate="{Binding Nome}" Height="79" VerticalAlignment="Top"/>
+                            <Button x:Name="Btn_Salvar" Content="Salvar" HorizontalAlignment="Left" Height="91" Margin="122,656,0,0" VerticalAlignment="Top" Width="198" Click="Btn_Salvar_Click"/>
                         </Grid>
                     </StackPanel>
                 </ScrollViewer>

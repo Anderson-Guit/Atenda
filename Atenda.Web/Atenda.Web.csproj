@@ -132,18 +132,19 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Atenda.ico" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\login.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Icone.ico" />
+    <Content Include="favico.ico" />
     <Content Include="Image\Agenda_Icon-Atenda.png" />
     <Content Include="Image\Background.png" />
     <Content Include="Image\Background_Login.jpg" />
+    <Content Include="Image\BackOption_Icon-Atenda.png" />
     <Content Include="Image\Cliente_Icon-Atenda.png" />
     <Content Include="Image\CreateOption_Icon-Atenda.png" />
+    <Content Include="Image\DeleteBOption_Icon-Atenda.png" />
     <Content Include="Image\DeleteOption_Icon-Atenda.png" />
     <Content Include="Image\DetailsOption_Icon-Atenda.png" />
     <Content Include="Image\ListOption_Icon-Atenda.png" />
@@ -153,14 +154,15 @@
     <Content Include="Image\Orcamento_Icon-Atenda.png" />
     <Content Include="Image\OS_Icon-Atenda.png" />
     <Content Include="Image\Produto_Icon-Atenda.png" />
+    <Content Include="Image\SaveOption_Icon-Atenda.png" />
     <Content Include="Image\SearchOptionB_Icon-Atenda.png" />
     <Content Include="Image\SearchOption_Icon-Atenda.png" />
     <Content Include="Image\Tecnico_Icon-Atenda.png" />
     <Content Include="Image\UpdateOption_Icon-Atenda.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\functions.js" />
     <Content Include="Scripts\methods_pt.js" />
-    <Content Include="__TemplateIcon.ico" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -194,41 +196,32 @@
     <Content Include="Views\Cliente\EditCliente.cshtml" />
     <Content Include="Views\Cliente\DeleteCliente.cshtml" />
     <Content Include="Views\Cliente\ListClientes.cshtml" />
-    <Content Include="Views\Cliente\SearchCliente.cshtml" />
     <Content Include="Views\Tecnico\CreateTecnico.cshtml" />
     <Content Include="Views\Tecnico\EditTecnico.cshtml" />
     <Content Include="Views\Tecnico\DetailsTecnico.cshtml" />
     <Content Include="Views\Tecnico\DeleteTecnico.cshtml" />
     <Content Include="Views\Tecnico\ListTecnicos.cshtml" />
-    <Content Include="Views\Tecnico\SearchTecnico.cshtml" />
     <Content Include="Views\Produto\DetailsProduto.cshtml" />
     <Content Include="Views\Produto\CreateProduto.cshtml" />
     <Content Include="Views\Produto\EditProduto.cshtml" />
     <Content Include="Views\Produto\DeleteProduto.cshtml" />
     <Content Include="Views\Produto\ListProdutos.cshtml" />
-    <Content Include="Views\Produto\SearchProduto.cshtml" />
     <Content Include="Views\Agenda\DetailsAgenda.cshtml" />
     <Content Include="Views\Agenda\CreateAgenda.cshtml" />
     <Content Include="Views\Agenda\EditAgenda.cshtml" />
     <Content Include="Views\Agenda\DeleteAgenda.cshtml" />
     <Content Include="Views\Agenda\ListAgendas.cshtml" />
-    <Content Include="Views\Agenda\SearchTecnicoNome.cshtml" />
-    <Content Include="Views\Agenda\SearchClienteNome.cshtml" />
     <Content Include="Views\OrdemServico\DetailsOS.cshtml" />
     <Content Include="Views\OrdemServico\CreateOS.cshtml" />
     <Content Include="Views\OrdemServico\EditOS.cshtml" />
     <Content Include="Views\OrdemServico\DeleteOS.cshtml" />
     <Content Include="Views\OrdemServico\ListOS.cshtml" />
-    <Content Include="Views\OrdemServico\SearchTecnicoNome.cshtml" />
-    <Content Include="Views\OrdemServico\SearchClienteNome.cshtml" />
     <Content Include="Views\Orcamento\DetailsOrcamento.cshtml" />
     <Content Include="Views\Orcamento\CreateOrcamento.cshtml" />
     <Content Include="Views\Orcamento\EditOrcamento.cshtml" />
     <Content Include="Views\Orcamento\DeleteOrcamento.cshtml" />
     <Content Include="Views\Orcamento\ListOrcamentos.cshtml" />
-    <Content Include="Views\Orcamento\SearchClienteNome.cshtml" />
     <Content Include="Views\Home\IndexListAgendas.cshtml" />
-    <Content Include="Views\OrdemServico\SearchOS.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -258,7 +251,7 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Atenda.ico</ApplicationIcon>
+    <ApplicationIcon>favico.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <Win32Resource>

@@ -33,5 +33,10 @@ namespace Atenda.App.Pages.pProduto
             };
             ProdutoDB.Create(produto);
         }
+
+        private void Btn_Busca_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

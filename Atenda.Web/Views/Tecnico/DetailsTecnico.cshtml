@@ -46,7 +46,9 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Editar", "EditTecnico", new { pId = Model.IdTecnico }) |
-    @Html.ActionLink("Deletar", "DeleteTecnico", new { pId = Model.IdTecnico })
-    @Html.ActionLink("Voltar ao inicio", "Index", "Home")
+    @Html.Raw(@Html.ActionLink("[replacetext]", "EditTecnico", new { pId = Model.IdTecnico }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/UpdateOption_Icon-Atenda.png\" ... />"))
+    @Html.Raw(@Html.ActionLink("[replacetext]", "DeleteTecnico", new { pId = Model.IdTecnico }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/DeleteOption_Icon-Atenda.png\" ... />"))
 </p>
+<div>
+    <button class="btn btn-link" onclick="goBack()"><img src="/Image/BackOption_Icon-Atenda.png" /></button>
+</div>

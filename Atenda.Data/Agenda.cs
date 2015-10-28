@@ -45,11 +45,22 @@ namespace Atenda.Data
         public string Observacoes { get; set; }
 
         [Display(Name = "Status", Description = "Status do atendimento.")]
-        public bool Status { get; set; }
+        public string Status { get; set; }
         
         public Agenda()
         {
 
+        }
+
+        public List<Agenda> ListStatus()
+        {
+            return new List<Agenda>
+                {
+                    new Agenda {Status = "Aguardando"},
+                    new Agenda {Status = "Em Execução"},
+                    new Agenda {Status = "Realizado"},
+                    new Agenda {Status = "Cancelado"},
+                };
         }
 
     }

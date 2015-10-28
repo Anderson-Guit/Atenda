@@ -80,6 +80,18 @@ namespace Atenda.Data
 
         }
 
+        public List<OrdemServico> ListStatus()
+        {
+            return new List<OrdemServico>
+                {
+                    new OrdemServico {Status = "Aberta"},
+                    new OrdemServico {Status = "Em Execução"},
+                    new OrdemServico {Status = "Em Espera"},
+                    new OrdemServico {Status = "Pronta"},
+                    new OrdemServico {Status = "Recusada"},
+                };
+        }
+
     }
 
 }

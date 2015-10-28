@@ -62,14 +62,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Pais)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Pais)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.CPF_CNPJ)
         </dt>
 
@@ -83,8 +75,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Deletar" class="btn btn-default" /> |
-            @Html.ActionLink("Voltar ao incio", "Index", "Home")
+            <button class="btn btn-link" onclick="goBack()"><img src="/Image/BackOption_Icon-Atenda.png" /></button>
+            <button type="submit" value="Delete" class="btn btn-link"><img src="~/Image/DeleteBOption_Icon-Atenda.png" /></button>
         </div>
     }
 </div>

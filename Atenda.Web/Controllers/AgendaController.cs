@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Atenda.Data;
 using Atenda.Repository;
+using Atenda.Web.Controllers;
 
 namespace Atenda.Controllers
 {
@@ -21,8 +22,16 @@ namespace Atenda.Controllers
         // GET: /Agenda/Details/5
         public ActionResult DetailsAgenda(int pId)
         {
-            var agenda = AgendaRepository.GetOne(pId);
-            return View(agenda);
+            try
+            {
+                var agenda = AgendaRepository.GetOne(pId);
+                return View(agenda);
+            }
+            catch
+            {
+                throw;
+            }
+            
         }
 
         //
@@ -42,7 +51,6 @@ namespace Atenda.Controllers
         {
             try
             {
-
                 if (ModelState.IsValid)
                 {
                     ViewBag.IdTecnico = new SelectList(TecnicoRepository.GetAll(), "IdTecnico", "Nome", pAgenda.IdTecnico);
@@ -50,14 +58,16 @@ namespace Atenda.Controllers
                     ViewBag.Status = new SelectList(new Agenda().ListStatus(), "Status", "Status", pAgenda.Status);
                     AgendaRepository nova = new AgendaRepository();
                     nova.Create(pAgenda);
-                    return RedirectToAction("ListAgendas");
+                    return RedirectToAction("ListAgendas").ComMensagemDeSucesso("Agendamento cadastrado com sucesso!");
                 }
-
-                return View();
+                else
+                {
+                    return View();
+                }
             }
             catch
             {
-                return View();
+                throw;
             }
         }
 
@@ -65,10 +75,18 @@ namespace Atenda.Controllers
         // GET: /Agenda/Edit/5
         public ActionResult EditAgenda(int pId)
         {
-            var agenda = AgendaRepository.GetOne(pId);
-            ViewBag.IdTecnico = new SelectList(TecnicoRepository.GetAll(), "IdTecnico", "Nome", agenda.IdTecnico);
-            ViewBag.Status = new SelectList(new Agenda().ListStatus(), "Status", "Status", agenda.Status);
-            return View(agenda);
+            try
+            {
+                var agenda = AgendaRepository.GetOne(pId);
+                ViewBag.IdTecnico = new SelectList(TecnicoRepository.GetAll(), "IdTecnico", "Nome", agenda.IdTecnico);
+                ViewBag.Status = new SelectList(new Agenda().ListStatus(), "Status", "Status", agenda.Status);
+                return View(agenda);
+            }
+            catch
+            {
+                throw;
+            }
+            
         }
         //
         // POST: /Agenda/Edit/5
@@ -83,14 +101,16 @@ namespace Atenda.Controllers
                     ViewBag.Status = new SelectList(new Agenda().ListStatus(), "Status", "Status", pAgenda.Status);
                     AgendaRepository edit = new AgendaRepository();
                     edit.Update(pAgenda);
-                    return RedirectToAction("ListAgendas");
+                    return RedirectToAction("ListAgendas").ComMensagemDeSucesso("Agendamento editado com sucesso!");
                 }
-
-                return View("EditAgenda");
+                else
+                {
+                    return View("EditAgenda");
+                }
             }
             catch
             {
-                return View();
+                throw;
             }
         }
 
@@ -98,8 +118,16 @@ namespace Atenda.Controllers
         // GET: /Agenda/Delete/5
         public ActionResult DeleteAgenda(int pId)
         {
-            var agenda = AgendaRepository.GetOne(pId);
-            return View(agenda);
+            try
+            {
+                var agenda = AgendaRepository.GetOne(pId);
+                return View(agenda);
+            }
+            catch
+            {
+                throw;
+            }
+            
         }
 
         //
@@ -111,17 +139,18 @@ namespace Atenda.Controllers
             {
                 AgendaRepository exclui = new AgendaRepository();
                 exclui.Delete(pId);
-                return RedirectToAction("Index");
+                return RedirectToAction("ListAgendas").ComMensagemDeSucesso("Agendamento excluído com sucesso!");
             }
             catch
             {
-                return View();
+                throw;
             }
         }
         //
         // GET: /Agenda/List/5
         public ActionResult ListAgendas()
         {
+            ViewBag.Search = new SelectList(new Agenda().ListSearch(), "Search", "Search");
             var agendas = AgendaRepository.GetAll();
             return View(agendas);
         }
@@ -130,17 +159,75 @@ namespace Atenda.Controllers
         [HttpPost]
         public ActionResult ListAgendas(FormCollection form)
         {
-            string nome = form["TecnicoNome"];
+            string nome = form["NomeSearch"];
+            string search = form["Search"];
 
-            if (nome != null)
+            if (nome.Trim() != "")
             {
-                var agendas = AgendaRepository.GetTecnicoNome(nome);
-                return View(agendas);
+                if (search != "")
+                {
+                    if (search == "Tecnico")
+                    {
+                        var tecnicoAgendas = AgendaRepository.GetTecnicoNome(nome);
+                        if (tecnicoAgendas.Count == 0)
+                        {
+                            var agendas = AgendaRepository.GetAll();
+                            ViewBag.Search = new SelectList(new Agenda().ListSearch(), "Search", "Search", search);
+                            return View(agendas).ComMensagemDeErro("Tecnico não encontrado!");
+                        }
+                        ViewBag.Search = new SelectList(new Agenda().ListSearch(), "Search", "Search", search);
+                        return View(tecnicoAgendas);
+                    }
+                    else
+                    {
+                        if (search == "Cliente")
+                        {
+                            var clienteAgendas = AgendaRepository.GetClienteNome(nome);
+                            if (clienteAgendas.Count == 0)
+                            {
+                                var agendas = AgendaRepository.GetAll();
+                                ViewBag.Search = new SelectList(new Agenda().ListSearch(), "Search", "Search", search);
+                                return View(agendas).ComMensagemDeErro("Cliente não encontrado!");
+                            }
+                            ViewBag.Search = new SelectList(new Agenda().ListSearch(), "Search", "Search", search);
+                            return View(clienteAgendas);
+                        }
+                        else
+                        {
+                            if (search == "Status")
+                            {
+                                    var statusAgendas = AgendaRepository.GetStatus(nome);
+                                    if (statusAgendas.Count == 0)
+                                    {
+                                        var agendas = AgendaRepository.GetAll();
+                                        ViewBag.Search = new SelectList(new Agenda().ListSearch(), "Search", "Search", search);
+                                        return View(agendas).ComMensagemDeErro("Digite um Status válido!");
+                                    }
+                                    ViewBag.Search = new SelectList(new Agenda().ListSearch(), "Search", "Search", search);
+                                    return View(statusAgendas);
+                            }
+                            else
+                            {
+                                var agendas = AgendaRepository.GetAll();
+                                ViewBag.Search = new SelectList(new Agenda().ListSearch(), "Search", "Search", search);
+                                return View(agendas);
+                            }
+                         }
+                    }
+
+                }
+                else
+                {
+                    var agendas = AgendaRepository.GetAll();
+                    ViewBag.Search = new SelectList(new Agenda().ListSearch(), "Search", "Search", search);
+                    return View(agendas).ComMensagemDeErro("Escolha um tipo de busca!");
+                }
             }
             else
             {
                 var agendas = AgendaRepository.GetAll();
-                return View(agendas);
+                ViewBag.Search = new SelectList(new Agenda().ListSearch(), "Search", "Search", search);
+                return View(agendas).ComMensagemDeErro("Digite o que busca!");
             }
         }
     }

@@ -1,19 +1,24 @@
-﻿(function($) {
+﻿
+(function ($) {
     AddTableRow = function() {
 
-        var newRow = $('<div>@Html.LabelFor(model => model.NomeProduto, htmlAttributes: new { @class = "control-label col-md-2" })</div>');
+        //$.ajax({ type: 'GET', url: '/Orcamento/AddProdutos', dataType: 'cshtml', cache: false, async: true, success: function (data) { $('#addProduto').html(data); } });
+
+        var newRow = $('<div class="form-group">');
         var cols = "";
 
-        cols += '<div>';
-        cols += '@Html.DropDownList("IdProduto", null, "-Escolha um Produto", new { @class = "form-control" })';
-        cols += '@Html.ValidationMessageFor(model => model.IdProduto, "", new { @class = "text-danger" })';
+        cols += '<label class="control-label col-md-2" for="NomeProduto">Produto</label>';
+        cols += '<div class="col-md-10">';
+        cols += '<select class="form-control" id="IdProduto" name="IdProduto"><option value="IdProduto">"IdProduto"</option>';
+        cols += '<option value="1">Produto1</option>';
+        cols += '<option value="2">Produto2</option>';
+        cols += '<option value="3">Produto3</option>';
+        cols += '</select>';
         cols += '</div>';
-        cols += '<div>';
-        cols += '<button onclick="RemoveTableRow(this)" type="button">Remover</button>';
-        cols += '</div>';
+        cols += '<button class="btn btn-danger" onclick="RemoveTableRow(this)" type="button">-</button>';
 
         newRow.append(cols);
-        $("#products-div").append(newRow);
+        $("#product").append(newRow);
 
         return false;
     };

@@ -39,6 +39,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BeginCollectionItem, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\BeginCollectionItem.1.2.1.0\lib\net35\BeginCollectionItem.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -126,31 +130,33 @@
     <Compile Include="Controllers\OrdemServicoController.cs" />
     <Compile Include="Controllers\ProdutoController.cs" />
     <Compile Include="Controllers\TecnicoController.cs" />
+    <Compile Include="Controllers\TempDataActionResult.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\ProdutosViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AtendaHelmet.ico" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\login.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="favico.ico" />
     <Content Include="Image\Agenda_Icon-Atenda.png" />
     <Content Include="Image\Background.png" />
-    <Content Include="Image\Background_Login.jpg" />
     <Content Include="Image\BackOption_Icon-Atenda.png" />
+    <Content Include="Image\BrackgroundLoginInvert-Atenda.png" />
     <Content Include="Image\Cliente_Icon-Atenda.png" />
     <Content Include="Image\CreateOption_Icon-Atenda.png" />
     <Content Include="Image\DeleteBOption_Icon-Atenda.png" />
     <Content Include="Image\DeleteOption_Icon-Atenda.png" />
     <Content Include="Image\DetailsOption_Icon-Atenda.png" />
+    <Content Include="Image\Error404.jpg" />
+    <Content Include="Image\HelmetSpace.png" />
     <Content Include="Image\ListOption_Icon-Atenda.png" />
     <Content Include="Image\logo.png" />
     <Content Include="Image\LogoutOption_Icon-Atenda.png" />
-    <Content Include="Image\NewBanner_Atenda.png" />
     <Content Include="Image\Orcamento_Icon-Atenda.png" />
     <Content Include="Image\OS_Icon-Atenda.png" />
     <Content Include="Image\Produto_Icon-Atenda.png" />
@@ -222,6 +228,7 @@
     <Content Include="Views\Orcamento\DeleteOrcamento.cshtml" />
     <Content Include="Views\Orcamento\ListOrcamentos.cshtml" />
     <Content Include="Views\Home\IndexListAgendas.cshtml" />
+    <Content Include="Views\Orcamento\AddProdutos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -251,7 +258,7 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>favico.ico</ApplicationIcon>
+    <ApplicationIcon>AtendaHelmet.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <Win32Resource>

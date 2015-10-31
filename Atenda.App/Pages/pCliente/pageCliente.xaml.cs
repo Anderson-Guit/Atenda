@@ -14,7 +14,9 @@ namespace Atenda.App.Pages.pCliente
 {
     public partial class pageCliente : PhoneApplicationPage
     {
-        String[] Estado = { "AC","RS","SC","PR","MT","RJ","SP","MP"};
+        String[] Estado = { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO",
+                            "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", 
+                            "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" };
 
 
         public Cliente cliente { get; set; }
@@ -59,18 +61,21 @@ namespace Atenda.App.Pages.pCliente
         private void onSelectionChange(object sender, SelectionChangedEventArgs e)
         {
             //seleciona um cliente da lista
+            MessageBox.Show("selectionchance");
             pCliente = (sender as ListBox).SelectedItem as Cliente;
+            MessageBox.Show(pCliente.Nome);
+            NavigationService.Navigate(new Uri("/Pages/pCliente/pageClienteDetails.xaml", UriKind.Relative));
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
+            MessageBox.Show("esta no from");
             //manda o cliente selecionado para proxima pagina
             if (pCliente != null)
             {
                 pageDetailsCliente page = e.Content as pageDetailsCliente;
                 page.clienteDetails = pCliente;
             }
-
             //elimina o evento do listbox para quando voltar pra essa page ela não voltar pra outra pagina.
             Lst_Clientes.SelectionChanged -= onSelectionChange;
         }
@@ -80,6 +85,7 @@ namespace Atenda.App.Pages.pCliente
             //seleciona um cliente da lista
             pCliente = (sender as ListBox).SelectedItem as Cliente;
         }
+
 
     }
 }

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Atenda.Repository;
 using Atenda.Data;
+using Atenda.Web.Controllers;
 
 namespace Atenda.Controllers
 {
@@ -12,9 +13,16 @@ namespace Atenda.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Agenda = AgendaRepository.GetAllToIndex();
-            ViewBag.Title="Atenda";
-            return View();
+            try
+            {
+                ViewBag.Agenda = AgendaRepository.GetAllToIndex();
+                ViewBag.Title = "Atenda";
+                return View();
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         public ActionResult Login()
@@ -23,11 +31,11 @@ namespace Atenda.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(String Nome, String Senha)
+        public ActionResult Login(Login pLogin)
         {
             if (ModelState.IsValid)
             {
-                Tecnico tecnico = TecnicoRepository.CheckUser(Nome, Senha);
+                Tecnico tecnico = TecnicoRepository.CheckUser(pLogin);
 
                 if (tecnico.Nome != null)
                 {
@@ -39,11 +47,14 @@ namespace Atenda.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Login");
+                    return RedirectToAction("Login").ComMensagemDeErro("Nome ou senha inválidos!");
                 }
 
             }
-            return View();
+            else
+            {
+                return View();
+            }
         }
 
         public ActionResult Logout()
@@ -52,7 +63,7 @@ namespace Atenda.Controllers
 
             if (Session["Nome"] == null)
             {
-                return RedirectToAction("Login");
+                return RedirectToAction("Login").ComMensagemDeSucesso("Logout feito com sucesso!");
             }
             else
             {

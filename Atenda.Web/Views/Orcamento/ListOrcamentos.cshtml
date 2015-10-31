@@ -4,6 +4,23 @@
     ViewBag.Title = "Lista de Orçamentos";
 }
 
+@if (TempData["Mensagem"] != null)
+{
+    if (TempData["Tipo"] == "ok")
+    {
+        <div class="alert alert-success" style="margin-top:20px; width:20%">
+            @TempData["Mensagem"]
+        </div>
+    }
+    if (TempData["Tipo"] == "bad")
+    {
+        <div class="alert alert-danger" style="margin-top:20px; width:20%">
+            @TempData["Mensagem"]
+        </div>
+    }
+
+}
+
 <h1>Lista de orçamentos</h1>
 
 @using (Html.BeginForm())

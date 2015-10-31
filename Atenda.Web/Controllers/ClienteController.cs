@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Atenda.Web.Controllers;
 
 namespace Atenda.Controllers
 {
@@ -21,25 +22,22 @@ namespace Atenda.Controllers
         // GET: /Cliente/Details/5
         public ActionResult DetailsCliente(int pId)
         {
-            if (pId != 0)
+            try
             {
                 var cliente = ClienteRepository.GetOne(pId);
                 return View(cliente);
             }
-            else 
+            catch
             {
-                var busca = ViewBag.IdCliente;
-                var cliente = ClienteRepository.GetOne(busca);
-                return View();
+                throw;
             }
+            
         }
 
         //
         // GET: /Cliente/Create
         public ActionResult CreateCliente()
         {
-            Cliente estados = new Cliente();
-
             ViewBag.Estado = new SelectList(new Cliente().ListaEstados(), "Estado", "Estado");
             return View();
         }
@@ -57,15 +55,16 @@ namespace Atenda.Controllers
 
                     ClienteRepository create = new ClienteRepository();
                     create.Create(pCliente);
-                    return RedirectToAction("ListClientes");
+                    return RedirectToAction("ListClientes").ComMensagemDeSucesso("Cliente cadastrado com sucesso!");
                 }
-
-                return View("CreateCliente");
-
+                else
+                {
+                    return View();
+                }
             }
             catch
             {
-                return View();
+                throw;
             }
         }
 
@@ -73,9 +72,16 @@ namespace Atenda.Controllers
         // GET: /Cliente/Edit/5
         public ActionResult EditCliente(int pId)
         {
-            var cliente = ClienteRepository.GetOne(pId);
-            ViewBag.Estado = new SelectList(new Cliente().ListaEstados(), "Estado", "Estado", cliente.Estado);
-            return View(cliente);
+            try
+            {
+                var cliente = ClienteRepository.GetOne(pId);
+                ViewBag.Estado = new SelectList(new Cliente().ListaEstados(), "Estado", "Estado", cliente.Estado);
+                return View(cliente);
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         //
@@ -88,17 +94,16 @@ namespace Atenda.Controllers
                 if (ModelState.IsValid)
                 {
                     ViewBag.Estado = new SelectList(new Cliente().ListaEstados(), "Estado", "Estado", pCliente.Estado);
-
                     ClienteRepository edit = new ClienteRepository();
                     edit.Update(pCliente);
-                    return RedirectToAction("ListClientes");
+                    return RedirectToAction("ListClientes").ComMensagemDeSucesso("Cliente editado com sucesso!");
                 }
 
                 return View("EditCliente");
             }
             catch
             {
-                return View();
+                throw;
             }
         }
 
@@ -106,8 +111,15 @@ namespace Atenda.Controllers
         // GET: /Cliente/Delete/5
         public ActionResult DeleteCliente(int pId)
         {
-            var pCliente = ClienteRepository.GetOne(pId);
-            return View(pCliente);
+            try
+            {
+                var pCliente = ClienteRepository.GetOne(pId);
+                return View(pCliente);
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         //
@@ -119,14 +131,15 @@ namespace Atenda.Controllers
             {
                 ClienteRepository exclui = new ClienteRepository();
                 exclui.Delete(pId);
-                return RedirectToAction("ListClientes");
-
+                return RedirectToAction("ListClientes").ComMensagemDeSucesso("Cliente excluído com sucesso!");
             }
             catch
             {
-                return View();
+                return RedirectToAction("ListClientes").ComMensagemDeErro("Cliente não pode ser excluido! Existe pendências no sistema.");
             }
         }
+        //
+        // GET: /Cliente/List/5
         public ActionResult ListClientes()
         {
                 var Cliente = ClienteRepository.GetAll();
@@ -137,17 +150,23 @@ namespace Atenda.Controllers
         [HttpPost]
         public ActionResult ListClientes(FormCollection form)
         {
-            
-            if (form != null) 
-            {
-                string nome = form["ClienteNome"];
-                var ClienteNome = ClienteRepository.GetName(nome);
-                return View(ClienteNome);
-            }
-            else
-            {
-                return View();
-            }
+                    string nome = form["ClienteNome"];
+
+                    if (nome.Trim() == "")
+                    {
+                        var Cliente = ClienteRepository.GetAll();
+                        return View(Cliente).ComMensagemDeErro("Digite um nome!");
+                    }
+
+                    var ClienteNome = ClienteRepository.GetName(nome);
+
+                    if (ClienteNome.Count == 0)
+                    {
+                        var Cliente = ClienteRepository.GetAll();
+                        return View(Cliente).ComMensagemDeErro("Cliente não encontrado!");
+                    }
+                    return View(ClienteNome);
         }
     }
+    
 }

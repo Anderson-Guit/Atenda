@@ -27,5 +27,9 @@ namespace Atenda.Data
         [Display(Name = "Quantidade em Estoque", Description = "Informe a Quantidade de Produtos em Estoque.")]
         public int QntdEstoque { get; set; }
 
+        public Produto()
+        {
+
+        }
     }
 }

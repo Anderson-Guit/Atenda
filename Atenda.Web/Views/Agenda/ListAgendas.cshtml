@@ -4,12 +4,32 @@
     ViewBag.Title = "Lista de Agendamentos";
 }
 
+@if (TempData["Mensagem"] != null)
+{
+    if (TempData["Tipo"] == "ok")
+    {
+        <div class="alert alert-success" style="margin-top:20px; width:20%">
+            @TempData["Mensagem"]
+        </div>
+    }
+    if (TempData["Tipo"] == "bad")
+    {
+        <div class="alert alert-danger" style="margin-top:20px; width:20%">
+            @TempData["Mensagem"]
+        </div>
+    }
+
+}
+
 <h1>Lista de agendamentos</h1>
 
 @using (Html.BeginForm())
 {
+    <div class="form-horizontal col-md-10" style="padding: 0px; margin-top: 2px;">
+        @Html.DropDownList("Search", null, string.Empty, new { @class = "form-control" })
+    </div>
     <div class="form-horizontal col-md-10" style="margin-top:2px;padding:inherit">
-        <input type="text" name="TecnicoNome" class="form-control" />
+        <input type="text" name="NomeSearch" class="form-control" />
     </div>
     <button class="btn btn-link" type="submit" style="padding:initial"><img class="img-responsive" title="Buscar por Tecnico" src="~/Image/SearchOption_Icon-Atenda.png"></button>
     <a href="~/Agenda/CreateAgenda" class="btn btn-xs col-md-offset-10" style="float:right;margin-left:0%;margin-top:-16px"><img class="img-responsive" title="Novo Orçamento" src="~/Image/CreateOption_Icon-Atenda.png"></a>

@@ -38,6 +38,11 @@
                 @Html.DropDownList("IdProduto", null, string.Empty, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.IdProduto, "", new { @class = "text-danger" })
             </div>
+            <button class="btn btn-success" onclick="AddTableRow()" type="button">+</button>
+        </div>
+
+        <div id="product">
+
         </div>
 
         <div class="form-group">

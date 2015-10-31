@@ -37,11 +37,12 @@
 
             <phone:PivotItem Header="Lista">
                 <StackPanel>
-                    <ListBox Name="Lst_Clientes">
+                    <ListBox Name="Lst_Clientes" 
+                             SelectionChanged="onSelectionChange">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="0,0,0,17">
-                                    <TextBlock x:Name="ItemList" Tap="ItemList_Tap"  Text="{Binding Nome}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                                    <TextBlock x:Name="ItemList" Text="{Binding Nome}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
                                     <TextBlock Text="{Binding Telefone}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
                                 </StackPanel>
                             </DataTemplate>

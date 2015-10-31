@@ -17,6 +17,7 @@ namespace Atenda.Data
         public string Nome { get; set; }
 
         [Display(Name = "Telefone", Description = "Informe o telefone do Tecnico.")]
+        [RegularExpression(@"^\d+$", ErrorMessage = "Digite apenas numeros")]
         [DataType(DataType.PhoneNumber)]
         public string Telefone { get; set; }
 
@@ -52,8 +53,5 @@ namespace Atenda.Data
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "Digite a Senha!")]
         public string Senha { get; set; }
-
-        [Display(Name = "Lembre-me", Description = "Lembrar do Login")]
-        public bool LembreMe { get; set; }
     }
 }

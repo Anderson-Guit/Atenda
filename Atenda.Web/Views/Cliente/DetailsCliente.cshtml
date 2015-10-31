@@ -4,6 +4,13 @@
     ViewBag.Title = "Detalhes do cliente";
 }
 
+@if (TempData["Mensagem"] != null)
+{
+    <div class="alert alert-success" style="margin-top:20px; width:20%">
+        @TempData["Mensagem"]
+    </div>
+}
+
 <h2>Detalhes do cliente</h2>
 
 <div>
@@ -66,13 +73,13 @@
         <dd>
             @Html.DisplayFor(model => model.CPF_CNPJ)
         </dd>
-
+        <dd>
+            @Html.Raw(@Html.ActionLink("[replacetext]", "EditCliente", new { pId = Model.IdCliente }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/UpdateOption_Icon-Atenda.png\" ... />"))
+            @Html.Raw(@Html.ActionLink("[replacetext]", "DeleteCliente", new { pId = Model.IdCliente }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/DeleteOption_Icon-Atenda.png\" ... />"))
+        </dd>
     </dl>
 </div>
-<p>
-    @Html.Raw(@Html.ActionLink("[replacetext]", "EditCliente", new { pId = Model.IdCliente }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/UpdateOption_Icon-Atenda.png\" ... />"))
-    @Html.Raw(@Html.ActionLink("[replacetext]", "DeleteCliente", new { pId = Model.IdCliente }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/DeleteOption_Icon-Atenda.png\" ... />"))
-</p>
+
 <div>
     <button class="btn btn-link" onclick="goBack()"><img src="/Image/BackOption_Icon-Atenda.png" /></button>
 </div>

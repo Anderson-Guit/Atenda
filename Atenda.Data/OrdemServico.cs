@@ -92,6 +92,19 @@ namespace Atenda.Data
                 };
         }
 
+        public string Search { get; set; }
+        public List<OrdemServico> ListSearch()
+        {
+
+            return new List<OrdemServico>
+                {
+                    new OrdemServico {Search = "Nº OS"},
+                    new OrdemServico {Search = "Tecnico"},
+                    new OrdemServico {Search = "Cliente"},
+
+                };
+        }
+
     }
 
 }

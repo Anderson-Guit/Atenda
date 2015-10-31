@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Atenda.Data;
 using Atenda.Repository;
+using Atenda.Web.Controllers;
 
 namespace Atenda.Controllers
 {
@@ -21,8 +22,15 @@ namespace Atenda.Controllers
         // GET: /Produto/Details/5
         public ActionResult DetailsProduto(int pId)
         {
-            var produto = ProdutoRepository.GetOne(pId);
-            return View(produto);
+            try
+            {
+                var produto = ProdutoRepository.GetOne(pId);
+                return View(produto);
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         //
@@ -43,14 +51,16 @@ namespace Atenda.Controllers
                 {
                     ProdutoRepository nova = new ProdutoRepository();
                     nova.Create(pProduto);
-                    return RedirectToAction("ListProdutos");
+                    return RedirectToAction("ListProdutos").ComMensagemDeSucesso("Produto cadastrado com sucesso!");
                 }
-
-                return View("CreateProduto");
+                else
+                {
+                    return View("CreateProduto");
+                }                
             }
             catch
             {
-                return View();
+                throw;
             }
         }
 
@@ -58,8 +68,15 @@ namespace Atenda.Controllers
         // GET: /Produto/Edit/5
         public ActionResult EditProduto(int pId)
         {
-            var produtos = ProdutoRepository.GetOne(pId);
-            return View(produtos);
+            try
+            {
+                var produtos = ProdutoRepository.GetOne(pId);
+                return View(produtos);
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         //
@@ -73,14 +90,16 @@ namespace Atenda.Controllers
                 {
                     ProdutoRepository edit = new ProdutoRepository();
                     edit.Update(pProduto);
-                    return RedirectToAction("ListProdutos");
+                    return RedirectToAction("ListProdutos").ComMensagemDeSucesso("Produto editado com sucesso!");
                 }
-
-                return View("EditProduto");
+                else
+                {
+                    return View("EditProduto");
+                }
             }
             catch
             {
-                return View();
+                throw;
             }
         }
 
@@ -88,8 +107,15 @@ namespace Atenda.Controllers
         // GET: /Produto/Delete/5
         public ActionResult DeleteProduto(int pId)
         {
-            var produtos = ProdutoRepository.GetOne(pId);
-            return View(produtos);
+            try
+            {
+                var produtos = ProdutoRepository.GetOne(pId);
+                return View(produtos);
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         //
@@ -101,11 +127,11 @@ namespace Atenda.Controllers
             {
                 ProdutoRepository exclui = new ProdutoRepository();
                 exclui.Delete(pId);
-                return RedirectToAction("ListProdutos");
+                return RedirectToAction("ListProdutos").ComMensagemDeSucesso("Produto excluído com sucesso!");
             }
             catch
             {
-                return View();
+                return RedirectToAction("ListProdutos").ComMensagemDeErro("Produto não pode ser excluido! Existe pendencias");
             }
         }
         //
@@ -120,10 +146,29 @@ namespace Atenda.Controllers
         [HttpPost]
         public ActionResult ListProdutos(FormCollection form)
         {
-            string pNome = form["ProdutoNome"];
+            try
+            {
+                string nome = form["ProdutoNome"];
 
-                var produtos = ProdutoRepository.GetName(pNome);
-                return View(produtos);
+                if (nome == "")
+                {
+                    var produtos = ProdutoRepository.GetAll();
+                    return View(produtos).ComMensagemDeErro("Digite nome de um produto!");
+                }
+
+                var produtoNome = ProdutoRepository.GetName(nome);
+
+                if (produtoNome.Count == 0)
+                {
+                    var produtos = ProdutoRepository.GetAll();
+                    return View(produtos).ComMensagemDeErro("Produto não encontrado!");
+                }
+                return View(produtoNome);
+            }
+            catch
+            {
+                throw;
+            }
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Atenda.App.Classes.Dbs;
 
 namespace Atenda.App
 {
@@ -55,6 +56,11 @@ namespace Atenda.App
             }
             else
                 e.Cancel = true;
+        }
+
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            Lst_Clientes.ItemsSource = AgendaDB.GetAll();
         }
     }
 }

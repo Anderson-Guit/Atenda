@@ -138,7 +138,7 @@ namespace Atenda.Repository
 
             return tecnicos;
         }
-        public static Tecnico CheckUser(String Nome, String Senha)
+        public static Tecnico CheckUser(Login pLogin)
         {
             try
             {
@@ -147,7 +147,7 @@ namespace Atenda.Repository
 
                 sql.Append("SELECT * ");
                 sql.Append("FROM Tecnico ");
-                sql.Append("WHERE Nome='" + Nome + "' and Senha='" + Senha + "'");
+                sql.Append("WHERE Nome='" + pLogin.Nome + "' and Senha='" + pLogin.Senha + "'");
 
                 SqlDataReader dr = SqlConn.Get(sql.ToString());
 

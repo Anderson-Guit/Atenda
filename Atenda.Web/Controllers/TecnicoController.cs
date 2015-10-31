@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Atenda.Web.Controllers;
 
 namespace Atenda.Controllers
 {
@@ -21,8 +22,15 @@ namespace Atenda.Controllers
         // GET: /Tecnico/Details/5
         public ActionResult DetailsTecnico(int pId)
         {
-            var tecnico = TecnicoRepository.GetOne(pId);
-            return View(tecnico);
+            try
+            {
+                var tecnico = TecnicoRepository.GetOne(pId);
+                return View(tecnico);
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         //
@@ -43,14 +51,16 @@ namespace Atenda.Controllers
                 {
                     TecnicoRepository create = new TecnicoRepository();
                     create.Create(pTecnico);
-                    return RedirectToAction("ListTecnicos");
+                    return RedirectToAction("ListTecnicos").ComMensagemDeSucesso("Técnico cadastrado com sucesso!");
                 }
-
-                return View("CreateTecnico");
+                else
+                {
+                    return View("CreateTecnico");
+                }
             }
             catch
             {
-                return View();
+                throw;
             }
         }
 
@@ -58,8 +68,15 @@ namespace Atenda.Controllers
         // GET: /Tecnico/Edit/5
         public ActionResult EditTecnico(int pId)
         {
-            var tecnico = TecnicoRepository.GetOne(pId);
-            return View(tecnico);
+            try
+            {
+                var tecnico = TecnicoRepository.GetOne(pId);
+                return View(tecnico);
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         //
@@ -73,14 +90,16 @@ namespace Atenda.Controllers
                 {
                     TecnicoRepository edit = new TecnicoRepository();
                     edit.Update(pTecnico);
-                    return RedirectToAction("ListTecnicos");
+                    return RedirectToAction("ListTecnicos").ComMensagemDeSucesso("Técnico editado com sucesso!");
                 }
-
-                return View("EditTecnico");
+                else
+                {
+                    return View("EditTecnico");
+                }               
             }
             catch
             {
-                return View();
+                throw;
             }
         }
 
@@ -88,8 +107,15 @@ namespace Atenda.Controllers
         // GET: /Tecnico/Delete/5
         public ActionResult DeleteTecnico(int pId)
         {
-            var tecnico = TecnicoRepository.GetOne(pId);
-            return View(tecnico);
+            try
+            {
+                var tecnico = TecnicoRepository.GetOne(pId);
+                return View(tecnico);
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         //
@@ -99,18 +125,13 @@ namespace Atenda.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
-                {
                     TecnicoRepository exclui = new TecnicoRepository();
                     exclui.Delete(pId);
-                    return RedirectToAction("ListTecnicos");
-                }
-
-                return View("ListTecnicos");
+                    return RedirectToAction("ListTecnicos").ComMensagemDeSucesso("Técnico deletado com sucesso!");
             }
             catch
             {
-                return View();
+                return RedirectToAction("ListTecnicos").ComMensagemDeErro("Técnico não pode ser deletado! Existe pendencias");
             }
         }
         //
@@ -125,11 +146,22 @@ namespace Atenda.Controllers
         [HttpPost]
         public ActionResult ListTecnicos(FormCollection form)
         {
-            string pNome = form["TecnicoNome"];
+                string nome = form["TecnicoNome"];
 
-                var tecnicos = TecnicoRepository.GetName(pNome);
-                return View(tecnicos);
+                if (nome.Trim() == "")
+                {
+                    var tecnicos = TecnicoRepository.GetAll();
+                    return View(tecnicos).ComMensagemDeErro("Digite um nome!");
+                }
 
+                var TecnicoNome = TecnicoRepository.GetName(nome);
+
+                if (TecnicoNome.Count == 0)
+                {
+                    var tecnicos = TecnicoRepository.GetAll();
+                    return View(tecnicos).ComMensagemDeErro("Tecnico não encontrado!");
+                }
+                return View(TecnicoNome);                
         }
     }
 }

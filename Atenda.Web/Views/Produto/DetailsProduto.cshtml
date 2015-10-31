@@ -43,13 +43,13 @@
         <dd>
             @Html.DisplayFor(model => model.QntdEstoque)
         </dd>
-
+        <dd>
+            @Html.Raw(@Html.ActionLink("[replacetext]", "EditProduto", new { pId = Model.IdProduto }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/UpdateOption_Icon-Atenda.png\" ... />"))
+            @Html.Raw(@Html.ActionLink("[replacetext]", "DeleteProduto", new { pId = Model.IdProduto }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/DeleteOption_Icon-Atenda.png\" ... />"))
+        </dd>
     </dl>
 </div>
-<p>
-    @Html.Raw(@Html.ActionLink("[replacetext]", "EditProduto", new { pId = Model.IdProduto }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/UpdateOption_Icon-Atenda.png\" ... />"))
-    @Html.Raw(@Html.ActionLink("[replacetext]", "DeleteProduto", new { pId = Model.IdProduto }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/DeleteOption_Icon-Atenda.png\" ... />"))
-</p>
+
 <div>
     <button class="btn btn-link" onclick="goBack()"><img src="/Image/BackOption_Icon-Atenda.png" /></button>
 </div>

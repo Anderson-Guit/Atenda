@@ -13,7 +13,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded">
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsMenuEnabled="True" Mode="Minimized">
             <shell:ApplicationBar.MenuItems>
@@ -73,7 +73,16 @@
                         </Button>
                         <TextBlock Text="Agendamentos" FontSize="40" Margin="0,718,179,0" Height="60" VerticalAlignment="Top" HorizontalAlignment="Right" Width="277"/>
                         <ScrollViewer Margin="0,783,0,0" Height="529" VerticalAlignment="Top">
-
+                            <ListBox Name="Lst_Clientes">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Margin="0,0,0,17">
+                                            <TextBlock x:Name="ItemList" Text="{Binding Cliente}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                                            <TextBlock Text="{Binding Data}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
                         </ScrollViewer>
                     </Grid>
                 </ScrollViewer>

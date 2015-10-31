@@ -21,6 +21,21 @@ namespace Atenda.App.Pages.pCliente
             InitializeComponent();
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+
+            MessageBox.Show(clienteDetails.Nome);
+
+            Tb_Nome.Text = clienteDetails.Nome;
+            Tb_Telefone.Text = clienteDetails.Telefone;
+            Tb_Endereco.Text = clienteDetails.Endereco;
+            Tb_Cidade.Text = clienteDetails.Cidade;
+            Lpk_Estado.SelectedItem = clienteDetails.Estado;
+            Tb_CPF_CPNJ.Text = clienteDetails.CPF_CNPJ;
+            
+            base.OnNavigatedTo(e);
+        }
+
         private void Btn_Editar_Click(object sender, RoutedEventArgs e)
         {
 
@@ -33,12 +48,8 @@ namespace Atenda.App.Pages.pCliente
 
         private void page_DetailsCliente_Loaded(object sender, RoutedEventArgs e)
         {
-            Tb_Nome.Text = clienteDetails.Nome;
-            Tb_Telefone.Text = clienteDetails.Telefone;
-            Tb_Endereco.Text = clienteDetails.Endereco;
-            Tb_Cidade.Text = clienteDetails.Cidade;
-            Lpk_Estado.SelectedItem = clienteDetails.Estado;
-            Tb_CPF_CPNJ.Text = clienteDetails.CPF_CNPJ;
+
+           
         }
 
 

@@ -1,5 +1,4 @@
-﻿@model Atenda.Data.Tecnico
-
+﻿@model Atenda.Data.Login
 @{
     Layout = null;
 }
@@ -11,43 +10,178 @@
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <link href="@Url.Content("~/Content/login.css")" rel="stylesheet" />
-    <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
 
 </head>
-<body class="body">
-
+<body class="body" style="background-image:url(../../Image/BrackgroundLoginInvert-Atenda.png);
+                          background-size: cover;
+                          background-repeat: no-repeat;">
+    
     @using (Html.BeginForm("Login"))
     {
-        <div id="geral">
-            <fieldset>
-                <h2>Login</h2>
-                <div class="form-horizontal">
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <div class="form-group">
-                        <h3>@Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })</h3>
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+        @Html.AntiForgeryToken()
+            <div class="modal-dialog" style="width: 400px;">
+                <div class="modal-content" style=" background-color: rgba(255, 255, 255, 0.78)" >
+                    <div class="modal-header">
+                        <h1 class="modal-title text-center" style="line-height: 0.7;">Login 
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#infModal">
+                            <span class="glyphicon glyphicon-question-sign"></span>
+                         </button>
+                        </h1>
+                    </div>
+                    <div class="form-horizontal" style="margin-left:30px">
+                        <div class="form-group">
+                            <h3>@Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-3" })</h3>
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <h3>@Html.LabelFor(model => model.Senha, htmlAttributes: new { @class = "control-label col-md-3" })</h3>
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Senha, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })
+                            </div>
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <h3>@Html.LabelFor(model => model.Senha, htmlAttributes: new { @class = "control-label col-md-2" })</h3>
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Senha, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div>
+                    <div class="modal-footer">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Entrar" class="btn btn-default" />
+                            <button type="submit" class="btn btn-success"> <span class="glyphicon glyphicon-log-in"></span> Entrar</button>
+
+                            <button type="button" id="newUser" class="btn btn-info"><span class="glyphicon glyphicon-new-window"></span>Novo Aqui!</button>
                         </div>
                     </div>
                 </div>
-            </fieldset>
-        </div>
+                @if (TempData["Mensagem"] != null)
+                {
+                    if (TempData["Tipo"] == "ok")
+                    {
+                        <div class="alert alert-success" style="margin-top:20px; height:auto; width:380px; text-align:center">
+                            @TempData["Mensagem"]
+                        </div>
+                    }
+                    if (TempData["Tipo"] == "bad")
+                    {
+                        <div class="alert alert-danger" style="margin-top:20px; height:auto; width:380px; text-align:center">
+                            @TempData["Mensagem"]
+                        </div>
+                    }
+
+                }
+            </div>
+        
+
+
     }
 </body>
 </html>
+
+<div id="infModal" class="modal fade" role="alert" style="overflow: hidden; overflow-y: hidden;">
+    <div class="modal-dialog">
+
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 class="modal-title"><img src="~/Image/logo.png" class="img-responsive" /></h1>
+            </div>
+            <div class="modal-body">
+                <text class="text text-info" style="font-size:large;text-align:justify">
+                    O sistema Atenda é um software dedicado ao prestador de serviços
+                    autonomos que buscam automatizar a forma com a qual armazenam e gerenciam
+                    os cadastros de ordens de serviço, clientes, produtos, agendamentos e
+                    orçamentos.
+                </text><br />
+                <text class="text text-info" style="font-size:large;text-align:justify">
+                    Com o intuito de tornar mais facil os registros de serviços
+                    á domicilio, disponibilizamos um aplicativo para Windows Phone
+                    permitindo realiar qualquer função de Sistema Atenda de qualquer lugar
+                    sem a necessidade de internet.
+                </text>
+                <h5><a href="http://www.facebook.com/SistemaAtenda" target="_blank" type="button" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> Facebook</a></h5>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+@*<div id="newUser" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 class="modal-title">Primeiro Acesso</h1>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("CreateTecnico"))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Telefone, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Telefone, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Telefone, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Endereco, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Endereco, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Endereco, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Admissao, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Admissao, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Admissao, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Senha, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Senha, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ConfirmaSenha, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.ConfirmaSenha, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ConfirmaSenha, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <button class="btn btn-link" onclick="goBack()"><img src="/Image/BackOption_Icon-Atenda.png" /></button>
+                                <button type="submit" value="Salvar" class="btn btn-link"><img src="~/Image/SaveOption_Icon-Atenda.png" /></button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>
+</div>*@

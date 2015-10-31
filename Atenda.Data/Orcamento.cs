@@ -21,7 +21,6 @@ namespace Atenda.Data
         [DataType(DataType.Currency)]
         public decimal ValorServico { get; set; }
 
-        [Required]
         public int IdProduto { get; set; }
 
         [Display(Name = "Produto")]

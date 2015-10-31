@@ -1,0 +1,13 @@
+﻿@model Atenda.Data.Orcamento
+
+@using (Html.BeginCollectionItem("AddProdutos"))
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.NomeProduto, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("IdProduto", null, string.Empty, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.IdProduto, "", new { @class = "text-danger" })
+        </div>
+        <button class="btn btn-danger" type="button">-</button>
+    </div>
+}

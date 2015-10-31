@@ -63,5 +63,17 @@ namespace Atenda.Data
                 };
         }
 
+        public string Search { get; set; }
+        public List<Agenda> ListSearch()
+        {
+
+            return new List<Agenda>
+                {
+                    new Agenda {Search = "Status"},
+                    new Agenda {Search = "Tecnico"},
+                    new Agenda {Search = "Cliente"},
+
+                };
+        }
     }
 }

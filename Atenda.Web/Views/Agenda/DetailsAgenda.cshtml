@@ -74,13 +74,13 @@
         <dd>
             @Html.DisplayFor(model => model.Status)
         </dd>
-
+        <dd>
+            @Html.Raw(@Html.ActionLink("[replacetext]", "EditAgenda", new { pId = Model.IdAgenda }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/UpdateOption_Icon-Atenda.png\" ... />"))
+            @Html.Raw(@Html.ActionLink("[replacetext]", "DeleteAgenda", new { pId = Model.IdAgenda }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/DeleteOption_Icon-Atenda.png\" ... />"))
+        </dd>
     </dl>
 </div>
-<p>
-    @Html.Raw(@Html.ActionLink("[replacetext]", "EditAgenda", new { pId = Model.IdAgenda }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/UpdateOption_Icon-Atenda.png\" ... />"))
-    @Html.Raw(@Html.ActionLink("[replacetext]", "DeleteAgenda", new { pId = Model.IdAgenda }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/DeleteOption_Icon-Atenda.png\" ... />"))
-</p>
+
 <div>
     <button class="btn btn-link" onclick="goBack()"><img src="/Image/BackOption_Icon-Atenda.png" /></button>
 </div>

@@ -7,24 +7,14 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using Atenda.App.Resources;
 
 namespace Atenda.App
 {
     public partial class Login : PhoneApplicationPage
     {
-        // Constructor
         public Login()
         {
             InitializeComponent();
-
-            // Sample code to localize the ApplicationBar
-            //BuildLocalizedApplicationBar();
-        }
-
-        private void Btn_Entrar_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void HL_Empresa_Click(object sender, RoutedEventArgs e)
@@ -32,20 +22,32 @@ namespace Atenda.App
 
         }
 
-        // Sample code for building a localized ApplicationBar
-        //private void BuildLocalizedApplicationBar()
-        //{
-        //    // Set the page's ApplicationBar to a new instance of ApplicationBar.
-        //    ApplicationBar = new ApplicationBar();
+        string Nome;
+        string Senha;
 
-        //    // Create a new button and set the text value to the localized string from AppResources.
-        //    ApplicationBarIconButton appBarButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.rest.png", UriKind.Relative));
-        //    appBarButton.Text = AppResources.AppBarButtonText;
-        //    ApplicationBar.Buttons.Add(appBarButton);
+        private void Btn_Entrar_Click(object sender, RoutedEventArgs e)
+        {
 
-        //    // Create a new menu item with the localized string from AppResources.
-        //    ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
-        //    ApplicationBar.MenuItems.Add(appBarMenuItem);
-        //}
+            Nome = "admin";
+            Senha = "admin";
+
+            if (Tb_Nome.Text == Nome
+                && Pb_Senha.Password == Senha)
+            {
+                MessageBox.Show("Seja bem vindo!" + Nome);
+                NavigationService.Navigate(new Uri("MainPage.xaml", UriKind.Relative));
+            }
+
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            //manda o cliente selecionado para proxima pagina
+            if (Nome != null)
+            {
+                MainPage page = e.Content as MainPage;
+                page.pTecnico = Nome;
+            }
+        }
     }
 }

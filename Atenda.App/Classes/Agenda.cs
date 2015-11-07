@@ -32,9 +32,15 @@ namespace Atenda.App.Classes
         public DateTime Data { get; set; }
 
         [Column(CanBeNull = true)]
+        public string Servicos { get; set; }
+
+        [Column(CanBeNull = true)]
         public string Local { get; set; }
 
         [Column(CanBeNull = true)]
-        public bool Status { get; set; }
+        public string Observacoes { get; set; }
+
+        [Column(CanBeNull = true)]
+        public string Status { get; set; }
     }
 }

@@ -10,20 +10,13 @@ namespace Atenda.App.Classes
     class dataBase : DataContext
     {
         //string de conexão, contem o nome do arquivo que é o BD
-        public static string DBConnectionString = "Data Source ='isostore:carros.sdf'";
+        public static string DBConnectionString = "Data Source ='isostore:Atenda.sdf'";
 
         //construtor da classe passando a string de conexão
         public dataBase()
             : base(DBConnectionString)
         { }
 
-        public Table<Usuario> Usuario
-        {
-            get
-            {
-                return this.GetTable<Usuario>();
-            }
-        }
         public Table<Cliente> Cliente
         {
             get

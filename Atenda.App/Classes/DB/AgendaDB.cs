@@ -78,5 +78,6 @@ namespace Atenda.App.Classes.Dbs
             List<Agenda> agendas = new List<Agenda>(query.AsEnumerable());
             return agendas;
         }
+
     }
 }

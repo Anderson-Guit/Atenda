@@ -30,11 +30,11 @@ namespace Atenda.App.Classes
         }
 
         // salva um carro
-        public static void Delete(Cliente pCliente)
+        public static void Delete(int pIdCliente)
         {
             dataBase db = getDataBase();
             var query = from c in db.Cliente
-                        where c.IdCliente == pCliente.IdCliente
+                        where c.IdCliente == pIdCliente
                         select c;
 
             db.Cliente.DeleteOnSubmit(query.ToList()[0]);
@@ -55,6 +55,7 @@ namespace Atenda.App.Classes
             cliente.Endereco = pCliente.Endereco;
             cliente.Cidade = pCliente.Cidade;
             cliente.Estado = pCliente.Estado;
+            cliente.Bairro = pCliente.Bairro;
             cliente.CPF_CNPJ = pCliente.CPF_CNPJ;
 
             db.SubmitChanges();
@@ -79,6 +80,18 @@ namespace Atenda.App.Classes
             dataBase db = getDataBase();
             var query = from c in db.Cliente
                         select c;
+
+            List<Cliente> clientes = new List<Cliente>(query.AsEnumerable());
+            return clientes;
+        }
+
+        public static List<Cliente> GetNome(string nomeSearch)
+        {
+            dataBase db = getDataBase();
+            var query = from c in db.Cliente
+                        where c.Nome == "%" + nomeSearch + "%"
+                       select c;
+                        
 
             List<Cliente> clientes = new List<Cliente>(query.AsEnumerable());
             return clientes;

@@ -8,18 +8,13 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
-namespace Atenda.App.Pages.pOS
+namespace Atenda.App.Pages.pTecnico
 {
-    public partial class pageOS : PhoneApplicationPage
+    public partial class pageListTecnicos : PhoneApplicationPage
     {
-        public pageOS()
+        public pageListTecnicos()
         {
             InitializeComponent();
-        }
-
-        private void Btn_Busca_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

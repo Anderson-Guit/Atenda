@@ -27,6 +27,9 @@ namespace Atenda.App.Classes
             public string Cidade { get; set; }
 
             [Column(CanBeNull = true)]
+            public string Bairro { get; set; }
+
+            [Column(CanBeNull = true)]
             public string Estado { get; set; }
 
             [Column(CanBeNull = true)]

@@ -6,12 +6,12 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls.LocalizedResources;assembly=Microsoft.Phone.Controls.Toolkit"
-    mc:Ignorable="d"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
     shell:SystemTray.IsVisible="True">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
@@ -19,6 +19,7 @@
         <Grid.Background>
             <ImageBrush Stretch="Fill" ImageSource="/Assets/BrackgroundLogin.png"/>
         </Grid.Background>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -26,18 +27,17 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28"/>
-
+        
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <TextBlock HorizontalAlignment="Left" Margin="31,134,0,0" TextWrapping="Wrap" Text="Nome" VerticalAlignment="Top" FontSize="48"/>
             <TextBlock HorizontalAlignment="Left" Margin="31,277,0,0" TextWrapping="Wrap" Text="Senha" VerticalAlignment="Top" FontSize="48"/>
             <PasswordBox x:Name="Pb_Senha" HorizontalAlignment="Left" Margin="10,345,0,0" VerticalAlignment="Top" Width="436" Height="70"/>
             <TextBox x:Name="Tb_Nome" HorizontalAlignment="Left" Height="70" Margin="10,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="436"/>
-            <Button x:Name="Btn_Entrar" Content="Entrar" HorizontalAlignment="Left" Margin="10,516,0,0" VerticalAlignment="Top" Click="Btn_Entrar_Click" Height="123" Width="436" FontSize="72" BorderBrush="{x:Null}"/>
+            <Button x:Name="Btn_Entrar" Content="Entrar" HorizontalAlignment="Left" Margin="10,497,0,0" VerticalAlignment="Top" Click="Btn_Entrar_Click" Height="143" Width="436" FontSize="72" BorderBrush="{x:Null}"/>
             <CheckBox x:Name="Cb_Lembrar" Content="Lembrar-me" HorizontalAlignment="Left" Margin="31,420,0,0" VerticalAlignment="Top"/>
             <HyperlinkButton x:Name="HL_Empresa" Content="Conecte-se à uma empresa!" HorizontalAlignment="Left" Margin="0,664,0,0" VerticalAlignment="Top" Click="HL_Empresa_Click" Background="{x:Null}" Foreground="Red" Height="49" RenderTransformOrigin="0.5,0.5" FontSize="20"/>
         </Grid>
-        
     </Grid>
-    
+
 </phone:PhoneApplicationPage>

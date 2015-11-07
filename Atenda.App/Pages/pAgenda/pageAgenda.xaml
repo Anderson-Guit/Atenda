@@ -16,34 +16,47 @@
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
-
+        <!--Pivot Control-->
         <phone:Pivot Title="AGENDA">
 
             <phone:PivotItem Header="Lista">
-                <Grid/>
+                <StackPanel>
+                    <ListBox Name="Lst_Agendas" 
+                             SelectionChanged="onSelectionChange">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="0,0,0,17">
+                                    <TextBlock Text="{Binding ClienteNome}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                                    <TextBlock Text="{Binding Data}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                    <TextBlock Text="{Binding TecnicoNome}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
             </phone:PivotItem>
 
-            <phone:PivotItem Header="Novo">
+            <phone:PivotItem Header="Novo" Height="1030" Margin="12,28,12,-407">
                 <ScrollViewer Height="603" VerticalAlignment="Top">
-                    <StackPanel Height="1046">
-                        <Grid Height="1046">
-                            <TextBlock HorizontalAlignment="Left" Margin="7,5,0,0" TextWrapping="Wrap" Text="Tecnico" VerticalAlignment="Top" FontSize="36"/>
-                            <toolkit:ListPicker FullModeItemTemplate="{Binding Lpk_FullItemTemplate}" ItemTemplate="{Binding Lpk_ItemTemplate}" x:Name="Lpk_Tecnico" Margin="7,173,3,0" FontSize="36" Height="75" VerticalAlignment="Top"/>
-                            <TextBlock HorizontalAlignment="Left" Margin="7,125,0,0" TextWrapping="Wrap" Text="Cliente" VerticalAlignment="Top" FontSize="36"/>
-                            <toolkit:ListPicker FullModeItemTemplate="{Binding Lpk_FullItemTemplate}" ItemTemplate="{Binding Lpk_ItemTemplate}" x:Name="Lpk_Cliente" Margin="7,53,3,0" FontSize="36" Height="75" VerticalAlignment="Top"/>
-                            <TextBlock HorizontalAlignment="Left" Margin="7,245,0,0" TextWrapping="Wrap" Text="Data" VerticalAlignment="Top" FontSize="36"/>
-                            <toolkit:DatePicker x:Name="Dp_Data" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-3,293,294,0" Height="71" Width="165" FontSize="24"/>
-                            <TextBlock HorizontalAlignment="Left" Margin="366,245,0,0" TextWrapping="Wrap" Text="Hora" VerticalAlignment="Top" FontSize="36"/>
-                            <toolkit:TimePicker x:Name="Dp_Hora" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="312,293,3,0" Height="71" Width="141" FontSize="24"/>
-                            <TextBlock HorizontalAlignment="Left" Margin="7,369,0,0" TextWrapping="Wrap" Text="Local" VerticalAlignment="Top" FontSize="36"/>
-                            <TextBox x:Name="Tb_Local" HorizontalAlignment="Left" Height="72" Margin="-3,417,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="456"/>
-                            <TextBlock HorizontalAlignment="Left" Margin="4,740,0,0" TextWrapping="Wrap" Text="Status" VerticalAlignment="Top" FontSize="36"/>
-                            <toolkit:ToggleSwitch x:Name="Ts_Status" Margin="-6,788,6,0" Height="150" VerticalAlignment="Top"/>
-                            <Button x:Name="Btn_Salvar" Content="Salvar" HorizontalAlignment="Left" Height="71" Margin="118,938,0,0" VerticalAlignment="Top" Width="198" Click="Btn_Salvar_Click"/>
-                            <TextBlock HorizontalAlignment="Left" Margin="0,489,0,0" TextWrapping="Wrap" Text="Serviço" VerticalAlignment="Top" FontSize="36"/>
-                            <TextBox x:Name="Tb_Servico" HorizontalAlignment="Left" Height="72" Margin="-6,542,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="456"/>
-                            <TextBlock HorizontalAlignment="Left" Margin="-6,619,0,0" TextWrapping="Wrap" Text="Observações" VerticalAlignment="Top" FontSize="36"/>
-                            <TextBox x:Name="Tb_ObservacoesS" HorizontalAlignment="Left" Height="72" Margin="-6,667,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="456"/>
+                    <StackPanel Height="1030">
+                        <Grid Height="1030">
+                            <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Cliente" VerticalAlignment="Top" FontSize="36"/>
+                            <toolkit:ListPicker x:Name="Lpk_Cliente" FullModeHeader="Clientes" FullModeItemTemplate="{Binding Lpk_FullItemTemplate}" ItemTemplate="{Binding Lpk_ItemTemplate}" FontSize="36" Height="74" VerticalAlignment="Top" Margin="10,48,10,0"/>
+                            <TextBlock HorizontalAlignment="Left" Margin="10,125,0,0" TextWrapping="Wrap" Text="Data" VerticalAlignment="Top" FontSize="36"/>
+                            <toolkit:DatePicker x:Name="Dp_Data" HorizontalAlignment="Center" VerticalAlignment="Top" Height="62" Width="141" FontSize="24" Margin="84,119,231,0"/>
+                            <TextBlock HorizontalAlignment="Left" Margin="238,127,0,0" TextWrapping="Wrap" Text="Hora" VerticalAlignment="Top" FontSize="36"/>
+                            <toolkit:TimePicker x:Name="Tp_Hora" HorizontalAlignment="Center" VerticalAlignment="Top" Height="62" Width="141" FontSize="24" Margin="315,119,0,0"/>
+                            <TextBlock HorizontalAlignment="Left" Margin="10,187,0,0" TextWrapping="Wrap" Text="Serviços" VerticalAlignment="Top" FontSize="36"/>
+                            <TextBox x:Name="Tb_Servicos" HorizontalAlignment="Left" Height="115" Margin="0,235,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="456" InputScope="Text"/>
+                            <TextBlock HorizontalAlignment="Left" Margin="10,355,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="36" Text="Local"/>
+                            <TextBox x:Name="Tb_Local" HorizontalAlignment="Left" Height="72" Margin="0,403,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="456"/>
+                            <TextBlock HorizontalAlignment="Left" Margin="10,480,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="36" Text="Obervações"/>
+                            <TextBox x:Name="Tb_Observacoes" HorizontalAlignment="Left" Height="120" Margin="0,528,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="456"/>
+                            <TextBlock HorizontalAlignment="Left" Margin="10,653,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="36" Text="Tecnico"/>
+                            <toolkit:ListPicker x:Name="Lpk_Tecnico" FullModeHeader="Tecnicos" FullModeItemTemplate="{Binding Lpk_FullItemTemplate}" ItemTemplate="{Binding Lpk_ItemTemplate}" FontSize="36" Height="74" VerticalAlignment="Top" Margin="10,706,10,0"/>
+                            <TextBlock HorizontalAlignment="Left" Margin="10,785,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="36" Text="Status"/>
+                            <toolkit:ListPicker x:Name="Lpk_Status" FullModeHeader="Estados" FullModeItemTemplate="{Binding Lpk_FullItemTemplate}" ItemTemplate="{Binding Lpk_ItemTemplate}" FontSize="36" Height="74" VerticalAlignment="Top" Margin="10,833,10,0"/>
+                            <Button x:Name="Btn_Salvar" Content="Salvar" HorizontalAlignment="Left" Height="95" Margin="125,919,0,0" VerticalAlignment="Top" Width="198" Click="Btn_Salvar_Click"/>
                         </Grid>
                     </StackPanel>
                 </ScrollViewer>
@@ -57,11 +70,22 @@
                             <ImageBrush ImageSource="/Images/SearchOption_Icon-Atenda.png"/>
                         </Button.Background>
                     </Button>
-                    <ScrollViewer Margin="0,112,0,0">
-
-                    </ScrollViewer>
+                    <StackPanel Margin="0,112,0,0">
+                        <ListBox Name="Lst_AgendaSearch" 
+                             SelectionChanged="onSelectionChange">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Margin="0,0,0,17">
+                                        <TextBlock Text="{Binding Nome}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                                        <TextBlock Text="{Binding Telefone}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
                 </Grid>
             </phone:PivotItem>
+
         </phone:Pivot>
     </Grid>
 

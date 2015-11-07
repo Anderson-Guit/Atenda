@@ -14,10 +14,9 @@ namespace Atenda.App.Pages.pCliente
 {
     public partial class pageCliente : PhoneApplicationPage
     {
-        String[] Estado = { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO",
-                            "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", 
-                            "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" };
-
+        String[] Estados = { "", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO",
+                                "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", 
+                                "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" };
 
         public Cliente cliente { get; set; }
 
@@ -26,7 +25,7 @@ namespace Atenda.App.Pages.pCliente
         public pageCliente()
         {
             InitializeComponent();
-            this.Lpk_Estado.ItemsSource = Estado;
+            this.Lpk_Estado.ItemsSource = Estados;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -36,56 +35,50 @@ namespace Atenda.App.Pages.pCliente
 
         private void Btn_Salvar_Click(object sender, RoutedEventArgs e)
         {
-                cliente = new Cliente
-                {
-                    Nome = Tb_Nome.Text,
-                    Telefone = Tb_Telefone.Text,
-                    Endereco = Tb_Endereco.Text,
-                    Cidade = Tb_Cidade.Text,
-                    Estado = Convert.ToString(Lpk_Estado.SelectedItem),
-                    CPF_CNPJ = Tb_Cidade.Text  
-                };
-                ClienteDB.Create(cliente);
-                Tb_Nome.Text = null;
-                Tb_Telefone.Text = null;
-                Tb_Endereco.Text = null;
-                Tb_Cidade.Text = null;
-                Tb_CPF_CPNJ.Text = null;
-        }
-
-        private void Btn_Busca_Click(object sender, RoutedEventArgs e)
-        {
-
+            cliente = new Cliente
+            {
+                Nome = Tb_Nome.Text,
+                Telefone = Tb_Telefone.Text,
+                Endereco = Tb_Endereco.Text,
+                Cidade = Tb_Cidade.Text,
+                Bairro = Tb_Bairro.Text,
+                Estado = Convert.ToString(Lpk_Estado.SelectedItem),
+                CPF_CNPJ = Tb_CPF_CPNJ.Text
+            };
+            ClienteDB.Create(cliente);
+            Tb_Nome.Text = "";
+            Tb_Telefone.Text = "";
+            Tb_Endereco.Text = "";
+            Tb_Cidade.Text = "";
+            Tb_Bairro.Text = "";
+            Lpk_Estado.ItemsSource = "";
+            Tb_CPF_CPNJ.Text = "";
         }
 
         private void onSelectionChange(object sender, SelectionChangedEventArgs e)
         {
-            //seleciona um cliente da lista
-            MessageBox.Show("selectionchance");
             pCliente = (sender as ListBox).SelectedItem as Cliente;
-            MessageBox.Show(pCliente.Nome);
             NavigationService.Navigate(new Uri("/Pages/pCliente/pageClienteDetails.xaml", UriKind.Relative));
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            MessageBox.Show("esta no from");
             //manda o cliente selecionado para proxima pagina
             if (pCliente != null)
             {
-                pageDetailsCliente page = e.Content as pageDetailsCliente;
+                pageClienteDetails page = e.Content as pageClienteDetails;
                 page.clienteDetails = pCliente;
             }
             //elimina o evento do listbox para quando voltar pra essa page ela não voltar pra outra pagina.
             Lst_Clientes.SelectionChanged -= onSelectionChange;
         }
 
-        private void Abtn_Abrir_Click(object sender, EventArgs e)
+        private void Btn_Busca_Click(object sender, RoutedEventArgs e)
         {
-            //seleciona um cliente da lista
-            pCliente = (sender as ListBox).SelectedItem as Cliente;
+            string nomeSearch;
+
+            nomeSearch = Tb_Busca.Text;
+            Lst_ClientesSearch.ItemsSource = ClienteDB.GetNome(nomeSearch);
         }
-
-
     }
 }

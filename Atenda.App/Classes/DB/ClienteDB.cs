@@ -89,7 +89,7 @@ namespace Atenda.App.Classes
         {
             dataBase db = getDataBase();
             var query = from c in db.Cliente
-                        where c.Nome == "%" + nomeSearch + "%"
+                        where(c.Nome.Contains(nomeSearch))
                        select c;
                         
 
@@ -97,5 +97,16 @@ namespace Atenda.App.Classes
             return clientes;
         }
 
+        public static List<Orcamento> GetOrcamentos(int pId)
+        {
+            dataBase db = getDataBase();
+            var query = from o in db.Orcamento
+                        where o.idCliente == pId
+                        select o;
+
+
+            List<Orcamento> orcamentos = new List<Orcamento>(query.AsEnumerable());
+            return orcamentos;
+        }
     }
 }

@@ -14,7 +14,7 @@ namespace Atenda.App.Pages.pAgenda
 {
     public partial class pageAgenda : PhoneApplicationPage
     {
-        String[] Status = { "", "Aguardando", "Em Execução", "Realizado", "Cancelado" };
+        String[] Status = { "", "Aguardando", "Em Execução", "Realizado", "Cancelado", ""};
 
         public Agenda agenda { get; set; }
 
@@ -24,12 +24,12 @@ namespace Atenda.App.Pages.pAgenda
         {
             InitializeComponent();
             this.Lpk_Status.ItemsSource = Status;
-            this.Lpk_Cliente.ItemsSource = ClienteDB.GetAll();
-            this.Lpk_Tecnico.ItemsSource = TecnicoDB.GetAll();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            Lpk_Cliente.ItemsSource = ClienteDB.GetAll();
+            Lpk_Tecnico.ItemsSource = TecnicoDB.GetAll();
             Lst_Agendas.ItemsSource = AgendaDB.GetAll();
         }
         
@@ -57,13 +57,11 @@ namespace Atenda.App.Pages.pAgenda
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            //manda o cliente selecionado para proxima pagina
             if (pAgenda != null)
             {
                 pageAgendaDetails page = e.Content as pageAgendaDetails;
                 page.agendaDetails = pAgenda;
             }
-            //elimina o evento do listbox para quando voltar pra essa page ela não voltar pra outra pagina.
             Lst_Agendas.SelectionChanged -= onSelectionChange;
         }
 

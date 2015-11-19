@@ -82,5 +82,17 @@ namespace Atenda.App.Classes.Dbs
             return produtos;
         }
 
+        public static List<Produto> GetNome(string nomeSearch)
+        {
+            dataBase db = getDataBase();
+            var query = from p in db.Produto
+                        where (p.Nome.Contains(nomeSearch))
+                        select p;
+
+
+            List<Produto> produtos = new List<Produto>(query.AsEnumerable());
+            return produtos;
+        }
+
     }
 }

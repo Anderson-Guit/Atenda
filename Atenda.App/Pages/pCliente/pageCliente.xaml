@@ -19,20 +19,27 @@
         <!--Pivot Control-->
         <phone:Pivot Title="CLIENTE">
 
-            <phone:PivotItem Header="Lista">
-                <StackPanel>
-                    <ListBox Name="Lst_Clientes" 
-                             SelectionChanged="onSelectionChange">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Margin="0,0,0,17">
-                                    <TextBlock Text="{Binding Nome}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
-                                    <TextBlock Text="{Binding Telefone}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </StackPanel>
+            <phone:PivotItem Header="Lista" Margin="12,0">
+                <Grid>
+                    <TextBox x:Name="Tb_Busca" HorizontalAlignment="Left" Margin="0,17,0,0" TextWrapping="Wrap" Width="360" InputScope="Search" Height="72" VerticalAlignment="Top"/>
+                    <Button x:Name="Btn_Busca" Content="" HorizontalAlignment="Left" Height="104" Margin="350,3,0,0" VerticalAlignment="Top" Width="106" ClickMode="Press" BorderBrush="{x:Null}" Click="Btn_Busca_Click">
+                        <Button.Background>
+                            <ImageBrush ImageSource="/Images/SearchOption_Icon-Atenda.png"/>
+                        </Button.Background>
+                    </Button>
+                    <StackPanel Margin="0,107,0,0">
+                        <ListBox Name="Lst_Clientes" SelectionChanged="onSelectionChange">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Margin="0,0,0,17">
+                                        <TextBlock Text="{Binding Nome}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                                        <TextBlock Text="{Binding Telefone}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                </Grid>
             </phone:PivotItem>
 
             <phone:PivotItem Header="Novo" Margin="12,28,12,-407">
@@ -50,7 +57,7 @@
                             <TextBlock HorizontalAlignment="Left" Margin="10,489,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="36" Text="Cidade"/>
                             <TextBox x:Name="Tb_Cidade" HorizontalAlignment="Left" Height="72" Margin="0,537,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="456"/>
                             <TextBlock HorizontalAlignment="Left" Margin="10,614,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="36" Text="Estado"/>
-                            <toolkit:ListPicker FullModeItemTemplate="{Binding Lpk_FullItemTemplate}" ItemTemplate="{Binding Lpk_ItemTemplate}" x:Name="Lpk_Estado" Margin="10,662,14,0" FontSize="36" Height="74" VerticalAlignment="Top"/>
+                            <toolkit:ListPicker FullModeItemTemplate="{Binding Lpk_FullItemTemplate}" ItemTemplate="{Binding Lpk_ItemTemplate}" x:Name="Lpk_Estado" Margin="10,662,14,0" FontSize="36" Height="74" VerticalAlignment="Top" FontStretch="ExtraCondensed"/>
                             <TextBlock HorizontalAlignment="Left" Margin="10,736,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="36" Text="CPF/CNPJ"/>
                             <TextBox x:Name="Tb_CPF_CPNJ" HorizontalAlignment="Left" Height="72" Margin="0,784,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="456"/>
                             <Button x:Name="Btn_Salvar" Content="Salvar" HorizontalAlignment="Left" Height="95" Margin="124,861,0,0" VerticalAlignment="Top" Width="198" Click="Btn_Salvar_Click"/>
@@ -58,31 +65,6 @@
                     </StackPanel>
                 </ScrollViewer>
             </phone:PivotItem>
-
-            <phone:PivotItem Header="Busca">
-                <Grid>
-                    <TextBox x:Name="Tb_Busca" HorizontalAlignment="Left" Height="72" Margin="0,17,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="360" InputScope="Search"/>
-                    <Button x:Name="Btn_Busca" Content="" HorizontalAlignment="Left" Height="104" Margin="350,3,0,0" VerticalAlignment="Top" Width="106" ClickMode="Press" BorderBrush="{x:Null}" Click="Btn_Busca_Click">
-                        <Button.Background>
-                            <ImageBrush ImageSource="/Images/SearchOption_Icon-Atenda.png"/>
-                        </Button.Background>
-                    </Button>
-                    <StackPanel Margin="0,112,0,0">
-                        <ListBox Name="Lst_ClientesSearch" 
-                             SelectionChanged="onSelectionChange">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Margin="0,0,0,17">
-                                        <TextBlock Text="{Binding Nome}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
-                                        <TextBlock Text="{Binding Telefone}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
-                    </StackPanel>
-                </Grid>
-            </phone:PivotItem>
-
         </phone:Pivot>
     </Grid>
 

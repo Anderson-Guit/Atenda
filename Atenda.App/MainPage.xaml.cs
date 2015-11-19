@@ -37,7 +37,7 @@ namespace Atenda.App
 
         private void Btn_Produto_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new Uri("/Pages/pProduto/pageProdutos.xaml", UriKind.Relative));
         }
 
         private void Btn_Agenda_Click(object sender, RoutedEventArgs e)
@@ -47,7 +47,7 @@ namespace Atenda.App
 
         private void Btn_Tecnico_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new Uri("/Pages/pTecnico/pageListTecnicos.xaml", UriKind.Relative));
         }
     }
 }

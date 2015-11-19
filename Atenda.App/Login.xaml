@@ -12,7 +12,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot">
@@ -36,7 +36,6 @@
             <TextBox x:Name="Tb_Nome" HorizontalAlignment="Left" Height="70" Margin="10,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="436"/>
             <Button x:Name="Btn_Entrar" Content="Entrar" HorizontalAlignment="Left" Margin="10,497,0,0" VerticalAlignment="Top" Click="Btn_Entrar_Click" Height="143" Width="436" FontSize="72" BorderBrush="{x:Null}"/>
             <CheckBox x:Name="Cb_Lembrar" Content="Lembrar-me" HorizontalAlignment="Left" Margin="31,420,0,0" VerticalAlignment="Top"/>
-            <HyperlinkButton x:Name="HL_Empresa" Content="Conecte-se à uma empresa!" HorizontalAlignment="Left" Margin="0,664,0,0" VerticalAlignment="Top" Click="HL_Empresa_Click" Background="{x:Null}" Foreground="Red" Height="49" RenderTransformOrigin="0.5,0.5" FontSize="20"/>
         </Grid>
     </Grid>
 

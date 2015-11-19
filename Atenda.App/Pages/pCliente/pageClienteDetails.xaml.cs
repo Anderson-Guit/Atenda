@@ -23,6 +23,7 @@ namespace Atenda.App.Pages.pCliente
         public pageClienteDetails()
         {
             InitializeComponent();
+            //Lst_Orcamentos.ItemsSource = ClienteDB.GetOrcamentos(clienteDetails.IdCliente);
             this.Lpk_Estado.ItemsSource = Estados;
         }
 
@@ -61,6 +62,11 @@ namespace Atenda.App.Pages.pCliente
         {
             ClienteDB.Delete(clienteDetails.IdCliente);
             NavigationService.Navigate(new Uri("/Pages/pCliente/pageCliente.xaml", UriKind.Relative));
+        }
+
+        private void onSelectionChangeOrcamentos(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

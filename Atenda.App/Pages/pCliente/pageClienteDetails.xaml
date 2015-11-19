@@ -54,7 +54,19 @@
             </phone:PivotItem>
 
             <phone:PivotItem Header="Orçamentos">
-                <Grid/>
+                <StackPanel Margin="0,107,0,0">
+                    <ListBox Name="Lst_Orcamentos" 
+                             SelectionChanged="onSelectionChangeOrcamentos">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="0,0,0,17">
+                                    <TextBlock Text="{Binding Status}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                                    <TextBlock Text="{Binding ValorTotal}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
             </phone:PivotItem>
         </phone:Pivot>
     </Grid>

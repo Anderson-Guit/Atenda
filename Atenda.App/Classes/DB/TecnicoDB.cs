@@ -78,5 +78,17 @@ namespace Atenda.App.Classes.Dbs
             List<Tecnico> tecnicos = new List<Tecnico>(query.AsEnumerable());
             return tecnicos;
         }
+
+        public static List<Tecnico> GetNome(string nomeSearch)
+        {
+            dataBase db = getDataBase();
+            var query = from t in db.Tecnico
+                        where (t.Nome.Contains(nomeSearch))
+                        select t;
+
+
+            List<Tecnico> tecnicos = new List<Tecnico>(query.AsEnumerable());
+            return tecnicos;
+        }
     }
 }

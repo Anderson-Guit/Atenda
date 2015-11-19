@@ -53,6 +53,8 @@ namespace Atenda.App.Pages.pCliente
             Tb_Bairro.Text = "";
             Lpk_Estado.ItemsSource = "";
             Tb_CPF_CPNJ.Text = "";
+
+            Lst_Clientes.ItemsSource = ClienteDB.GetAll();
         }
 
         private void onSelectionChange(object sender, SelectionChangedEventArgs e)
@@ -69,7 +71,6 @@ namespace Atenda.App.Pages.pCliente
                 pageClienteDetails page = e.Content as pageClienteDetails;
                 page.clienteDetails = pCliente;
             }
-            //elimina o evento do listbox para quando voltar pra essa page ela não voltar pra outra pagina.
             Lst_Clientes.SelectionChanged -= onSelectionChange;
         }
 
@@ -78,7 +79,7 @@ namespace Atenda.App.Pages.pCliente
             string nomeSearch;
 
             nomeSearch = Tb_Busca.Text;
-            Lst_ClientesSearch.ItemsSource = ClienteDB.GetNome(nomeSearch);
+            Lst_Clientes.ItemsSource = ClienteDB.GetNome(nomeSearch);
         }
     }
 }

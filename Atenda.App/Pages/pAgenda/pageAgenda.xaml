@@ -14,6 +14,15 @@
     SupportedOrientations="Portrait"  Orientation="Portrait"
     shell:SystemTray.IsVisible="True">
 
+    <phone:PhoneApplicationPage.Resources>
+        <DataTemplate x:Name="Lpk_ItemTemplate">
+            <TextBlock Text="{Binding Pais}" />
+        </DataTemplate>
+        <DataTemplate x:Name="Lpk_FullItemTemplate">
+            <TextBlock Text="{Binding Pais}" />
+        </DataTemplate>
+    </phone:PhoneApplicationPage.Resources>
+
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <!--Pivot Control-->
@@ -21,8 +30,7 @@
 
             <phone:PivotItem Header="Lista">
                 <StackPanel>
-                    <ListBox Name="Lst_Agendas" 
-                             SelectionChanged="onSelectionChange">
+                    <ListBox Name="Lst_Agendas" SelectionChanged="onSelectionChange">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="0,0,0,17">
@@ -36,8 +44,8 @@
                 </StackPanel>
             </phone:PivotItem>
 
-            <phone:PivotItem Header="Novo" Height="1030" Margin="12,28,12,-407">
-                <ScrollViewer Height="603" VerticalAlignment="Top">
+            <phone:PivotItem Header="Novo" Height="1030" Margin="12,28,12,-427" VerticalAlignment="Top">
+                <ScrollViewer Height="602" VerticalAlignment="Top">
                     <StackPanel Height="1030">
                         <Grid Height="1030">
                             <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Cliente" VerticalAlignment="Top" FontSize="36"/>
@@ -55,7 +63,7 @@
                             <TextBlock HorizontalAlignment="Left" Margin="10,653,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="36" Text="Tecnico"/>
                             <toolkit:ListPicker x:Name="Lpk_Tecnico" FullModeHeader="Tecnicos" FullModeItemTemplate="{Binding Lpk_FullItemTemplate}" ItemTemplate="{Binding Lpk_ItemTemplate}" FontSize="36" Height="74" VerticalAlignment="Top" Margin="10,706,10,0"/>
                             <TextBlock HorizontalAlignment="Left" Margin="10,785,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="36" Text="Status"/>
-                            <toolkit:ListPicker x:Name="Lpk_Status" FullModeHeader="Estados" FullModeItemTemplate="{Binding Lpk_FullItemTemplate}" ItemTemplate="{Binding Lpk_ItemTemplate}" FontSize="36" Height="74" VerticalAlignment="Top" Margin="10,833,10,0"/>
+                            <toolkit:ListPicker FullModeItemTemplate="{Binding Lpk_FullItemTemplate}" ItemTemplate="{Binding Lpk_ItemTemplate}" x:Name="Lpk_Status" Margin="10,833,10,0" FontSize="36" Height="187" VerticalAlignment="Top"/>
                             <Button x:Name="Btn_Salvar" Content="Salvar" HorizontalAlignment="Left" Height="95" Margin="125,919,0,0" VerticalAlignment="Top" Width="198" Click="Btn_Salvar_Click"/>
                         </Grid>
                     </StackPanel>

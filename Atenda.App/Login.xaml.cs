@@ -7,6 +7,8 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Atenda.App.Classes;
+using System.IO.IsolatedStorage;
 
 namespace Atenda.App
 {
@@ -17,36 +19,61 @@ namespace Atenda.App
             InitializeComponent();
         }
 
-        private void HL_Empresa_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        string Nome;
-        string Senha;
+        IsolatedStorageSettings iso = IsolatedStorageSettings.ApplicationSettings;
 
         private void Btn_Entrar_Click(object sender, RoutedEventArgs e)
         {
+            Tecnico check = new Tecnico();
 
-            Nome = "admin";
-            Senha = "admin";
-
-            if (Tb_Nome.Text == Nome
-                && Pb_Senha.Password == Senha)
+            if (Tb_Nome.Text != "" || Pb_Senha.Password != "")
             {
-                MessageBox.Show("Seja bem vindo!" + Nome);
-                NavigationService.Navigate(new Uri("MainPage.xaml", UriKind.Relative));
+                if (check.CheckUser(Tb_Nome.Text, Pb_Senha.Password))
+                {
+                    if ((bool)Cb_Lembrar.IsChecked)
+                    {
+                        
+                        if (iso.Contains("login.Usuario"))
+                        {
+                            iso["login.Usuario"] = Tb_Nome.Text;
+                            iso["login.Senha"] = Pb_Senha.Password;
+                        }
+                        else
+                        {
+                            iso.Add("login.Usuario", Tb_Nome.Text);
+                            iso.Add("login.Senha", Pb_Senha.Password);
+                        }
+                    }
+                    else
+                    {
+                        if (iso.Contains("login.Usuario"))
+                        {
+                            iso.Remove("login.Usuario");
+                            iso.Remove("login.Senha");
+                        }
+                    }
+                    NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+                }
+                else
+                {
+                    MessageBox.Show("Nome ou senha inválidos!");
+                }
             }
-
+            else
+            {
+                MessageBox.Show("Preencha todos os campos!");
+            }
         }
 
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            //manda o cliente selecionado para proxima pagina
-            if (Nome != null)
+            string usuario, senha;
+            IsolatedStorageSettings iso = IsolatedStorageSettings.ApplicationSettings;
+            if (iso.TryGetValue<string>("login.Usuario", out usuario))
+                Tb_Nome.Text = usuario;
+            if (iso.TryGetValue<string>("login.Senha", out senha))
             {
-                MainPage page = e.Content as MainPage;
-                page.pTecnico = Nome;
+                Pb_Senha.Password = senha;
+                Cb_Lembrar.IsChecked = true;
             }
         }
     }

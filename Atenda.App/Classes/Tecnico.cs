@@ -24,5 +24,20 @@ namespace Atenda.App.Classes
 
         [Column(CanBeNull = false)]
         public DateTime Admissao { get; set; }
+
+        public Boolean CheckUser(string pNome, string pSenha)
+        {
+            string Nome = "admin";
+            string Senha = "admin";
+
+            if (pNome == Nome && pSenha == Senha)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

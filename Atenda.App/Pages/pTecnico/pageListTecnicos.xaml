@@ -16,30 +16,38 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="131.5"/>
+            <RowDefinition Height="636.5"/>
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+        <StackPanel Grid.Row="0" Margin="12,17,0,635" Grid.RowSpan="2">
             <TextBlock Text="TECNICOS" Style="{StaticResource PhoneTextNormalStyle}"/>
             <TextBlock Text="Lista" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <StackPanel>
-                <ListBox Name="Lst_Tecnicos" SelectionChanged="onSelectionChange">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Margin="0,0,0,17">
-                                <TextBlock Text="{Binding Nome}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
-                                <TextBlock Text="{Binding Telefone}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </StackPanel>
+        <Grid x:Name="ContentPanel" Margin="12,29.5,12,0" Grid.Row="1">
+            <Grid Margin="0,-39,0,0">
+                <TextBox x:Name="Tb_Busca" HorizontalAlignment="Left" Height="72" Margin="0,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="360" InputScope="Search"/>
+                <Button x:Name="Btn_Busca" Content="" HorizontalAlignment="Left" Height="104" Margin="350,13,0,0" VerticalAlignment="Top" Width="106" ClickMode="Press" BorderBrush="{x:Null}" Click="Btn_Busca_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Images/SearchOption_Icon-Atenda.png"/>
+                    </Button.Background>
+                </Button>
+                <StackPanel Margin="0,104,0,0">
+                    <ListBox Name="Lst_Tecnicos" SelectionChanged="onSelectionChange">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="0,0,0,17">
+                                    <TextBlock Text="{Binding Nome}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                                    <TextBlock Text="{Binding Telefone}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </Grid>
         </Grid>
     </Grid>
 

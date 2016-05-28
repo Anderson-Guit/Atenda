@@ -9,6 +9,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Atenda.App.Classes;
 using Atenda.App.Classes.Dbs;
+using System.Net.NetworkInformation;
 
 namespace Atenda.App.Pages.pAgenda
 {
@@ -23,16 +24,13 @@ namespace Atenda.App.Pages.pAgenda
         public pageAgenda()
         {
             InitializeComponent();
-            this.Lpk_Status.ItemsSource = Status;
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
+            TesteConexão();
             Lpk_Cliente.ItemsSource = ClienteDB.GetAll();
             Lpk_Tecnico.ItemsSource = TecnicoDB.GetAll();
             Lst_Agendas.ItemsSource = AgendaDB.GetAll();
+            this.Lpk_Status.ItemsSource = Status;
         }
-        
+
         private void Btn_Salvar_Click(object sender, RoutedEventArgs e)
         {
             agenda = new Agenda
@@ -72,5 +70,17 @@ namespace Atenda.App.Pages.pAgenda
             //nomeSearch = Tb_Busca.Text;
             //Lst_AgendaSearch.ItemsSource = AgendaDB.GetNome(nomeSearch);
         }
+
+        private static void TesteConexão()
+        {
+            if (NetworkInterface.GetIsNetworkAvailable())
+            {
+                Consume consume = new Consume();
+                consume.GetAgendaWebService();
+            }
+            else
+                MessageBox.Show("Sem conexão com o servidor!");
+        }
+
     }
 }

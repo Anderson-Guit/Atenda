@@ -20,7 +20,6 @@ namespace Atenda.App.Classes.Dbs
             return db;
         }
 
-        // salva um carro
         public static void Create(Produto pProduto)
         {
             dataBase db = getDataBase();
@@ -28,9 +27,10 @@ namespace Atenda.App.Classes.Dbs
             db.Produto.InsertOnSubmit(pProduto);
 
             db.SubmitChanges();
+
+            //PostJsonRequestWebClient(pCliente);
         }
 
-        // salva um carro
         public static void Delete(Produto pProduto)
         {
             dataBase db = getDataBase();
@@ -39,23 +39,6 @@ namespace Atenda.App.Classes.Dbs
                         select p;
 
             db.Produto.DeleteOnSubmit(query.ToList()[0]);
-            db.SubmitChanges();
-        }
-
-        public static void Update(Produto pProduto)
-        {
-            dataBase db = getDataBase();
-
-            Produto produto = (from p in db.Produto
-                               where p.IdProduto == pProduto.IdProduto
-                               select p).First();
-
-            //trata os campos que serão alterados
-            produto.Nome = pProduto.Nome;
-            produto.Descricao = pProduto.Descricao;
-            produto.Valor = pProduto.Valor;
-            produto.QntdEstoque = pProduto.QntdEstoque;
-
             db.SubmitChanges();
         }
 

@@ -32,10 +32,11 @@
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <TextBlock HorizontalAlignment="Left" Margin="31,134,0,0" TextWrapping="Wrap" Text="Nome" VerticalAlignment="Top" FontSize="48"/>
             <TextBlock HorizontalAlignment="Left" Margin="31,277,0,0" TextWrapping="Wrap" Text="Senha" VerticalAlignment="Top" FontSize="48"/>
-            <PasswordBox x:Name="Pb_Senha" HorizontalAlignment="Left" Margin="10,345,0,0" VerticalAlignment="Top" Width="436" Height="70"/>
-            <TextBox x:Name="Tb_Nome" HorizontalAlignment="Left" Height="70" Margin="10,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="436"/>
+            <PasswordBox x:Name="Pb_Senha" HorizontalAlignment="Left" Margin="10,345,0,0" VerticalAlignment="Top" Width="436" Height="70" KeyUp="txtMeuTexto_KeyUp"/>
+            <TextBox x:Name="Tb_Nome" HorizontalAlignment="Left" Height="70" Margin="10,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="436" KeyUp="txtMeuTexto_KeyUp" InputScope="Default"/>
             <Button x:Name="Btn_Entrar" Content="Entrar" HorizontalAlignment="Left" Margin="10,497,0,0" VerticalAlignment="Top" Click="Btn_Entrar_Click" Height="143" Width="436" FontSize="72" BorderBrush="{x:Null}"/>
             <CheckBox x:Name="Cb_Lembrar" Content="Lembrar-me" HorizontalAlignment="Left" Margin="31,420,0,0" VerticalAlignment="Top"/>
+            
         </Grid>
     </Grid>
 

@@ -21,11 +21,11 @@ namespace Atenda.Data
 
         [Display(Name = "Valor", Description = "Informe o Valor do Produto.")]
         [Required(ErrorMessage = "Valor é obrigatório")]
-        [DataType(DataType.Currency)]
+        //[DataType(DataType.Currency)]
         public decimal Valor { get; set; }
 
         [Display(Name = "Quantidade em Estoque", Description = "Informe a Quantidade de Produtos em Estoque.")]
-        public int QntdEstoque { get; set; }
+        public int? QntdEstoque { get; set; }
 
         public Produto()
         {

@@ -79,5 +79,16 @@ namespace Atenda.App.Classes.Dbs
             return agendas;
         }
 
+        public static List<Agenda> GetAllByTecnico(string TecnicoNome)
+        {
+            dataBase db = getDataBase();
+            var query = from a in db.Agenda
+                        where a.TecnicoNome == TecnicoNome
+                        select a;
+
+            List<Agenda> agendas = new List<Agenda>(query.AsEnumerable());
+            return agendas;
+        }
+
     }
 }

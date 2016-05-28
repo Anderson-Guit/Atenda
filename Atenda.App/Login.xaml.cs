@@ -9,6 +9,10 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Atenda.App.Classes;
 using System.IO.IsolatedStorage;
+using System.Net.NetworkInformation;
+using Atenda.App.Classes.Dbs;
+using Windows.UI;
+using Atenda.App.Classes.WebService;
 
 namespace Atenda.App
 {
@@ -16,7 +20,10 @@ namespace Atenda.App
     {
         public Login()
         {
+
+            //TesteConexão();
             InitializeComponent();
+            
         }
 
         IsolatedStorageSettings iso = IsolatedStorageSettings.ApplicationSettings;
@@ -27,7 +34,7 @@ namespace Atenda.App
 
             if (Tb_Nome.Text != "" || Pb_Senha.Password != "")
             {
-                if (check.CheckUser(Tb_Nome.Text, Pb_Senha.Password))
+                if (TecnicoDB.GetCheck(Tb_Nome.Text, Pb_Senha.Password) != null)
                 {
                     if ((bool)Cb_Lembrar.IsChecked)
                     {
@@ -51,7 +58,9 @@ namespace Atenda.App
                             iso.Remove("login.Senha");
                         }
                     }
-                    NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+                    string txtValor = Tb_Nome.Text;
+                    string uri = string.Format("/MainPage.xaml?nomeParametro={0}", txtValor);
+                    NavigationService.Navigate(new Uri(uri, UriKind.Relative));
                 }
                 else
                 {
@@ -74,6 +83,29 @@ namespace Atenda.App
             {
                 Pb_Senha.Password = senha;
                 Cb_Lembrar.IsChecked = true;
+            }
+        }
+
+        private static void TesteConexão()
+        {
+            if (NetworkInterface.GetIsNetworkAvailable())
+            {
+                Consume consume = new Consume();
+                consume.GetTecnicosWebService();
+
+                Post post = new Post();
+                post.ClientePost();
+            }
+            else
+                MessageBox.Show("Sem conexão com o servidor!");
+        }
+
+        private void txtMeuTexto_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+           
+            if (e.Key == System.Windows.Input.Key.Enter)
+            {
+                this.Focus();
             }
         }
     }

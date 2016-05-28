@@ -1,5 +1,4 @@
 ﻿<phone:PhoneApplicationPage
-    x:Class="Atenda.App.Pages.pAgenda.pageAgenda"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -7,6 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:Classes="clr-namespace:Atenda.App.Classes"
+    x:Class="Atenda.App.Pages.pAgenda.pageAgenda"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -15,33 +16,42 @@
     shell:SystemTray.IsVisible="True">
 
     <phone:PhoneApplicationPage.Resources>
-        <DataTemplate x:Name="Lpk_ItemTemplate">
-            <TextBlock Text="{Binding Pais}" />
+        <DataTemplate x:Name="ListPickerItemTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Nome}" Margin="10 0 0 0"/>
+            </StackPanel>
         </DataTemplate>
-        <DataTemplate x:Name="Lpk_FullItemTemplate">
-            <TextBlock Text="{Binding Pais}" />
+        <DataTemplate x:Name="ListPickerFullModeItemTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Nome}" Margin="10 0 0 0"/>
+            </StackPanel>
         </DataTemplate>
     </phone:PhoneApplicationPage.Resources>
-
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
+        
         <!--Pivot Control-->
         <phone:Pivot Title="AGENDA">
 
+
             <phone:PivotItem Header="Lista">
-                <StackPanel>
-                    <ListBox Name="Lst_Agendas" SelectionChanged="onSelectionChange">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Margin="0,0,0,17">
-                                    <TextBlock Text="{Binding ClienteNome}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
-                                    <TextBlock Text="{Binding Data}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
-                                    <TextBlock Text="{Binding TecnicoNome}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </StackPanel>
+                <Grid>
+                    <ScrollViewer>
+                        <StackPanel>
+                            <ListBox x:Name="Lst_Agendas" SelectionChanged="onSelectionChange" Height="602">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Margin="0,0,0,17">
+                                            <TextBlock Text="{Binding ClienteNome}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                                            <TextBlock Text="{Binding Data}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                            <TextBlock Text="{Binding TecnicoNome}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
             </phone:PivotItem>
 
             <phone:PivotItem Header="Novo" Height="1030" Margin="12,28,12,-427" VerticalAlignment="Top">
@@ -49,7 +59,7 @@
                     <StackPanel Height="1030">
                         <Grid Height="1030">
                             <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Cliente" VerticalAlignment="Top" FontSize="36"/>
-                            <toolkit:ListPicker x:Name="Lpk_Cliente" FullModeHeader="Clientes" FullModeItemTemplate="{Binding Lpk_FullItemTemplate}" ItemTemplate="{Binding Lpk_ItemTemplate}" FontSize="36" Height="74" VerticalAlignment="Top" Margin="10,48,10,0"/>
+                            <toolkit:ListPicker x:Name="Lpk_Cliente" ItemTemplate="{StaticResource ListPickerItemTemplate}" FullModeItemTemplate="{StaticResource ListPickerFullModeItemTemplate}" FullModeHeader="Clientes" CacheMode="BitmapCache" Margin="10,48,14,-24"/>
                             <TextBlock HorizontalAlignment="Left" Margin="10,125,0,0" TextWrapping="Wrap" Text="Data" VerticalAlignment="Top" FontSize="36"/>
                             <toolkit:DatePicker x:Name="Dp_Data" HorizontalAlignment="Center" VerticalAlignment="Top" Height="62" Width="141" FontSize="24" Margin="84,119,231,0"/>
                             <TextBlock HorizontalAlignment="Left" Margin="238,127,0,0" TextWrapping="Wrap" Text="Hora" VerticalAlignment="Top" FontSize="36"/>
@@ -61,7 +71,7 @@
                             <TextBlock HorizontalAlignment="Left" Margin="10,480,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="36" Text="Obervações"/>
                             <TextBox x:Name="Tb_Observacoes" HorizontalAlignment="Left" Height="120" Margin="0,528,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="456"/>
                             <TextBlock HorizontalAlignment="Left" Margin="10,653,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="36" Text="Tecnico"/>
-                            <toolkit:ListPicker x:Name="Lpk_Tecnico" FullModeHeader="Tecnicos" FullModeItemTemplate="{Binding Lpk_FullItemTemplate}" ItemTemplate="{Binding Lpk_ItemTemplate}" FontSize="36" Height="74" VerticalAlignment="Top" Margin="10,706,10,0"/>
+                            <toolkit:ListPicker x:Name="Lpk_Tecnico" FullModeHeader="Tecnicos" SelectionMode="Single" ItemTemplate="{StaticResource ListPickerItemTemplate}" FullModeItemTemplate="{StaticResource ListPickerFullModeItemTemplate}" FontSize="36" Height="74" VerticalAlignment="Top" Margin="10,706,10,0"/>
                             <TextBlock HorizontalAlignment="Left" Margin="10,785,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="36" Text="Status"/>
                             <toolkit:ListPicker FullModeItemTemplate="{Binding Lpk_FullItemTemplate}" ItemTemplate="{Binding Lpk_ItemTemplate}" x:Name="Lpk_Status" Margin="10,833,10,0" FontSize="36" Height="187" VerticalAlignment="Top"/>
                             <Button x:Name="Btn_Salvar" Content="Salvar" HorizontalAlignment="Left" Height="95" Margin="125,919,0,0" VerticalAlignment="Top" Width="198" Click="Btn_Salvar_Click"/>
@@ -79,8 +89,8 @@
                         </Button.Background>
                     </Button>
                     <StackPanel Margin="0,112,0,0">
-                        <ListBox Name="Lst_AgendaSearch" 
-                             SelectionChanged="onSelectionChange">
+                        <ListBox x:Name="Lst_AgendaSearch" 
+							SelectionChanged="onSelectionChange">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Margin="0,0,0,17">

@@ -25,14 +25,13 @@ namespace Atenda.Data
         public string TecnicoNome { get; set; }
 
         [Display(Name = "Equipamento", Description = "Tipo do Equipamento.")]
+        [Required(ErrorMessage = "Equipamento é obrigatório")]
         public string Equipamento { get; set; }
 
         [Display(Name = "Marca", Description = "Marca do Equipamento.")]
-        [Required(ErrorMessage = "Marca é obrigatório")]
         public string Marca { get; set; }
 
         [Display(Name = "Modelo", Description = "Informe o Modelo do Equipamento.")]
-        [Required(ErrorMessage = "Modelo é obrigatório")]
         public string Modelo { get; set; }
 
         [Display(Name = "Número de Série", Description = "Informe o Número de Série do Equipamento.")]
@@ -40,36 +39,44 @@ namespace Atenda.Data
 
         [Display(Name = "Defeito", Description = "Informe o Defeito do Equipamento.")]
         [Required(ErrorMessage = "Defeito é obrigatório")]
-        [StringLength(100, MinimumLength = 5, ErrorMessage =
+        [StringLength(300, MinimumLength = 5, ErrorMessage =
            "O Defeito deve ter no mínimo 5 e no máximo 100 caracteres.")]
+        [DataType(DataType.MultilineText)]
         public string Defeito { get; set; }
 
-        [Display(Name = "Serviço", Description = "Informe o Serviço do Equipamento.")]
+        [Display(Name = "Serviço", Description = "Informe o Serviço executado.")]
         [Required(ErrorMessage = "Serviço é obrigatório")]
+        [DataType(DataType.MultilineText)]
         public string Servico { get; set; }
 
         [Display(Name = "Data de entrada", Description = "Informe a data de entrada do serviço.")]
         [Required(ErrorMessage = "Data de entrada é obrigatório")]
-        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        [DataType(DataType.Date, ErrorMessage = "Data em formato inválido")]
         public DateTime DataEntrada { get; set; }
 
         [Display(Name = "Data de saida", Description = "Informe a data de saida do serviço.")]
-        [Required(ErrorMessage = "Data de saída é obrigatório")]
-        [DataType(DataType.Date)]
-        public DateTime DataSaida { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        [DataType(DataType.Date, ErrorMessage = "Data em formato inválido")]
+        public DateTime? DataSaida { get; set; }
 
         [Display(Name = "Local", Description = "Informe o Local do Equipamento.")]
-        [Required(ErrorMessage = "Local é obrigatório")]
         public string Local { get; set; }
 
         [Display(Name = "Observações", Description = "Informe as Observações do Equipamento.")]
         [StringLength(200, MinimumLength = 5, ErrorMessage =
            "Se necessário as observações devem ter no mínimo 5 e no máximo 200 caracteres.")]
+        [DataType(DataType.MultilineText)]
         public string Observacoes { get; set; }
+
+        [Display(Name = "Produtos", Description = "Adicione os produtos")]
+        public List<Produto> IdProduto { get; set; }
+
+        public int? QntdProduto { get; set; }
 
         [Display(Name = "Custo", Description = "Valor do serviço.")]
         [DataType(DataType.Currency)]
-        public decimal Custo { get; set; }
+        public decimal? Custo { get; set; }
 
         [Display(Name = "Status", Description = "Informe o Status do Equipamento.")]
         [Required(ErrorMessage = "Status é obrigatório")]

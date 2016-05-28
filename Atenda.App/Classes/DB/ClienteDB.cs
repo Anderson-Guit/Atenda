@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net;
 
 namespace Atenda.App.Classes
 {
@@ -27,6 +28,8 @@ namespace Atenda.App.Classes
             db.Cliente.InsertOnSubmit(pCliente);
 
             db.SubmitChanges();
+
+            //PostJsonRequestWebClient(pCliente);
         }
 
         // salva um carro
@@ -108,5 +111,32 @@ namespace Atenda.App.Classes
             List<Orcamento> orcamentos = new List<Orcamento>(query.AsEnumerable());
             return orcamentos;
         }
+
+        //public static void PostJsonRequestWebClient(Cliente Cliente)
+        //{
+        //    WebClient webclient = new WebClient();
+        //    Uri uristring = null;
+        //    uristring = new Uri("http://apiatenda.azurewebsites.net/api/Cliente/Post"); 
+        //    webclient.Headers["ContentType"] = "application/json";
+        //    string WebUrlRegistration = "";
+        //    string JsonStringParams = Cliente.Nome;
+        //    webclient.UploadStringCompleted += wc_UploadStringCompleted;
+        //    webclient.UploadStringAsync(uristring, "POST", JsonStringParams); 
+        //}
+        //private static void wc_UploadStringCompleted(object sender, UploadStringCompletedEventArgs e)
+        //{
+        //    try
+        //    {
+
+        //        if (e.Result != null)
+        //        {
+        //            string responce = e.Result.ToString();
+        //            //To Do Your functionality 
+        //        }
+        //    }
+        //    catch
+        //    {
+        //    }
+        //}
     }
 }

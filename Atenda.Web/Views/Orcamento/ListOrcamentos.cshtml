@@ -35,19 +35,19 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.NomeCliente)
+            @Html.DisplayNameFor(model => model.ClienteNome)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Servico)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ValorServico)
+            @Html.DisplayNameFor(model => model.Valor)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NomeProduto)
+            @Html.DisplayNameFor(model => model.ProdutoNome)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ValorProduto)
+            @Html.DisplayNameFor(model => model.ProdutoValor)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ValorTotal)
@@ -58,19 +58,19 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.NomeCliente)
+            @Html.DisplayFor(modelItem => item.ClienteNome)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Servico)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ValorServico)
+            @Html.DisplayFor(modelItem => item.Valor)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.NomeProduto)
+            @Html.DisplayFor(modelItem => item.ProdutoNome)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ValorProduto)
+            @Html.DisplayFor(modelItem => item.ProdutoValor)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ValorTotal)

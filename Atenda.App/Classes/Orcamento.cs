@@ -14,13 +14,13 @@ namespace Atenda.App.Classes
         [Column(IsPrimaryKey = true, IsDbGenerated = true)]
         public int IdOrcamento { get; set; }
 
-        [Column(CanBeNull = false)]
+        [Column(CanBeNull = true)]
         public string Servico { get; set; }
 
-        [Column(CanBeNull = false)]
+        [Column(CanBeNull = true)]
         public decimal ValorServico { get; set; }
 
-        [Column(IsPrimaryKey = false)]
+        [Column(CanBeNull = false)]
         public int IdProduto { get; set; }
 
         [Column(CanBeNull = true)]
@@ -30,9 +30,12 @@ namespace Atenda.App.Classes
         public decimal ValorProduto { get; set; }
 
         [Column(CanBeNull = true)]
+        public int QntdProduto { get; set; }
+
+        [Column(CanBeNull = false)]
         public decimal ValorTotal { get; set; }
 
-        [Column]
+        [Column(CanBeNull = false)]
         public int idCliente { get; set; }
 
     }

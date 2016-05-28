@@ -22,7 +22,7 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,12,10">
-            <TextBlock Text="nome-user" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock x:Name="UsuarioLogado_Nome" Text="nome-user" Style="{StaticResource PhoneTextNormalStyle}"/>
             <Image Height="130" Source="/Images/BannerWP.png" Stretch="Fill" Margin="-11,0,-12,0"/>
         </StackPanel>
 
@@ -62,17 +62,19 @@
                             </Button.Background>
                         </Button>
                         <TextBlock Text="Agendamentos" FontSize="40" Margin="0,718,179,0" Height="60" VerticalAlignment="Top" HorizontalAlignment="Right" Width="277"/>
-                        <ScrollViewer Margin="0,783,0,0" Height="529" VerticalAlignment="Top">
-                            <ListBox Name="Lst_Clientes">
-                                <ListBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Margin="0,0,0,17">
-                                            <TextBlock x:Name="ItemList" Text="{Binding Cliente}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
-                                            <TextBlock Text="{Binding Data}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </ListBox.ItemTemplate>
-                            </ListBox>
+                        <ScrollViewer Margin="0,783,0,0" Height="529" VerticalAlignment="Top"> 
+                            <StackPanel>
+                                <ListBox Name="Lst_Agenda" Height="530">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Margin="0,0,0,17">
+                                                <TextBlock Text="{Binding ClienteNome}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                                                <TextBlock Text="{Binding Data}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </StackPanel>
                         </ScrollViewer>
                     </Grid>
                 </ScrollViewer>

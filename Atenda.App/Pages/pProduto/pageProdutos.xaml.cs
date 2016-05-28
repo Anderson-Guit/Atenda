@@ -9,6 +9,8 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Atenda.App.Classes.Dbs;
 using Atenda.App.Classes;
+using Newtonsoft.Json.Linq;
+using System.Net.NetworkInformation;
 
 namespace Atenda.App.Pages.pProduto
 {
@@ -17,6 +19,7 @@ namespace Atenda.App.Pages.pProduto
         public pageProdutos()
         {
             InitializeComponent();
+            TesteConexão();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -35,6 +38,18 @@ namespace Atenda.App.Pages.pProduto
 
             nomeSearch = Tb_Busca.Text;
             Lst_Produtos.ItemsSource = ProdutoDB.GetNome(nomeSearch);
+        }
+
+        private static void TesteConexão()
+        {
+            if (NetworkInterface.GetIsNetworkAvailable())
+            {
+                Consume consume = new Consume();
+
+                consume.GetProdutosWebService();
+            }
+            else
+                MessageBox.Show("Sem conexão com o servidor!");
         }
     }
 }

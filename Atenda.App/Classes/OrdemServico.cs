@@ -10,7 +10,7 @@ namespace Atenda.App.Classes
     [Table(Name="Ordemservico")]
     public class OrdemServico
     {
-        [Column(IsPrimaryKey = true, IsDbGenerated = true)]
+        [Column(IsPrimaryKey = true, IsDbGenerated = false)]
         public int IdOS { get; set; }
 
         [Column(CanBeNull = false)]
@@ -25,10 +25,10 @@ namespace Atenda.App.Classes
         [Column(CanBeNull = true)]
         public string ClienteNome { get; set; }
 
-        [Column(CanBeNull = true)]
+        [Column(CanBeNull = false)]
         public string Equipamento { get; set; }
 
-        [Column(CanBeNull = false)]
+        [Column(CanBeNull = true)]
         public string Marca { get; set; }
 
         [Column(CanBeNull = true)]
@@ -37,17 +37,17 @@ namespace Atenda.App.Classes
         [Column(CanBeNull = true)]
         public string NumeroSerie { get; set; }
 
-        [Column(CanBeNull = true)]
+        [Column(CanBeNull = false)]
         public string Defeito { get; set; }
 
-        [Column(CanBeNull = true)]
+        [Column(CanBeNull = false)]
         public string Servico { get; set; }
 
-        [Column(CanBeNull = true)]
+        [Column(CanBeNull = false)]
         public DateTime DataEntrada { get; set; }
 
         [Column(CanBeNull = true)]
-        public DateTime DataSaida { get; set; }
+        public DateTime? DataSaida { get; set; }
 
         [Column(CanBeNull = true)]
         public string Local { get; set; }
@@ -56,6 +56,15 @@ namespace Atenda.App.Classes
         public string Observacoes { get; set; }
 
         [Column(CanBeNull = true)]
-        public bool Status { get; set; }
+        public decimal? Custo { get; set; }
+
+        [Column(CanBeNull = true)]
+        public int IdProduto { get; set; }
+
+        [Column(CanBeNull = true)]
+        public string ProdutoNome { get; set; }
+        
+        [Column(CanBeNull = false)]
+        public string Status { get; set; }
     }
 }

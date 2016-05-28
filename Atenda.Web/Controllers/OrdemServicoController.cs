@@ -40,6 +40,7 @@ namespace Atenda.Controllers
             ViewBag.IdCliente = new SelectList(ClienteRepository.GetAll(), "IdCliente", "Nome");
             ViewBag.IdTecnico = new SelectList(TecnicoRepository.GetAll(), "IdTecnico", "Nome");
             ViewBag.Status = new SelectList(new OrdemServico().ListStatus(), "Status", "Status");
+            ViewBag.ListProdutos = null;
             return View();
         }
 
@@ -55,6 +56,7 @@ namespace Atenda.Controllers
                     ViewBag.IdCliente = new SelectList(ClienteRepository.GetAll(), "IdCliente", "Nome", pOS.IdCliente);
                     ViewBag.IdTecnico = new SelectList(TecnicoRepository.GetAll(), "IdTecnico", "Nome", pOS.IdTecnico);
                     ViewBag.Status = new SelectList(new OrdemServico().ListStatus(), "Status", "Status", pOS.Status);
+                    ViewBag.ListProdutos = null;
                     OrdemServicoRepository nova = new OrdemServicoRepository();
                     nova.Create(pOS);
                     return RedirectToAction("ListOS").ComMensagemDeSucesso("OS cadastrada com sucesso!");
@@ -70,6 +72,24 @@ namespace Atenda.Controllers
             }
         }
 
+        // GET: /OrdemServico/Edit/5
+        public ActionResult AddProdutos(OrdemServico pOS)
+        {
+            ViewBag.IdProduto = new SelectList(ProdutoRepository.GetAll(), "IdProduto", "Nome");
+            return View();
+        }
+
+        // POST: /OrdemServico/Edit/5
+        [HttpPost]
+        public ActionResult AddProdutos(OrdemServico pOS, List<Produto> ListProd)
+        {
+            ViewBag.IdCliente = new SelectList(ClienteRepository.GetAll(), "IdCliente", "Nome", pOS.IdCliente);
+            ViewBag.IdTecnico = new SelectList(TecnicoRepository.GetAll(), "IdTecnico", "Nome", pOS.IdTecnico);
+            ViewBag.Status = new SelectList(new OrdemServico().ListStatus(), "Status", "Status", pOS.Status);
+            ViewBag.ListProdutos = pOS.IdProduto;
+            return View("CreateOS");
+        }
+
         //
         // GET: /OrdemServico/Edit/5
         public ActionResult EditOS(int pId)
@@ -79,6 +99,8 @@ namespace Atenda.Controllers
                 var os = OrdemServicoRepository.GetOne(pId);
                 ViewBag.IdTecnico = new SelectList(TecnicoRepository.GetAll(), "IdTecnico", "Nome", os.IdTecnico);
                 ViewBag.Status = new SelectList(new OrdemServico().ListStatus(), "Status", "Status", os.Status);
+                //List<Produto> list = ProdutoRepository.GetAllByOS(pId);
+                //ViewBag.ListProdutos = list;
                 return View(os);
             }
             catch

@@ -1,4 +1,4 @@
-﻿@model Atenda.Data.Orcamento
+﻿@model Atenda.Web.ViewModel.OrcamentoViewModel
 
 @{
     ViewBag.Title = "Detalhes do Orçamento";
@@ -9,58 +9,84 @@
 <div>
     <dl class="dl-horizontal">
 
-        @Html.HiddenFor(model => model.IdOrcamento)
+        @Html.HiddenFor(model => model.pOrcamento.IdOrcamento)
 
         <dt>
-            @Html.DisplayNameFor(model => model.Servico)
+            @Html.DisplayNameFor(model => model.pOrcamento.Servico)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Servico)
+            @Html.DisplayFor(model => model.pOrcamento.Servico)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ValorServico)
+            @Html.DisplayNameFor(model => model.pOrcamento.Valor)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ValorServico)
+            @Html.DisplayFor(model => model.pOrcamento.Valor)
+        </dd>
+        <dt>
+            @Html.Label("Produtos")
+        </dt>
+     </dl>
+    </div>
+<div>
+    <table class="dl-horizontal">
+        <tr>
+            <th>
+                @Html.Label("Nome ")
+            </th>
+            <th>
+                @Html.Label("Valor ")
+            </th>
+            <th>
+                @Html.Label("Quantidade")
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var produto in Model.Produtos)
+        {
+            <tr>
+                @Html.HiddenFor(modelItem => produto.IdProduto)
+                <td>
+                    @Html.DisplayFor(modelItem => produto.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => produto.Valor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => produto.QntdEstoque)
+                </td>
+                <td>
+                    @Html.Raw(@Html.ActionLink("[replacetext]", "DetailsProduto", new { pId = produto.IdProduto }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/DetailsOption_Icon-Atenda.png\" ... />"))
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<div>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.pOrcamento.ValorTotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pOrcamento.ValorTotal)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NomeProduto)
+            @Html.DisplayNameFor(model => model.pOrcamento.ClienteNome)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.NomeProduto)
+            @Html.DisplayFor(model => model.pOrcamento.ClienteNome)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ValorProduto)
-        </dt>
-
+        <br />
         <dd>
-            @Html.DisplayFor(model => model.ValorProduto)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ValorTotal)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ValorTotal)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NomeCliente)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NomeCliente)
-        </dd>
-        <dd>
-            @Html.Raw(@Html.ActionLink("[replacetext]", "EditCliente", new { pId = Model.IdOrcamento }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/UpdateOption_Icon-Atenda.png\" ... />"))
-            @Html.Raw(@Html.ActionLink("[replacetext]", "DeleteCliente", new { pId = Model.IdOrcamento }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/DeleteOption_Icon-Atenda.png\" ... />"))
+            @Html.Raw(@Html.ActionLink("[replacetext]", "EditCliente", new { pId = Model.pOrcamento.IdOrcamento }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/UpdateOption_Icon-Atenda.png\" ... />"))
+            @Html.Raw(@Html.ActionLink("[replacetext]", "DeleteCliente", new { pId = Model.pOrcamento.IdOrcamento }).ToHtmlString().Replace("[replacetext]", "<img src=\"/Image/DeleteOption_Icon-Atenda.png\" ... />"))
         </dd>
     </dl>
 </div>

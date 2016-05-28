@@ -10,11 +10,10 @@ namespace Atenda.App.Classes
     [Table(Name = "Cliente")]
     public class Cliente
     {
-
-            [Column(IsPrimaryKey = true, IsDbGenerated = true)]
+            [Column(CanBeNull = false)]
             public int IdCliente { get; set; }
 
-            [Column(CanBeNull = false)]
+            [Column(IsPrimaryKey = true, IsDbGenerated = false)]
             public string Nome { get; set; }
 
             [Column(CanBeNull = false)]

@@ -1,5 +1,7 @@
 ﻿using Atenda.Data;
 using Atenda.Repository;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +13,12 @@ namespace Atenda.API.Controllers
 {
     public class ClienteController : ApiController
     {
+        class Parametro{
+            public string parametro { get; set; }
+        }
+
         // GET: api/Cliente
+        [ActionName("Listar")]
         public IEnumerable<Cliente> GetAll()
         {
             var clientes = ClienteRepository.GetAll();
@@ -19,6 +26,7 @@ namespace Atenda.API.Controllers
             return clientes;
         }
 
+        
         // GET: api/Cliente/5
         public Cliente GetOne(int pId)
         {
@@ -32,17 +40,41 @@ namespace Atenda.API.Controllers
         }
 
         // POST: api/Cliente
-        public HttpResponseMessage Post(Cliente pCliente)
+        [AcceptVerbs("POST")]
+        public HttpResponseMessage Post([FromBody]Cliente pCliente)
         {
-            if (!ModelState.IsValid)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+            //}
 
             try
             {
+
                 ClienteRepository create = new ClienteRepository();
-                create.Create(pCliente);
+
+
+                //for (int x = 0; pClientes.Count() > x; x++)
+                //{
+
+                    Cliente cliente = new Cliente();
+
+                    cliente.Nome = pCliente.Nome;
+                    cliente.Telefone = pCliente.Telefone;
+                    cliente.Endereco = pCliente.Endereco;
+                    cliente.Bairro = pCliente.Bairro;
+                    cliente.Cidade = pCliente.Cidade;
+                    cliente.Estado = pCliente.Estado;
+                    cliente.CPF_CNPJ = pCliente.CPF_CNPJ;
+
+                    Cliente rCliente = ClienteRepository.Verificacao(pCliente);
+
+                    if (rCliente != null)
+                    {
+                        create.Create(cliente);
+                    }
+
+                //}
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
             catch (ArgumentException ex)

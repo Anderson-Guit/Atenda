@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlTypes;
 
 namespace Atenda.Repository
 {
@@ -21,11 +22,31 @@ namespace Atenda.Repository
 
             cmd.Parameters.AddWithValue("@Nome", (pCliente.Nome));
             cmd.Parameters.AddWithValue("@Telefone", pCliente.Telefone);
-            cmd.Parameters.AddWithValue("@Endereco", pCliente.Endereco);
-            cmd.Parameters.AddWithValue("@Bairro", pCliente.Bairro);
-            cmd.Parameters.AddWithValue("@Cidade", pCliente.Cidade);
-            cmd.Parameters.AddWithValue("@Estado", pCliente.Estado);
-            cmd.Parameters.AddWithValue("@CPF_CNPJ", pCliente.CPF_CNPJ);
+
+            if (!string.IsNullOrEmpty(pCliente.Endereco))
+                cmd.Parameters.Add("@Endereco", SqlString.Null).Value = pCliente.Endereco;
+            else
+                cmd.Parameters.Add("@Endereco", SqlString.Null);
+
+            if (!string.IsNullOrEmpty(pCliente.Bairro))
+                cmd.Parameters.Add("@Bairro", SqlString.Null).Value = pCliente.Bairro;
+            else
+                cmd.Parameters.Add("@Bairro", SqlString.Null);
+
+            if (!string.IsNullOrEmpty(pCliente.Cidade))
+                cmd.Parameters.Add("@Cidade", SqlString.Null).Value = pCliente.Cidade;
+            else
+                cmd.Parameters.Add("@Cidade", SqlString.Null);
+
+            if (!string.IsNullOrEmpty(pCliente.Estado))
+                cmd.Parameters.Add("@Estado", SqlString.Null).Value = pCliente.Estado;
+            else
+                cmd.Parameters.Add("@Estado", SqlString.Null);
+
+            if (!string.IsNullOrEmpty(pCliente.CPF_CNPJ))
+                cmd.Parameters.Add("@CPF_CNPJ", SqlString.Null).Value = pCliente.CPF_CNPJ;
+            else
+                cmd.Parameters.Add("@CPF_CNPJ", SqlString.Null);
 
             cmd.CommandText = sql.ToString();
             SqlConn.CommandPersist(cmd);
@@ -41,11 +62,31 @@ namespace Atenda.Repository
 
             cmd.Parameters.AddWithValue("@Nome", pCliente.Nome);
             cmd.Parameters.AddWithValue("@Telefone", pCliente.Telefone);
-            cmd.Parameters.AddWithValue("@Endereco", pCliente.Endereco);
-            cmd.Parameters.AddWithValue("@Bairro", pCliente.Bairro);
-            cmd.Parameters.AddWithValue("@Cidade", pCliente.Cidade);
-            cmd.Parameters.AddWithValue("@Estado", pCliente.Estado);
-            cmd.Parameters.AddWithValue("@CPF_CNPJ", pCliente.CPF_CNPJ);
+
+            if (!string.IsNullOrEmpty(pCliente.Endereco))
+                cmd.Parameters.Add("@Endereco", SqlString.Null).Value = pCliente.Endereco;
+            else
+                cmd.Parameters.Add("@Endereco", SqlString.Null);
+
+            if (!string.IsNullOrEmpty(pCliente.Bairro))
+                cmd.Parameters.Add("@Bairro", SqlString.Null).Value = pCliente.Bairro;
+            else
+                cmd.Parameters.Add("@Bairro", SqlString.Null);
+
+            if (!string.IsNullOrEmpty(pCliente.Cidade))
+                cmd.Parameters.Add("@Cidade", SqlString.Null).Value = pCliente.Cidade;
+            else
+                cmd.Parameters.Add("@Cidade", SqlString.Null);
+
+            if (!string.IsNullOrEmpty(pCliente.Estado))
+                cmd.Parameters.Add("@Estado", SqlString.Null).Value = pCliente.Estado;
+            else
+                cmd.Parameters.Add("@Estado", SqlString.Null);
+
+            if (!string.IsNullOrEmpty(pCliente.CPF_CNPJ))
+                cmd.Parameters.Add("@CPF_CNPJ", SqlString.Null).Value = pCliente.CPF_CNPJ;
+            else
+                cmd.Parameters.Add("@CPF_CNPJ", SqlString.Null);
 
             cmd.CommandText = sql.ToString();
             SqlConn.CommandPersist(cmd);
@@ -80,8 +121,8 @@ namespace Atenda.Repository
                     new Cliente
                     {
                         IdCliente = (int)dr["IdCliente"],
-                        Nome = dr.IsDBNull(dr.GetOrdinal("Nome")) ? "" : (string)dr["Nome"],
-                        Telefone = dr.IsDBNull(dr.GetOrdinal("Telefone")) ? "" : (string)dr["Telefone"],
+                        Nome = (string)dr["Nome"],
+                        Telefone = (string)dr["Telefone"],
                         Endereco = dr.IsDBNull(dr.GetOrdinal("Endereco")) ? "" : (string)dr["Endereco"],
                         Bairro = dr.IsDBNull(dr.GetOrdinal("Bairro")) ? "" : (string)dr["Bairro"],
                         Cidade = dr.IsDBNull(dr.GetOrdinal("Cidade")) ? "" : (string)dr["Cidade"],
@@ -91,6 +132,43 @@ namespace Atenda.Repository
             }
             dr.Close();
             return clientes;
+        }
+
+        public static Cliente Verificacao(Cliente pCliente)
+        {
+            StringBuilder sql = new StringBuilder();
+            Cliente cliente = new Cliente();
+            sql.Append("SELECT * ");
+            sql.Append("FROM Cliente ");
+            sql.Append("WHERE Nome like '%" + pCliente.Nome.Trim() + "%'");
+
+            SqlDataReader dr = SqlConn.Get(sql.ToString());
+
+            while (dr.Read())
+            {
+                cliente = new Cliente
+                    {
+                        //IdCliente = (int)dr["IdCliente"],
+                        Nome = (string)dr["Nome"],
+                        Telefone = (string)dr["Telefone"],
+                        Endereco = dr.IsDBNull(dr.GetOrdinal("Endereco")) ? "" : (string)dr["Endereco"],
+                        Bairro = dr.IsDBNull(dr.GetOrdinal("Bairro")) ? "" : (string)dr["Bairro"],
+                        Cidade = dr.IsDBNull(dr.GetOrdinal("Cidade")) ? "" : (string)dr["Cidade"],
+                        Estado = dr.IsDBNull(dr.GetOrdinal("Estado")) ? "" : (string)dr["Estado"],
+                        CPF_CNPJ = dr.IsDBNull(dr.GetOrdinal("CPF_CNPJ")) ? "" : (string)dr["CPF_CNPJ"]
+                    };
+            }
+            dr.Close();
+            if (pCliente.Nome == cliente.Nome && pCliente.Telefone == cliente.Telefone)
+            {
+                return null;
+            }
+            else
+            {
+                return cliente;
+            }
+
+            
         }
 
         public static Cliente GetOne(int pId)
@@ -107,8 +185,8 @@ namespace Atenda.Repository
             while (dr.Read())
             {
                 cliente.IdCliente = (int)dr["IdCliente"];
-                cliente.Nome = dr.IsDBNull(dr.GetOrdinal("Nome")) ? "" : (string)dr["Nome"];
-                cliente.Telefone = dr.IsDBNull(dr.GetOrdinal("Telefone")) ? "" : (string)dr["Telefone"];
+                cliente.Nome = (string)dr["Nome"];
+                cliente.Telefone = (string)dr["Telefone"];
                 cliente.Endereco = dr.IsDBNull(dr.GetOrdinal("Endereco")) ? "" : (string)dr["Endereco"];
                 cliente.Bairro = dr.IsDBNull(dr.GetOrdinal("Bairro")) ? "" : (string)dr["Bairro"];
                 cliente.Cidade = dr.IsDBNull(dr.GetOrdinal("Cidade")) ? "" : (string)dr["Cidade"];
@@ -135,8 +213,8 @@ namespace Atenda.Repository
                     new Cliente
                     {
                         IdCliente = (int)dr["IdCliente"],
-                        Nome = dr.IsDBNull(dr.GetOrdinal("Nome")) ? "" : (string)dr["Nome"],
-                        Telefone = dr.IsDBNull(dr.GetOrdinal("Telefone")) ? "" : (string)dr["Telefone"],
+                        Nome = (string)dr["Nome"],
+                        Telefone = (string)dr["Telefone"],
                         Endereco = dr.IsDBNull(dr.GetOrdinal("Endereco")) ? "" : (string)dr["Endereco"],
                         Bairro = dr.IsDBNull(dr.GetOrdinal("Bairro")) ? "" : (string)dr["Bairro"],
                         Cidade = dr.IsDBNull(dr.GetOrdinal("Cidade")) ? "" : (string)dr["Cidade"],

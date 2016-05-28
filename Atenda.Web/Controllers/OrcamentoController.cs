@@ -23,8 +23,17 @@ namespace Atenda.Web.Controllers
             try
             {
                 var orcamento = OrcamentoRepository.GetOne(pId);
-                orcamento.ValorTotal = orcamento.ValorServico + orcamento.ValorProduto;
-                return View(orcamento);  
+                OrcamentoRepository orc = new OrcamentoRepository();
+                List<Produto> produtos = orc.GetProdutos(pId);
+
+                var model = new OrcamentoViewModel
+                {
+                    Produtos = produtos,
+                    Orcamento = orcamento
+
+                };
+
+                return View(model);  
             }
             catch
             {
@@ -33,26 +42,55 @@ namespace Atenda.Web.Controllers
         }
 
         // GET: Orcamento/Create
-        public ActionResult CreateOrcamento()
+        public ActionResult CreateOrcamento(OrcamentoViewModel pOrcamento)
         {
-            ViewBag.IdProduto = new SelectList (ProdutoRepository.GetAll(), "IdProduto", "Nome");
-            ViewBag.IdCliente = new SelectList (ClienteRepository.GetAll(), "IdCliente", "Nome");
-            return View();
+            if (pOrcamento == null)
+            {
+                var orcamento = OrcamentoRepository.GetOne(pOrcamento.Orcamento.IdOrcamento);
+                OrcamentoRepository orc = new OrcamentoRepository();
+                List<Produto> produtos = orc.GetProdutos(pOrcamento.Orcamento.IdOrcamento);
+
+                var model = new OrcamentoViewModel
+                {
+                    Produtos = produtos,
+                    Orcamento = orcamento
+
+                };
+
+                ViewBag.IdCliente = new SelectList(ClienteRepository.GetAll(), "IdCliente", "Nome");
+                return View(model);
+            }
+            else
+            {
+                ViewBag.IdCliente = new SelectList(ClienteRepository.GetAll(), "IdCliente", "Nome");
+                var model = "";
+                return View(model);
+            }         
+            
+            
         }
 
         // POST: Orcamento/Create
         [HttpPost]
-        public ActionResult CreateOrcamento(Orcamento pOrcamento, FormCollection form)
+        public ActionResult CreateOrcamento(OrcamentoViewModel pOrcamento, FormCollection form)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    ViewBag.IdProduto = new SelectList (ProdutoRepository.GetAll(), "IdProduto", "Nome", pOrcamento.IdProduto);
-                    ViewBag.IdCliente = new SelectList (ClienteRepository.GetAll(), "IdCliente", "Nome", pOrcamento.IdProduto);
+                    //int? IdProd = pOrcamento.IdProduto;
+                    //var getProd = ProdutoRepository.GetOne(IdProd);
+
+                    //if (pOrcamento.Valor != null && getProd == null)
+                    //    pOrcamento.ValorTotal = pOrcamento.Valor + getProd.Valor;
+                    //else if (pOrcamento.Valor == null)
+                    //    pOrcamento.ValorTotal = getProd.Valor;
+                    //else
+                        pOrcamento.Orcamento.ValorTotal = pOrcamento.Orcamento.Valor;
+
                     OrcamentoRepository create = new OrcamentoRepository();
-                    create.Create(pOrcamento);
-                    return RedirectToAction("ListOrcamentos").ComMensagemDeErro("Orçamento cadastrado com sucesso!");
+                    create.Create(pOrcamento.Orcamento);
+                    return RedirectToAction("ListOrcamentos").ComMensagemDeSucesso("Orçamento cadastrado com sucesso!");
                 }
                 else
                 {
@@ -64,10 +102,23 @@ namespace Atenda.Web.Controllers
                 throw;
             }
         }
-
-        public ActionResult AddProdutos()
+        
+        public ActionResult AddProdutos(OrcamentoViewModel pOrcamento)
         {
-            return View();
+            ViewBag.IdProduto = new SelectList(ProdutoRepository.GetAll(), "IdProduto", "Nome");
+            ViewBag.IdCliente = new SelectList(ClienteRepository.GetAll(), "IdCliente", "Nome", pOrcamento.Orcamento.IdCliente);
+            return View(pOrcamento);
+        }
+
+        [HttpPost]
+        public ActionResult AddProdutos(FormCollection orcamentoForm, OrcamentoViewModel pOrcamento)
+        {
+            OrcamentoRepository orcamento = new OrcamentoRepository();
+            ViewBag.IdCliente = new SelectList(ClienteRepository.GetAll(), "IdCliente", "Nome", pOrcamento.Orcamento.IdCliente);
+            orcamento.AddProdutos(pOrcamento.Orcamento);
+            var orc = orcamento.GetLast();
+            pOrcamento.Produtos = orcamento.GetProdutos(orc.IdOrcamento);
+            return View("CreateOrcamento" + pOrcamento.Orcamento);
         }
 
         // GET: Orcamento/Edit/5
@@ -77,7 +128,6 @@ namespace Atenda.Web.Controllers
             {
                     var orcamento = OrcamentoRepository.GetOne(pId);
                     ViewBag.IdProduto = new SelectList(ProdutoRepository.GetAll(), "IdProduto", "Nome", orcamento.IdProduto);
-                    orcamento.ValorTotal = orcamento.ValorServico + orcamento.ValorProduto;
                     return View(orcamento);
             }
             catch
@@ -95,10 +145,13 @@ namespace Atenda.Web.Controllers
                 if (ModelState.IsValid)
                 {
                     ViewBag.IdProduto = new SelectList(ProdutoRepository.GetAll(), "IdProduto", "Nome", pOrcamento.IdProduto);
-                    pOrcamento.ValorTotal = pOrcamento.ValorServico + pOrcamento.ValorProduto;
+                    //int? IdProd = pOrcamento.IdProduto;
+                    //var getProd = ProdutoRepository.GetOne(IdProd);
+                    //pOrcamento.ValorTotal = pOrcamento.Valor + getProd.Valor;
+
                     OrcamentoRepository edit = new OrcamentoRepository();
                     edit.Update(pOrcamento);
-                    return RedirectToAction("ListOrcamentos").ComMensagemDeErro("Orçamento editado com sucesso!");
+                    return RedirectToAction("ListOrcamentos").ComMensagemDeSucesso("Orçamento editado com sucesso!");
                 }
                 else
                 {
@@ -133,7 +186,7 @@ namespace Atenda.Web.Controllers
             {
                 OrcamentoRepository exclui = new OrcamentoRepository();
                 exclui.Delete(pId);
-                return RedirectToAction("ListOrcamentos").ComMensagemDeErro("Orçamento excluído com sucesso!");
+                return RedirectToAction("ListOrcamentos").ComMensagemDeSucesso("Orçamento excluído com sucesso!");
             }
             catch
             {

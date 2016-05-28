@@ -60,6 +60,7 @@ namespace Atenda.Controllers
             }
             catch
             {
+                return RedirectToAction("ListProdutos").ComMensagemDeErro("Preencha todos os campos!");
                 throw;
             }
         }

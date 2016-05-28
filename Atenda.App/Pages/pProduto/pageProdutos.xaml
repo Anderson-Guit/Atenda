@@ -21,23 +21,26 @@
             <phone:PivotItem Header="Lista" Margin="12,0">
                 <Grid>
                 <TextBox x:Name="Tb_Busca" HorizontalAlignment="Left" Height="72" Margin="0,17,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="360" InputScope="Search"/>
-                <Button x:Name="Btn_Busca" Content="" HorizontalAlignment="Left" Height="104" Margin="350,3,0,0" VerticalAlignment="Top" Width="106" ClickMode="Press" BorderBrush="{x:Null}" Click="Btn_Busca_Click">
-                    <Button.Background>
-                        <ImageBrush ImageSource="/Images/SearchOption_Icon-Atenda.png"/>
-                    </Button.Background>
-                </Button>
-                <StackPanel Margin="0,107,0,0">
-                    <ListBox Name="Lst_Produtos" SelectionChanged="onSelectionChange">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Margin="0,0,0,17">
-                                    <TextBlock Text="{Binding Nome}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
-                                    <TextBlock Text="{Binding Telefone}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </StackPanel>
+                    <Button x:Name="Btn_Busca" Content="" HorizontalAlignment="Left" Height="104" Margin="350,3,0,0" VerticalAlignment="Top" Width="106" ClickMode="Press" BorderBrush="{x:Null}" Click="Btn_Busca_Click">
+                        <Button.Background>
+                            <ImageBrush ImageSource="/Images/SearchOption_Icon-Atenda.png"/>
+                        </Button.Background>
+                    </Button>
+                    <ScrollViewer Margin="0,104,0,0">
+                        <StackPanel >
+                            <ListBox x:Name="Lst_Produtos" SelectionChanged="onSelectionChange" Height="527">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Margin="0,0,0,17">
+                                            <TextBlock Text="{Binding Nome}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                                            <TextBlock Text="{Binding Valor}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                            <ProgressBar x:Name="ProgressbarTecnico" Height="10"/>
+                        </StackPanel>
+                    </ScrollViewer>
                 </Grid>
             </phone:PivotItem>
 

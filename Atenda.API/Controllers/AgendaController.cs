@@ -12,6 +12,7 @@ namespace Atenda.API.Controllers
     public class AgendaController : ApiController
     {
         // GET: api/Agenda
+        [ActionName("Listar")]
         public IEnumerable<Agenda> GetAll()
         {
             var agendas = AgendaRepository.GetAll();

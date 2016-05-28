@@ -13,9 +13,11 @@ namespace Atenda.Data
         public int IdAgenda { get; set; }
 
         [Key]
+        [Required]
         public int IdTecnico { get; set; }
 
         [Key]
+        [Required]
         public int IdCliente { get; set; }
         
         [Display(Name = "Tecnico", Description = "Nome do tecnico que fará o atendimento.")]
@@ -24,13 +26,14 @@ namespace Atenda.Data
         [Display(Name = "Cliente", Description = "Nome do cliente que agendou o atendimento.")]
         public string ClienteNome { get; set; }
 
+        
         [Display(Name = "Hora", Description = "Horario do atendimento.")]
-        [DataType(DataType.Time)]
-        [DisplayFormat(DataFormatString = "{0:hh:mm}")]
-        public DateTime Hora { get; set; }
+        [DataType(DataType.Time, ErrorMessage = "Hora em formato inválido")]
+        public DateTime? Hora { get; set; }
 
         [Display(Name = "Data", Description = "Dia do atendimento.")]
-        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        [DataType(DataType.Date, ErrorMessage = "Data em formato inválido")]
         public DateTime Data { get; set; }
 
         [Display(Name = "Local", Description = "Local do atendimento.")]
@@ -45,6 +48,7 @@ namespace Atenda.Data
         public string Observacoes { get; set; }
 
         [Display(Name = "Status", Description = "Status do atendimento.")]
+        [Required]
         public string Status { get; set; }
         
         public Agenda()

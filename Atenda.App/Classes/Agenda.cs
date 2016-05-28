@@ -13,23 +13,26 @@ namespace Atenda.App.Classes
         [Column(IsPrimaryKey = true, IsDbGenerated = true)]
         public int IdAgenda { get; set; }
 
-        [Column(CanBeNull = false)]
+        [Column(IsPrimaryKey = true)]
         public int IdTecnico { get; set; }
 
         [Column(CanBeNull = true)]
         public string TecnicoNome { get; set; }
 
-        [Column(CanBeNull = false)]
+        [Column(IsPrimaryKey = true)]
         public int IdCliente { get; set; }
 
         [Column(CanBeNull = true)]
         public string ClienteNome { get; set; }
 
         [Column(CanBeNull = true)]
-        public DateTime Hora { get; set; }
+        public DateTime? Hora { get; set; }
 
         [Column(CanBeNull = false)]
         public DateTime Data { get; set; }
+
+        [Column(CanBeNull = true)]
+        public string DataMain { get; set; }
 
         [Column(CanBeNull = true)]
         public string Servicos { get; set; }
@@ -40,7 +43,7 @@ namespace Atenda.App.Classes
         [Column(CanBeNull = true)]
         public string Observacoes { get; set; }
 
-        [Column(CanBeNull = true)]
+        [Column(CanBeNull = false)]
         public string Status { get; set; }
     }
 }

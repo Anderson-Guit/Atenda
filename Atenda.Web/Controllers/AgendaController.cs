@@ -67,6 +67,7 @@ namespace Atenda.Controllers
             }
             catch
             {
+                return RedirectToAction("ListAgendas").ComMensagemDeErro("Agendamento não foi cadastrado! Verifique os dados informados");
                 throw;
             }
         }

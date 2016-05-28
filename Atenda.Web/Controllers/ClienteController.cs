@@ -64,6 +64,7 @@ namespace Atenda.Controllers
             }
             catch
             {
+                return RedirectToAction("ListClientes").ComMensagemDeErro("Preencha todos os campos!");
                 throw;
             }
         }

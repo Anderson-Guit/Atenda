@@ -54,6 +54,7 @@ namespace Atenda.App.Classes.Dbs
             orcamento.Servico = pOrcamento.Servico;
             orcamento.ValorServico = pOrcamento.ValorServico;
             orcamento.IdProduto = pOrcamento.IdProduto;
+            orcamento.QntdProduto = pOrcamento.QntdProduto;
             orcamento.ValorTotal = pOrcamento.ValorTotal;
 
             db.SubmitChanges();
@@ -72,11 +73,10 @@ namespace Atenda.App.Classes.Dbs
             return orcamento;
         }
 
-        public static List<Orcamento> GetAll(int pIdCliente)
+        public static List<Orcamento> GetAll()
         {
             dataBase db = getDataBase();
             var query = from o in db.Orcamento
-                        where o.idCliente == pIdCliente
                         select o;
 
             List<Orcamento> orcamentos = new List<Orcamento>(query.AsEnumerable());

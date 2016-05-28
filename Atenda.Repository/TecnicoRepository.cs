@@ -2,6 +2,7 @@
 using Atenda.Conn;
 using Atenda.Data;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,9 +22,22 @@ namespace Atenda.Repository
             sql.Append("VALUES(@Nome, @Telefone, @Endereco, @Admissao, @Senha)");
 
             cmd.Parameters.AddWithValue("@Nome", pTecnico.Nome);
-            cmd.Parameters.AddWithValue("@Telefone", pTecnico.Telefone);
-            cmd.Parameters.AddWithValue("@Endereco", pTecnico.Endereco);
-            cmd.Parameters.AddWithValue("@Admissao", pTecnico.Admissao);
+
+            if (!string.IsNullOrEmpty(pTecnico.Telefone))
+                cmd.Parameters.Add("@Telefone", SqlString.Null).Value = pTecnico.Telefone;
+            else
+                cmd.Parameters.Add("@Telefone", SqlString.Null);
+
+            if (!string.IsNullOrEmpty(pTecnico.Endereco))
+                cmd.Parameters.Add("@Endereco", SqlString.Null).Value = pTecnico.Endereco;
+            else
+                cmd.Parameters.Add("@Endereco", SqlString.Null);
+
+            if (pTecnico.Admissao != null)
+                cmd.Parameters.Add("@Admissao", SqlString.Null).Value = pTecnico.Admissao;
+            else
+                cmd.Parameters.Add("@Admissao", SqlString.Null);
+
             cmd.Parameters.AddWithValue("@Senha", pTecnico.Senha);
 
             cmd.CommandText = sql.ToString();
@@ -39,9 +53,22 @@ namespace Atenda.Repository
             sql.Append("WHERE IdTecnico=" + pTecnico.IdTecnico);
 
             cmd.Parameters.AddWithValue("@Nome", pTecnico.Nome);
-            cmd.Parameters.AddWithValue("@Telefone", pTecnico.Telefone);
-            cmd.Parameters.AddWithValue("@Endereco", pTecnico.Endereco);
-            cmd.Parameters.AddWithValue("@Admissao", pTecnico.Admissao);
+
+            if (!string.IsNullOrEmpty(pTecnico.Telefone))
+                cmd.Parameters.Add("@Telefone", SqlString.Null).Value = pTecnico.Telefone;
+            else
+                cmd.Parameters.Add("@Telefone", SqlString.Null);
+
+            if (!string.IsNullOrEmpty(pTecnico.Endereco))
+                cmd.Parameters.Add("@Endereco", SqlString.Null).Value = pTecnico.Endereco;
+            else
+                cmd.Parameters.Add("@Endereco", SqlString.Null);
+
+            if (pTecnico.Admissao != null)
+                cmd.Parameters.Add("@Admissao", SqlString.Null).Value = pTecnico.Admissao;
+            else
+                cmd.Parameters.Add("@Admissao", SqlString.Null);
+
             cmd.Parameters.AddWithValue("@Senha", pTecnico.Senha);
 
             cmd.CommandText = sql.ToString();
@@ -74,11 +101,11 @@ namespace Atenda.Repository
             while (dr.Read())
             {
                 tecnico.IdTecnico = (int)dr["IdTecnico"];
-                tecnico.Nome = dr.IsDBNull(dr.GetOrdinal("Nome")) ? "" : (string)dr["Nome"];
+                tecnico.Nome = (string)dr["Nome"];
                 tecnico.Telefone = dr.IsDBNull(dr.GetOrdinal("Telefone")) ? "" : (string)dr["Telefone"];
                 tecnico.Endereco = dr.IsDBNull(dr.GetOrdinal("Endereco")) ? "" : (string)dr["Endereco"];
-                tecnico.Admissao = (DateTime)dr["Admissao"];
-                tecnico.Senha = dr.IsDBNull(dr.GetOrdinal("Senha")) ? "" : (string)dr["Senha"];
+                tecnico.Admissao = dr.IsDBNull(dr.GetOrdinal("Admissao")) ? null : (DateTime?)dr["Admissao"];
+                tecnico.Senha = (string)dr["Senha"];
             }
             return tecnico;
         }
@@ -99,11 +126,11 @@ namespace Atenda.Repository
                     new Tecnico
                     {
                         IdTecnico = (int)dr["IdTecnico"],
-                        Nome = dr.IsDBNull(dr.GetOrdinal("Nome")) ? "" : (string)dr["Nome"],
+                        Nome = (string)dr["Nome"],
                         Telefone = dr.IsDBNull(dr.GetOrdinal("Telefone")) ? "" : (string)dr["Telefone"],
                         Endereco = dr.IsDBNull(dr.GetOrdinal("Endereco")) ? "" : (string)dr["Endereco"],
-                        Admissao = (DateTime)dr["Admissao"],
-                        Senha = dr.IsDBNull(dr.GetOrdinal("Senha")) ? "" : (string)dr["Senha"]
+                        Admissao = dr.IsDBNull(dr.GetOrdinal("Admissao")) ? null : (DateTime?)dr["Admissao"],
+                        Senha = (string)dr["Senha"]
                     });
             }
             return tecnico;
@@ -126,11 +153,11 @@ namespace Atenda.Repository
                     new Tecnico
                     {
                         IdTecnico = (int)dr["IdTecnico"],
-                        Nome = dr.IsDBNull(dr.GetOrdinal("Nome")) ? "" : (string)dr["Nome"],
+                        Nome = (string)dr["Nome"],
                         Telefone = dr.IsDBNull(dr.GetOrdinal("Telefone")) ? "" : (string)dr["Telefone"],
                         Endereco = dr.IsDBNull(dr.GetOrdinal("Endereco")) ? "" : (string)dr["Endereco"],
-                        Admissao = (DateTime)dr["Admissao"],
-                        Senha = dr.IsDBNull(dr.GetOrdinal("Senha")) ? "" : (string)dr["Senha"]
+                        Admissao = dr.IsDBNull(dr.GetOrdinal("Admissao")) ? null : (DateTime?)dr["Admissao"],
+                        Senha = (string)dr["Senha"]
                     });
             }
 

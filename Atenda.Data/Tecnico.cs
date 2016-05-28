@@ -24,9 +24,10 @@ namespace Atenda.Data
         [Display(Name = "Endereço", Description = "Informe o Endereço do Tecnico.")]
         public string Endereco { get; set; }
 
-        [Display(Name = "Admissão", Description = "Data de admissão do Tecnico.")]
-        [DataType(DataType.Date)]
-        public DateTime Admissao { get; set; }
+        [Display(Name = "Data de Admissão")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        [DataType(DataType.Date, ErrorMessage = "Data em formato inválido")]
+        public DateTime? Admissao { get; set; }
 
         [Display(Name = "Senha", Description = "Informe a senha do Tecnico")]
         [DataType(DataType.Password)]

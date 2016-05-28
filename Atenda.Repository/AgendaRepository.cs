@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Atenda.Data;
 using Atenda.Conn;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 
 namespace Atenda.Repository
 {
@@ -23,10 +24,27 @@ namespace Atenda.Repository
             cmd.Parameters.AddWithValue("@IdTecnico", pAgenda.IdTecnico);
             cmd.Parameters.AddWithValue("@IdCliente", pAgenda.IdCliente);
             cmd.Parameters.AddWithValue("@Data", pAgenda.Data);
-            cmd.Parameters.AddWithValue("@Hora", pAgenda.Hora);
-            cmd.Parameters.AddWithValue("@Local", pAgenda.Local);
-            cmd.Parameters.AddWithValue("@Servico", pAgenda.Servico);
-            cmd.Parameters.AddWithValue("@Observacoes", pAgenda.Observacoes);
+
+            if ((pAgenda.Hora) != null)
+                cmd.Parameters.Add("@Hora", SqlString.Null).Value = pAgenda.Hora;
+            else
+                cmd.Parameters.Add("@Hora", SqlString.Null);
+
+            if (!string.IsNullOrEmpty(pAgenda.Local))
+                cmd.Parameters.Add("@Local", SqlString.Null).Value = pAgenda.Local;
+            else
+                cmd.Parameters.Add("@Local", SqlString.Null);
+
+            if (!string.IsNullOrEmpty(pAgenda.Servico))
+                cmd.Parameters.Add("@Servico", SqlString.Null).Value = pAgenda.Servico;
+            else
+                cmd.Parameters.Add("@Servico", SqlString.Null);
+
+            if (!string.IsNullOrEmpty(pAgenda.Observacoes))
+                cmd.Parameters.Add("@Observacoes", SqlString.Null).Value = pAgenda.Observacoes;
+            else
+                cmd.Parameters.Add("@Observacoes", SqlString.Null);
+
             cmd.Parameters.AddWithValue("@Status", pAgenda.Status);
 
             cmd.CommandText = sql.ToString();
@@ -43,10 +61,27 @@ namespace Atenda.Repository
 
             cmd.Parameters.AddWithValue("@IdTecnico", pAgenda.IdTecnico);
             cmd.Parameters.AddWithValue("@Data", pAgenda.Data);
-            cmd.Parameters.AddWithValue("@Hora", pAgenda.Hora);
-            cmd.Parameters.AddWithValue("@Local", pAgenda.Local);
-            cmd.Parameters.AddWithValue("@Servico", pAgenda.Servico);
-            cmd.Parameters.AddWithValue("@Observacoes", pAgenda.Observacoes);
+
+            if ((pAgenda.Hora) != null)
+                cmd.Parameters.Add("@Hora", SqlString.Null).Value = pAgenda.Hora;
+            else
+                cmd.Parameters.Add("@Hora", SqlString.Null);
+
+            if (!string.IsNullOrEmpty(pAgenda.Local))
+                cmd.Parameters.Add("@Local", SqlString.Null).Value = pAgenda.Local;
+            else
+                cmd.Parameters.Add("@Local", SqlString.Null);
+
+            if (!string.IsNullOrEmpty(pAgenda.Servico))
+                cmd.Parameters.Add("@Servico", SqlString.Null).Value = pAgenda.Servico;
+            else
+                cmd.Parameters.Add("@Servico", SqlString.Null);
+
+            if (!string.IsNullOrEmpty(pAgenda.Observacoes))
+                cmd.Parameters.Add("@Observacoes", SqlString.Null).Value = pAgenda.Observacoes;
+            else
+                cmd.Parameters.Add("@Observacoes", SqlString.Null);
+
             cmd.Parameters.AddWithValue("@Status", pAgenda.Status);
 
             cmd.CommandText = sql.ToString();
@@ -92,10 +127,10 @@ namespace Atenda.Repository
                         IdTecnico = (int)dr["IDTecnico"],
                         TecnicoNome = (string)dr["TecnicoNome"],
                         Data = (DateTime)dr["Data_"],
-                        Hora = (DateTime)dr["Hora"],
-                        Local = (string)dr["Local_"],
-                        Servico = (string)dr["Servico"],
-                        Observacoes = (string)dr["Observacoes"],
+                        Hora = dr.IsDBNull(dr.GetOrdinal("Hora")) ? null : (DateTime?)dr["Hora"],
+                        Local = dr.IsDBNull(dr.GetOrdinal("Local_")) ? "" : (string)dr["Local_"],
+                        Servico = dr.IsDBNull(dr.GetOrdinal("Servico")) ? "" : (string)dr["Servico"],
+                        Observacoes = dr.IsDBNull(dr.GetOrdinal("Observacoes")) ? "" : (string)dr["Observacoes"],
                         Status = (string)dr["Status_"],
                     });
             }
@@ -127,13 +162,13 @@ namespace Atenda.Repository
                         IdAgenda = (int)dr["IdAgenda"],
                         IdCliente = (int)dr["IdCliente"],
                         ClienteNome = (string)dr["ClienteNome"],
-                        IdTecnico = (int)dr["IDTecnico"],
+                        IdTecnico = (int)dr["IdTecnico"],
                         TecnicoNome = (string)dr["TecnicoNome"],
                         Data = (DateTime)dr["Data_"],
-                        Hora = (DateTime)dr["Hora"],
-                        Local = (string)dr["Local_"],
-                        Servico = (string)dr["Servico"],
-                        Observacoes = (string)dr["Observacoes"],
+                        Hora = dr.IsDBNull(dr.GetOrdinal("Hora")) ? null : (DateTime?)dr["Hora"],
+                        Local = dr.IsDBNull(dr.GetOrdinal("Local_")) ? "" : (string)dr["Local_"],
+                        Servico = dr.IsDBNull(dr.GetOrdinal("Servico")) ? "" : (string)dr["Servico"],
+                        Observacoes = dr.IsDBNull(dr.GetOrdinal("Observacoes")) ? "" : (string)dr["Observacoes"],
                         Status = (string)dr["Status_"],
                     });
             }
@@ -165,13 +200,13 @@ namespace Atenda.Repository
                         IdAgenda = (int)dr["IdAgenda"],
                         IdCliente = (int)dr["IdCliente"],
                         ClienteNome = (string)dr["ClienteNome"],
-                        IdTecnico = (int)dr["IDTecnico"],
+                        IdTecnico = (int)dr["IdTecnico"],
                         TecnicoNome = (string)dr["TecnicoNome"],
                         Data = (DateTime)dr["Data_"],
-                        Hora = (DateTime)dr["Hora"],
-                        Local = (string)dr["Local_"],
-                        Servico = (string)dr["Servico"],
-                        Observacoes = (string)dr["Observacoes"],
+                        Hora = dr.IsDBNull(dr.GetOrdinal("Hora")) ? null : (DateTime?)dr["Hora"],
+                        Local = dr.IsDBNull(dr.GetOrdinal("Local_")) ? "" : (string)dr["Local_"],
+                        Servico = dr.IsDBNull(dr.GetOrdinal("Servico")) ? "" : (string)dr["Servico"],
+                        Observacoes = dr.IsDBNull(dr.GetOrdinal("Observacoes")) ? "" : (string)dr["Observacoes"],
                         Status = (string)dr["Status_"],
                     });
             }
@@ -202,10 +237,10 @@ namespace Atenda.Repository
                 agenda.IdTecnico = (int)dr["IDTecnico"];
                 agenda.TecnicoNome = (string)dr["TecnicoNome"];
                 agenda.Data = (DateTime)dr["Data_"];
-                agenda.Hora = (DateTime)dr["Hora"];
-                agenda.Local = (string)dr["Local_"];
-                agenda.Servico = (string)dr["Servico"];
-                agenda.Observacoes = (string)dr["Observacoes"];
+                agenda.Hora = dr.IsDBNull(dr.GetOrdinal("Hora")) ? null : (DateTime?)dr["Hora"];
+                agenda.Local = dr.IsDBNull(dr.GetOrdinal("Local_")) ? "" : (string)dr["Local_"];
+                agenda.Servico = dr.IsDBNull(dr.GetOrdinal("Servico")) ? "" : (string)dr["Servico"];
+                agenda.Observacoes = dr.IsDBNull(dr.GetOrdinal("Observacoes")) ? "" : (string)dr["Observacoes"];
                 agenda.Status = (string)dr["Status_"];
             }
             dr.Close();
@@ -235,13 +270,13 @@ namespace Atenda.Repository
                         IdAgenda = (int)dr["IdAgenda"],
                         IdCliente = (int)dr["IdCliente"],
                         ClienteNome = (string)dr["ClienteNome"],
-                        IdTecnico = (int)dr["IDTecnico"],
+                        IdTecnico = (int)dr["IdTecnico"],
                         TecnicoNome = (string)dr["TecnicoNome"],
                         Data = (DateTime)dr["Data_"],
-                        Hora = (DateTime)dr["Hora"],
-                        Local = (string)dr["Local_"],
-                        Servico = (string)dr["Servico"],
-                        Observacoes = (string)dr["Observacoes"],
+                        Hora = dr.IsDBNull(dr.GetOrdinal("Hora")) ? null : (DateTime?)dr["Hora"],
+                        Local = dr.IsDBNull(dr.GetOrdinal("Local_")) ? "" : (string)dr["Local_"],
+                        Servico = dr.IsDBNull(dr.GetOrdinal("Servico")) ? "" : (string)dr["Servico"],
+                        Observacoes = dr.IsDBNull(dr.GetOrdinal("Observacoes")) ? "" : (string)dr["Observacoes"],
                         Status = (string)dr["Status_"],
                     });
             }
@@ -276,10 +311,10 @@ namespace Atenda.Repository
                         IdTecnico = (int)dr["IDTecnico"],
                         TecnicoNome = (string)dr["TecnicoNome"],
                         Data = (DateTime)dr["Data_"],
-                        Hora = (DateTime)dr["Hora"],
-                        Local = (string)dr["Local_"],
-                        Servico = (string)dr["Servico"],
-                        Observacoes = (string)dr["Observacoes"],
+                        Hora = dr.IsDBNull(dr.GetOrdinal("Hora")) ? null : (DateTime?)dr["Hora"],
+                        Local = dr.IsDBNull(dr.GetOrdinal("Local_")) ? "" : (string)dr["Local_"],
+                        Servico = dr.IsDBNull(dr.GetOrdinal("Servico")) ? "" : (string)dr["Servico"],
+                        Observacoes = dr.IsDBNull(dr.GetOrdinal("Observacoes")) ? "" : (string)dr["Observacoes"],
                         Status = (string)dr["Status_"],
                     });
             }

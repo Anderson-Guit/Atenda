@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Atenda.Data;
 using Atenda.Conn;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 
 namespace Atenda.Repository
 {
@@ -20,9 +21,19 @@ namespace Atenda.Repository
             sql.Append("VALUES(@Nome, @Descricao, @Valor, @QntdEstoque)");
 
             cmd.Parameters.AddWithValue("@Nome", (pProduto.Nome));
-            cmd.Parameters.AddWithValue("@Descricao", pProduto.Descricao);
+
+            if (!string.IsNullOrEmpty(pProduto.Descricao))
+                cmd.Parameters.Add("@Descricao", SqlString.Null).Value = pProduto.Descricao;
+            else
+                cmd.Parameters.Add("@Descricao", SqlString.Null);
+
             cmd.Parameters.AddWithValue("@Valor", pProduto.Valor);
-            cmd.Parameters.AddWithValue("@QntdEstoque", pProduto.QntdEstoque);
+
+            if (pProduto.QntdEstoque != null)
+                cmd.Parameters.Add("@QntdEstoque", SqlString.Null).Value = pProduto.QntdEstoque;
+            else
+                cmd.Parameters.Add("@QntdEstoque", SqlString.Null);
+
 
             cmd.CommandText = sql.ToString();
             SqlConn.CommandPersist(cmd);
@@ -36,10 +47,19 @@ namespace Atenda.Repository
             sql.Append("UPDATE Produto SET Nome=@Nome, Descricao=@Descricao, Valor=@Valor, QntdEstoque=@QntdEstoque");
             sql.Append(" WHERE IdProduto=" + pProduto.IdProduto);
 
-            cmd.Parameters.AddWithValue("@Nome", pProduto.Nome);
-            cmd.Parameters.AddWithValue("@Descricao", pProduto.Descricao);
+            cmd.Parameters.AddWithValue("@Nome", (pProduto.Nome));
+
+            if (!string.IsNullOrEmpty(pProduto.Descricao))
+                cmd.Parameters.Add("@Descricao", SqlString.Null).Value = pProduto.Descricao;
+            else
+                cmd.Parameters.Add("@Descricao", SqlString.Null);
+
             cmd.Parameters.AddWithValue("@Valor", pProduto.Valor);
-            cmd.Parameters.AddWithValue("@QntdEstoque", pProduto.QntdEstoque);
+
+            if (pProduto.QntdEstoque != null)
+                cmd.Parameters.Add("@QntdEstoque", SqlString.Null).Value = pProduto.QntdEstoque;
+            else
+                cmd.Parameters.Add("@QntdEstoque", SqlString.Null);
 
             cmd.CommandText = sql.ToString();
             SqlConn.CommandPersist(cmd);
@@ -78,14 +98,14 @@ namespace Atenda.Repository
                         Nome = dr.IsDBNull(dr.GetOrdinal("Nome")) ? "" : (string)dr["Nome"],
                         Descricao = dr.IsDBNull(dr.GetOrdinal("Descricao")) ? "" : (string)dr["Descricao"],
                         Valor = (decimal)dr["Valor"],
-                        QntdEstoque = (int)dr["QntdEstoque"],
+                        QntdEstoque = dr.IsDBNull(dr.GetOrdinal("QntdEstoque")) ? null : (int?)dr["QntdEstoque"],
                     });
             }
             dr.Close();
             return produtos;
         }
 
-        public static Produto GetOne(int pId)
+        public static Produto GetOne(int? pId)
         {
             StringBuilder sql = new StringBuilder();
             Produto produto = new Produto();
@@ -102,11 +122,39 @@ namespace Atenda.Repository
                 produto.Nome = dr.IsDBNull(dr.GetOrdinal("Nome")) ? "" : (string)dr["Nome"];
                 produto.Descricao = dr.IsDBNull(dr.GetOrdinal("Descricao")) ? "" : (string)dr["Descricao"];
                 produto.Valor = (decimal)dr["Valor"];
-                produto.QntdEstoque = (int)dr["QntdEstoque"];
+                produto.QntdEstoque = dr.IsDBNull(dr.GetOrdinal("QntdEstoque")) ? null : (int?)dr["QntdEstoque"];
 
             }
             dr.Close();
             return produto;
+        }
+
+        public static List<Produto> GetAllByOS( int pIdOs)
+        {
+            StringBuilder sql = new StringBuilder();
+            List<Produto> produtos = new List<Produto>();
+
+            sql.Append("select prod.IdProduto, prod.Nome, prod.Valor, Os_P.Qntd as Quantidade");
+            sql.Append(" from Produto as prod");
+            sql.Append(" inner join OrdemServico_Produto as Os_P");
+            sql.Append(" on Os_P.IdProduto = prod.IdProduto && Os_P.IdOS = " + pIdOs);
+            //sql.Append(" where Os_P.IdProduto = ")
+
+            SqlDataReader dr = SqlConn.Get(sql.ToString());
+
+            while (dr.Read())
+            {
+                produtos.Add(
+                    new Produto
+                    {
+                        IdProduto = (int)dr["IdProduto"],
+                        Nome = dr.IsDBNull(dr.GetOrdinal("Nome")) ? "" : (string)dr["Nome"],
+                        Valor = (decimal)dr["Valor"],
+                        QntdEstoque = dr.IsDBNull(dr.GetOrdinal("Quantidade")) ? null : (int?)dr["Quantidade"],
+                    });
+            }
+            dr.Close();
+            return produtos;
         }
 
         public static List<Produto> GetAll()
@@ -128,7 +176,7 @@ namespace Atenda.Repository
                         Nome = dr.IsDBNull(dr.GetOrdinal("Nome")) ? "" : (string)dr["Nome"],
                         Descricao = dr.IsDBNull(dr.GetOrdinal("Descricao")) ? "" : (string)dr["Descricao"],
                         Valor = (decimal)dr["Valor"],
-                        QntdEstoque = (int)dr["QntdEstoque"],
+                        QntdEstoque = dr.IsDBNull(dr.GetOrdinal("QntdEstoque")) ? null : (int?)dr["QntdEstoque"],
                     });
             }
             dr.Close();

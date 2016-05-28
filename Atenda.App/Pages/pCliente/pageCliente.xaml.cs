@@ -9,6 +9,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Atenda.App.Classes;
 using Atenda.App.Classes.Dbs;
+using System.Net.NetworkInformation;
 
 namespace Atenda.App.Pages.pCliente
 {
@@ -25,6 +26,7 @@ namespace Atenda.App.Pages.pCliente
         public pageCliente()
         {
             InitializeComponent();
+            //TesteConexão();
             this.Lpk_Estado.ItemsSource = Estados;
         }
 
@@ -65,7 +67,6 @@ namespace Atenda.App.Pages.pCliente
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            //manda o cliente selecionado para proxima pagina
             if (pCliente != null)
             {
                 pageClienteDetails page = e.Content as pageClienteDetails;
@@ -80,6 +81,17 @@ namespace Atenda.App.Pages.pCliente
 
             nomeSearch = Tb_Busca.Text;
             Lst_Clientes.ItemsSource = ClienteDB.GetNome(nomeSearch);
+        }
+
+        private static void TesteConexão()
+        {
+            if (NetworkInterface.GetIsNetworkAvailable())
+            {
+                Consume consume = new Consume();
+                consume.GetClientesWebService();
+            }
+            else
+                MessageBox.Show("Sem conexão com o servidor!");
         }
     }
 }

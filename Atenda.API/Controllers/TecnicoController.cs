@@ -11,13 +11,15 @@ namespace Atenda.API.Controllers
 {
     public class TecnicoController : ApiController
     {
+        [ActionName("Listar")]
         // GET: api/Tecnico
         public IEnumerable<Tecnico> GetAll()
         {
             var tecnicos = TecnicoRepository.GetAll();
+
             return tecnicos;
         }
-
+        [ActionName("Buscar")]
         // GET: api/Tecnico/5
         public Tecnico GetOne(int pId)
         {
@@ -30,10 +32,11 @@ namespace Atenda.API.Controllers
             return cliente;
         }
 
-        //// POST: api/Tecnico
-        //public void Post([FromBody]string value)
-        //{
-        //}
+        // POST: api/Tecnico
+        public void Post([FromBody]string value)
+        {
+
+        }
 
         //// PUT: api/Tecnico/5
         //public void Put(int id, [FromBody]string value)

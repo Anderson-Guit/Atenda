@@ -70,7 +70,8 @@ namespace Atenda.App.Classes.Dbs
         {
             dataBase db = getDataBase();
             var query = from oso in db.OrdemServico
-                        where oso.IdOS == pId
+                        join cli in db.Cliente
+                        on oso.IdCliente equals cli.IdCliente
                         select oso;
                         
                         
